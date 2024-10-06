@@ -6,7 +6,7 @@
     width: 100%;
     height: 100%;
     top: 261px;
-    border: 2px 0px 2px 0px solid #0000001C;
+    border: 2px solid #0000001C;
     padding-bottom: 10px;
 }
 .bannerbigger{
@@ -53,7 +53,7 @@
     width: 100%;
     height: 100%;
     top: 261px;
-    border: 2px 0px 2px 0px solid #0000001C;
+    border: 2px solid #0000001C;
     padding: 10px 0px 13px 0px;
 
 }*/
@@ -83,7 +83,7 @@
 
 #wrapper {
     width: 100%;
-    border: 2px 0px 2px 0px solid #0000001C;
+    border: 2px solid #0000001C;
     position: relative;
     background-color: #005F692E;
     padding: 10px 0px 13px 0px;

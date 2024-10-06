@@ -1,0 +1,181 @@
+/* Footer Top */
+.footer-top {
+    color: white;
+    padding: 64px 0;
+}
+
+.footer-top .footer-image {
+    width: 100%;
+    height: 400px;
+    background-image: url('../../imgs//parts/footer_banner.png');
+    background-size: 100% 100%;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    max-height: auto;
+    background-color: #005f6b;
+}
+
+.policy-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    margin: 16px 16px 0 0;
+}
+
+.policy-list li {
+    list-style-type: none;
+}
+
+.policy-list li a {
+    display: block;
+    text-decoration: none;
+    color: inherit
+}
+
+.policy-list li a:hover,
+.policy-list li a:focus {
+    color: #f26f33;
+}
+
+.footer-icon {
+    display: inline-flex;
+    text-align: start;
+    justify-content: center;
+    align-items: start;
+    height: auto;
+    width: 24px;
+    font-size: 1.2rem;
+    margin-right: 4px;
+}
+
+.footer-top-divider,
+.footer-bottom-divider,
+.footer-divider-main,
+.footer-divider-child {
+    display: block;
+    width: 100%;
+}
+
+/* Top Section Divider */
+.footer-top-divider {
+    border-bottom: 4px solid orange;
+    margin-bottom: 84px;
+    height: 4px;
+}
+
+.footer-bottom-divider {
+    border-bottom: 2px solid #79747e;
+    margin: 57px auto 0 auto;
+    opacity: 0.5;
+    height: 2px;
+    width: 80%;
+}
+
+/* Bottom Section Divider */
+.footer-divider-main {
+    border-bottom-width: 2px;
+    background-color: gray;
+    width: 80px;
+    margin: 8px 0 8px 16px;
+    height: 3px;
+}
+
+.footer-divider-child {
+    border-bottom-width: 2px;
+    background-color: #f26f33;
+    width: 100px;
+    margin: 16px;
+    height: 2px;
+}
+
+/* Floating Bottom Buttons */
+.footer-bottom-buttons {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+}
+
+/* Styling for the buttons */
+.footer-bottom-buttons {
+    position: fixed;
+    bottom: 20px;
+    right: 0;
+    display: flex;
+}
+
+.footer-bottom-buttons-btn-zalo {
+    position: fixed;
+    bottom: 108px;
+    right: 20px;
+    display: flex;
+}
+
+/* Basic button container styling */
+.phone-btn {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #D07A5C;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    transition: width 0.4s ease;
+    overflow: hidden;
+    padding-left: 20px;
+}
+
+.zalo-btn {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    background-color: transparent;
+    border-radius: 50px;
+    width: 55px;
+    height: 55px;
+    transition: width 0.4s ease;
+    overflow: hidden;
+}
+
+/* Button expanded state when hovered */
+.phone-btn:hover {
+    width: 190px;
+}
+
+/* Phone icon styling */
+.phone-icon {
+    background-color: #F04E23;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    color: white;
+    font-size: 1.5rem;
+    position: absolute;
+    border: 2px solid black;
+    right: 0;
+    transition: all 0.4s ease;
+}
+
+/* Phone number styling */
+.phone-number {
+    margin-right: 60px;
+    color: white;
+    opacity: 0;
+    font-size: 1.25rem;
+    transition: opacity 0.4s ease;
+}
+
+/* Phone number becomes visible on hover */
+.phone-btn:hover .phone-number {
+    opacity: 1;
+}
