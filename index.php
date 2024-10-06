@@ -11,22 +11,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Baloo" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Anton" />
-    <link href="https://fonts.googleapis.com/css2?family=Asul&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Asul&display=swap">
 
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/reset.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
 
     <link rel="stylesheet" href="assets/css/main/homepage.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 </head>
 
 <body>
     <?php include 'layouts/header.php'; ?>
 
-    <section class="Banner">
+    <!-- <section class="Banner">
         <div class="container-fluid bgBanner">
             <div class="row">
                 <div class="col-md-7 col-sm-12">
@@ -257,15 +261,13 @@
                 </svg>
             </button>
         </div>
-    </section>
+    </section> -->
 
-    <?php include 'layouts/footer.php'; ?>
+    <!-- <?php include 'layouts/footer.php'; ?> -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 
     <script src="assets/scripts/homepage.js"></script>
 </body>

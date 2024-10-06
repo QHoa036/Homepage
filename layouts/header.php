@@ -9,55 +9,46 @@
 
 <body>
     <!--Navbar-->
-    <nav class="navbar navbar-expand-lg bg-header-top">
-        <div class="container-fluid py-2">
-            <a class="d-flex align-items-center" href="#">
+    <div class="container-fluid bg-header-top py-2">
+        <div class="row">
+            <div class="col-sm-6 col-md-2">
                 <img src="assets/imgs/parts/header_logo.png" alt="UEH Logo" class="navbar-brand-logo" />
-                <div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <a href="#">
                     <p class="navbar-brand-text">STATIONERY</p>
-                </div>
-            </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="d-flex flex-grow-1 align-items-center justify-content-center">
-                <div class="search-bar">
-                    <i class="fas fa-chevron-left"></i>
-                    <input type="text" placeholder="Tìm kiếm">
-                    <i class="fas fa-search"></i>
-                </div>
+                </a>
             </div>
 
-            <div class="d-flex align-items-center">
+            <div class="col-sm-12 col-md-4 search-bar">
+                <i class="fas fa-chevron-left"></i>
+                <input type="search" placeholder="Tìm kiếm" aria-label="Search">
+                <i class="fas fa-search"></i>
+            </div>
+
+            <div class="col-sm-2 col-md-3">
                 <div class="icon-container">
-                    <!-- Phone Icon -->
                     <i class="fas fa-phone-alt"></i>
-
-                    <!-- Location Icon -->
                     <i class="fas fa-map-marker-alt"></i>
-
-                    <!-- Facebook Icon -->
                     <i class="fab fa-facebook-f"></i>
-                </div>
 
-                <div class="language-switch" id="languageSwitch" onclick="toggleLanguage()">
-                    <span id="languageText" class="active-language">Vie</span>
-                    <div class="language-switch-container">
-                        <i class="fas fa-globe"></i>
+                    <div class="language-switch" id="languageSwitch" onclick="toggleLanguage()">
+                        <span id="languageText" class="active-language">Vie</span>
+                        <div class="language-switch-container">
+                            <i class="fas fa-globe"></i>
+                        </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
-    </nav>
+    </div>
 
     <nav class="navbar navbar-expand-lg bg-header-bottom">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -66,7 +57,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <img src="assets/imgs/parts/components/header1.png" class="navbar-header-logo" />
+                            <i class="bi bi-people-fill navbar-header-logo"></i>
                             Giới thiệu
                         </a>
                     </li>
@@ -76,7 +67,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            <img src="assets/imgs/parts/components/header2.png" class="navbar-header-logo" />
+                            <i class="bi bi-grid-fill navbar-header-logo"></i>
                             Danh mục sản phẩm
                         </a>
                         <ul class="dropdown-menu">
@@ -92,7 +83,7 @@
 
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <img src="assets/imgs/parts/components/header3.png" class="navbar-header-logo" />
+                            <i class="bi bi-fire navbar-header-logo"></i>
                             Khuyến mãi
                         </a>
                     </li>
@@ -101,7 +92,7 @@
 
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <img src="assets/imgs/parts/components/header4.png" class="navbar-header-logo" />
+                            <i class="bi bi-question-circle-fill navbar-header-logo"></i>
                             Hỏi đáp
                         </a>
                     </li>
@@ -111,7 +102,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            <img src="assets/imgs/parts/components/header5.png" class="navbar-header-logo" />
+                            <i class="bi bi-box-arrow-in-right navbar-header-logo"></i>
                             Đăng nhập
                         </a>
                         <ul class="dropdown-menu">
