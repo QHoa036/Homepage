@@ -1,0 +1,136 @@
+.Banner{
+    padding-top: 10px;
+}
+.bgBanner{
+    background-color: #005F692E;
+    width: 100%;
+    height: 100%;
+    top: 261px;
+    border: 2px 0px 2px 0px solid #0000001C;
+    padding-bottom: 10px;
+}
+.bannerbigger{
+    width: 100%;
+    height: 386px;
+    top: 273px;
+    left: 22px;
+    gap: 0px;
+    border-radius: 15px 15px 15px 15px;
+    opacity: 0px;
+    margin-top: 8px;
+}
+.bannersmaller{
+    width: 100%;
+    height: 188px;
+    top: 273px;
+    left: 878px;
+    gap: 0px;
+    border-radius: 10px 10px 10px 10px;
+    opacity: 0px;
+    margin-top: 8px;
+}
+.bgtitleCategory{
+    width: 250px;
+    height: 54px;
+    top: 720px;
+    left: -9px;
+    background-color: #F26F33;
+    margin: 35px 0px 15px 0px ;
+}
+.tiltleCategory{
+    font-family: 'Anton';
+    font-size: 25px;
+    font-weight: 400;
+
+    text-align: center;
+    color: white;
+    padding-top: 10px;
+    text-shadow: -1px -1px 0 #005f69, 1px -1px 0 #005f69, -2px 2px 0 #005f69,
+    2px 2px 0 #005f69;
+}
+/*.bgCategory{
+    background-color: #005F692E;
+    width: 100%;
+    height: 100%;
+    top: 261px;
+    border: 2px 0px 2px 0px solid #0000001C;
+    padding: 10px 0px 13px 0px;
+
+}*/
+.card{
+    margin-top: 5px;
+    width: 245px;
+    height: 360px;
+    left: 30px;
+    border-radius: 10px 10px 10px 10px;
+    border: 2px solid #005f69;
+    
+}
+.card img{
+    width: 100%;
+    height: 257px;
+    top: 850px;
+    left: 47px;
+
+}
+.card-title{
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+    color: #005F69;
+    padding-top: 5px;
+}
+
+#wrapper {
+    width: 100%;
+    border: 2px 0px 2px 0px solid #0000001C;
+    position: relative;
+    background-color: #005F692E;
+    padding: 10px 0px 13px 0px;
+  }
+  
+  #carousel {
+    overflow: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+  }
+  
+  #carousel::-webkit-scrollbar {
+    height: 0;
+  }
+  
+  #prev,
+  #next {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background: #005f69;
+    border: none;
+    padding: 8px;
+    border-radius: 50%;
+    outline: 0;
+    cursor: pointer;
+    position: absolute;
+  }
+  
+  #prev {
+    top: 50%;
+    left: 0;
+    transform: translate(50%, -50%);
+    display: none;
+  }
+  
+  #next {
+    top: 50%;
+    right: 0;
+    transform: translate(-50%, -50%);
+  }
+  
+  #content {
+    display: grid;
+    grid-gap: 16px;
+    grid-auto-flow: column;
+    margin: auto;
+    box-sizing: border-box;
+  }
+

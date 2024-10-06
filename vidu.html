@@ -1,0 +1,522 @@
+
+
+<!-- file html để chạy thử frontend thui nhó -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Anton+SC&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Asul:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+        .thumbnail {
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            border: 10px solid white;
+        }
+
+
+        .thumbnail:hover {
+            opacity: 50%;
+        }
+
+
+        .thumbnail img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+            opacity: 75%;
+        }
+
+
+        .big-thumbnail {
+            height: 420px;
+        }
+
+
+        .big-thumbnail img {
+            padding: 50px;
+        }
+
+
+        .small-thumbnail {
+            height: 210px;
+        }
+
+
+        .small-thumbnail img {
+            padding: 30px;
+            height: 150px;
+        }
+
+
+        .caption {
+            position: absolute;
+            top: 45%;
+            left: 0;
+            width: 100%;
+            color: white;
+            text-shadow: 1px 2px 2px #000000;
+            font-size: 2rem;
+            font-family: "Anton SC", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+
+        #danhmucsp-content {
+            margin-top: 50px;
+        }
+
+
+        #tenloaisp {
+            display: inline-block;
+            background-color: #f26f33;
+            padding: 10px 30px;
+            color: white;
+            text-shadow: -1px -1px 0 #005f69, 1px -1px 0 #005f69, -2px 2px 0 #005f69, 2px 2px 0 #005f69;
+            font-family: "Anton SC", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+
+        .card-title {
+            font-family: "Asul", serif;
+            font-weight: 400;
+            font-style: normal;
+            color: #005f69;
+        }
+
+
+        #price {
+            font-family: "Roboto", sans-serif;
+            font-weight: 500;
+            font-style: normal;
+        }
+    </style>
+</head>
+
+
+<body>
+<?php
+    include "database/conn.php";
+    ?>
+    <div id="danhmucsp-container" class="container text-center">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-6" id="sach-col">
+                <div class="thumbnail big-thumbnail" style="
+              background: #005f69;
+              background: -moz-linear-gradient(
+                top,
+                #005f69 0%,
+                #ffffff 50%,
+                #f26f33 100%
+              );
+              background: -webkit-linear-gradient(
+                top,
+                #005f69 0%,
+                #ffffff 50%,
+                #f26f33 100%
+              );
+              background: linear-gradient(
+                to bottom,
+                #005f69 0%,
+                #ffffff 50%,
+                #f26f33 100%
+              );
+            ">
+                    <a href="#"> <!--mã loại-->
+                        <img src="https://tiki.vn/blog/wp-content/uploads/2023/08/thumb-12.jpg" class="img-fluid"
+                            alt="Sách" />
+                        <div class="caption">
+                            <h2>SÁCH</h2>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-6 col-md-3" id="phukien-but-col">
+                <div class="row">
+                    <div class="thumbnail small-thumbnail" style="
+                background: #f26f33;
+                background: -moz-linear-gradient(
+                  top,
+                  #f26f33 0%,
+                  #ffffff 90%,
+                  #ffffff 100%
+                );
+                background: -webkit-linear-gradient(
+                  top,
+                  #f26f33 0%,
+                  #ffffff 90%,
+                  #ffffff 100%
+                );
+                background: linear-gradient(
+                  to bottom,
+                  #f26f33 0%,
+                  #ffffff 90%,
+                  #ffffff 100%
+                );
+              ">
+                        <a href="#">
+                            <img src="https://shop.ueh.edu.vn/ueh-souvenir/wp-content/uploads/2022/05/sp-04-1.png"
+                                class="img-fluid" alt="Phụ kiện" />
+                            <div class="caption">
+                                <h2>PHỤ KIỆN</h2>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="thumbnail small-thumbnail" style="
+                background: #ffffff;
+                background: -moz-linear-gradient(
+                  top,
+                  #ffffff 0%,
+                  #ffffff 10%,
+                  #005f69 100%
+                );
+                background: -webkit-linear-gradient(
+                  top,
+                  #ffffff 0%,
+                  #ffffff 10%,
+                  #005f69 100%
+                );
+                background: linear-gradient(
+                  to bottom,
+                  #ffffff 0%,
+                  #ffffff 10%,
+                  #005f69 100%
+                );
+              ">
+                        <a href="#">
+                            <img src="https://soklong.com/wp-content/uploads/2021/12/ce77ccea0aa6bdfecd4c355c3af3b9f5.jpg"
+                                class="img-fluid" alt="Bút" />
+                            <div class="caption">
+                                <h2>BÚT</h2>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3" id="sotay-maytinh-col">
+                <div class="row">
+                    <div class="thumbnail small-thumbnail" style="
+                background: #005f69;
+                background: -moz-linear-gradient(
+                  top,
+                  #005f69 0%,
+                  #ffffff 90%,
+                  #ffffff 100%
+                );
+                background: -webkit-linear-gradient(
+                  top,
+                  #005f69 0%,
+                  #ffffff 90%,
+                  #ffffff 100%
+                );
+                background: linear-gradient(
+                  to bottom,
+                  #005f69 0%,
+                  #ffffff 90%,
+                  #ffffff 100%
+                );
+              ">
+                        <a href="#">
+                            <img src="https://inbaobigiay.vn/wp-content/uploads/2023/12/in-so-tay-6.jpg"
+                                class="img-fluid" alt="Sổ tay" />
+                            <div class="caption">
+                                <h2>SỔ TAY</h2>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="thumbnail small-thumbnail" style="
+                background: #ffffff;
+                background: -moz-linear-gradient(
+                  top,
+                  #ffffff 0%,
+                  #ffffff 10%,
+                  #f26f33 100%
+                );
+                background: -webkit-linear-gradient(
+                  top,
+                  #ffffff 0%,
+                  #ffffff 10%,
+                  #f26f33 100%
+                );
+                background: linear-gradient(
+                  to bottom,
+                  #ffffff 0%,
+                  #ffffff 10%,
+                  #f26f33 100%
+                );
+              ">
+                        <a href="#">
+                            <img src="https://vanphongphamhl.vn/upload_images/images/2024/01/29/may-tinh-casio-cho-hoc-sinh-cap-3-06.jpg"
+                                class="img-fluid" alt="Máy tính" />
+                            <div class="caption">
+                                <h2>MÁY TÍNH</h2>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="danhmucsp-content" class="container-fluid">
+    <?php
+    // Fetch all product categories
+    $categoryResult = mysqli_query($conn, "SELECT * FROM loaisanpham ORDER BY Maloai ASC");
+
+
+    // Loop through each product category
+    while ($categoryRow = mysqli_fetch_array($categoryResult)) {
+        // Fetch products for each category
+        $categoryID = $categoryRow['Maloai']; // Get the current category ID
+        $productsResult = mysqli_query($conn, "SELECT * FROM sanpham WHERE Maloai = '$categoryID' ORDER BY MaSP ASC LIMIT 3");
+    ?>
+
+
+        <div id="" class="container-fluid"> <!-- id là mã loại sp nè, để loop từng loại -->
+            <h2 id="tenloaisp" class="text-uppercase fw-bold"><?=$categoryRow['TenLoai'] ?></h2> <!-- tên loại sp nè, ko phải cái id nha -->
+            <div class="container text-center">
+                <div class="row align-items-center">
+                <?php
+                // Loop through each product in the current category
+                while ($productRow = mysqli_fetch_array($productsResult)) {
+                ?>
+                    <div class="col-12 col-sm-6 col-md-3">
+                        <!--thông tin sp nè, mỗi cái div này là 1 sp-->
+                        <div class="card p-2 my-2" style="width: 100%">
+                           
+                            <img src="./images/<?= $productRow['Hinhanh'] ?>" class="card-img-top" alt="Hình ảnh <?= $productRow['TenSP'] ?>">
+                            <!--alt để theo cú pháp Hình ảnh + tên sp nè-->
+                            <div class="card-body">
+                                <h5 class="card-title"><?= $productRow['TenSP'] ?></h5>
+                                <div id="price">
+                                    <!-- Only show Giaban if GiaKM is NOT null -->
+                                    <?php if ($productRow['GiaKM'] != NULL) { ?>
+                                        <h5 class="text-secondary text-decoration-line-through"><?= number_format($productRow['Giaban'], 0, ",", ".") ?><sup>đ</sup></h5>
+                                    <?php } ?>
+                                    <!-- Show GiaKM if available, otherwise show Giaban -->
+                                    <h4 class="text-danger">
+                                        <?= number_format($productRow['GiaKM'] ? $productRow['GiaKM'] : $productRow['Giaban'], 0, ",", ".") ?><sup>đ</sup>
+                                    </h4> <!--giá bán nè, hiển thị Giaban nếu GiaKM null-->
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-success" data-bs-toggle="tooltip"
+                                        data-bs-title="Thêm vào giỏ hàng"> <!--button thêm giỏ hàng nè-->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z" />
+                                        </svg>
+                                    </button>
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="tooltip"
+                                        data-bs-title="Thêm vào danh mục yêu thích"> <!--button thêm yêu thích nè-->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="progress my-2" role="progressbar" aria-label="Info example"
+                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="height: 30px">
+                                    <div class="progress-bar fw-bold" style="width: 50%">
+                                        <span class="h6">Đã bán: 600</span> <!--progress nè-->
+                                    </div>
+                                </div>
+                                <div class="container"> <!--div đánh giá nè-->
+                                    <div class="row justify-content-between">
+                                        <div class="col-8">
+                                            <p>Đánh giá: 1 lượt</p> <!--số lượt đánh giá nè-->
+                                        </div>
+                                        <div class="col-4">
+                                            <input type="hidden" class="rating" data-readonly />
+                                            <!--rating nè, cần import thư viện rating vô mới có, giờ để tạm-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+
+
+    <?php } ?> <!-- End category loop -->
+</div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script>
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    </script>
+</body>
+
+
+</html>
+
+
+
+
+<div class="col-lg-3 col-md-4 col-sm-6">
+    <div class="card ">
+        <div class="card-body" >
+            <img src="images/sản phẩm/SP2.jpg" class="card-img-top" alt="...">
+            <h5 class="card-title">Sách kinh tế vĩ mô</h5>
+            <p class="card-text">Đã bán:</p>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-md-4 col-sm-6">
+    <div class="card ">
+        <div class="card-body" >
+            <img src="images/sản phẩm/SP2.jpg" class="card-img-top" alt="...">
+            <h5 class="card-title">Sách kinh tế vĩ mô</h5>
+            <p class="card-text">Đã bán:</p>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-md-4 col-sm-6">
+    <div class="card ">
+        <div class="card-body" >
+            <img src="images/sản phẩm/SP2.jpg" class="card-img-top" alt="...">
+            <h5 class="card-title">Sách kinh tế vĩ mô</h5>
+            <p class="card-text">Đã bán:</p>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-md-4 col-sm-6">
+    <div class="card ">
+        <div class="card-body">
+            <img src="images/sản phẩm/SP2.jpg" class="card-img-top" alt="...">
+            <h5 class="card-title">Sách kinh tế vĩ mô</h5>
+            <p class="card-text">Đã bán:</p>
+        </div>
+    </div>
+</div>
+
+<div class="large-12 columns">
+    <div class="owl-carousel owl-theme">
+        <div class="item">
+                <div class="card ">
+                    <div class="card-body" >
+                        <img src="images/sản phẩm/SP2.jpg" class="card-img-top" alt="...">
+                        <h5 class="card-title">Sách kinh tế vĩ mô</h5>
+                        <p class="card-text">Đã bán:</p>
+                    </div>
+                </div>
+        </div>
+        <div class="item">
+            <div class="card ">
+                <div class="card-body" >
+                    <img src="images/sản phẩm/SP2.jpg" class="card-img-top" alt="...">
+                    <h5 class="card-title">Sách kinh tế vĩ mô</h5>
+                    <p class="card-text">Đã bán:</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">                 
+            <div class="card ">
+                <div class="card-body" >
+                    <img src="images/sản phẩm/SP2.jpg" class="card-img-top" alt="...">
+                    <h5 class="card-title">Sách kinh tế vĩ mô</h5>
+                    <p class="card-text">Đã bán:</p>
+                </div>
+            </div>  
+        </div>
+        <div class="item">
+            <div class="card ">
+                <div class="card-body" >
+                    <img src="images/sản phẩm/SP2.jpg" class="card-img-top" alt="...">
+                    <h5 class="card-title">Sách kinh tế vĩ mô</h5>
+                    <p class="card-text">Đã bán:</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="card ">
+                <div class="card-body" >
+                    <img src="images/sản phẩm/SP2.jpg" class="card-img-top" alt="...">
+                    <h5 class="card-title">Sách kinh tế vĩ mô</h5>
+                    <p class="card-text">Đã bán:</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="card ">
+                <div class="card-body" >
+                    <img src="images/sản phẩm/SP2.jpg" class="card-img-top" alt="...">
+                    <h5 class="card-title">Sách kinh tế vĩ mô</h5>
+                    <p class="card-text">Đã bán:</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">                 
+            <div class="card ">
+                <div class="card-body" >
+                    <img src="images/sản phẩm/SP2.jpg" class="card-img-top" alt="...">
+                    <h5 class="card-title">Sách kinh tế vĩ mô</h5>
+                    <p class="card-text">Đã bán:</p>
+                </div>
+            </div>  
+        </div>
+        <div class="item">
+            <div class="card ">
+                <div class="card-body" >
+                    <img src="images/sản phẩm/SP2.jpg" class="card-img-top" alt="...">
+                    <h5 class="card-title">Sách kinh tế vĩ mô</h5>
+                    <p class="card-text">Đã bán:</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
