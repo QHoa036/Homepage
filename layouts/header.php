@@ -4,50 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/layouts/headers.css" />
+    <link rel="stylesheet" href="assets/css/layouts/header.css" />
 </head>
 
 <body>
-    <!--Navbar-->
-    <div class="container-fluid bg-header-top py-2">
-        <div class="row">
-            <div class="col-sm-6 col-md-2">
-                <img src="assets/imgs/parts/header_logo.png" alt="UEH Logo" class="navbar-brand-logo" />
-            </div>
-            <div class="col-sm-6 col-md-3">
-                <a href="#">
-                    <p class="navbar-brand-text">STATIONERY</p>
-                </a>
-            </div>
+    <nav class="navbar navbar-expand-lg bg-header-top">
+        <div class="container-fluid d-flex align-items-center">
 
-            <div class="col-sm-12 col-md-4 search-bar">
-                <i class="fas fa-chevron-left"></i>
-                <input type="search" placeholder="Tìm kiếm" aria-label="Search">
-                <i class="fas fa-search"></i>
+            <!-- Left Section: Logo and Title -->
+            <div class="d-flex align-items-center">
+                <div class="text-center text-lg-left py-2">
+                    <img src="assets/imgs/parts/header_logo.png" alt="UEH Logo" class="navbar-brand-logo">
+                </div>
+                <div class="text-center text-lg-left py-2 px-2">
+                    <a href="index.php">
+                        <p class="navbar-brand-text">STATIONERY</p>
+                    </a>
+                </div>
             </div>
 
-            <div class="col-sm-2 col-md-3">
-                <div class="icon-container">
-                    <i class="fas fa-phone-alt"></i>
-                    <i class="fas fa-map-marker-alt"></i>
-                    <i class="fab fa-facebook-f"></i>
+            <!-- Center Section: Search Bar -->
+            <div class="d-flex align-items-center justify-content-center position-relative search-container py-3">
+                <i class="fas fa-chevron-left search-icon"></i>
+                <input type="text" class="search-input" placeholder="Tìm kiếm">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
 
+            <!-- Right Section: Icon Buttons -->
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="navbar-toolbar py-1">
+                    <div class="icon-container">
+                        <i class="fas fa-phone-alt"></i>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="navbar-toolbar py-1">
                     <div class="language-switch" id="languageSwitch" onclick="toggleLanguage()">
-                        <span id="languageText" class="active-language">Vie</span>
+                        <span id="languageText" class="active-language">VN</span>
                         <div class="language-switch-container">
                             <i class="fas fa-globe"></i>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
-    </div>
+    </nav>
 
     <nav class="navbar navbar-expand-lg bg-header-bottom">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        <div class="container-fluid d-flex justify-content-end align-items-center">
+            <button class="navbar-toggler bg-light my-2" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -62,7 +71,9 @@
                         </a>
                     </li>
 
-                    <div class="vertical-divider"></div>
+                    <li>
+                        <div class="vertical-divider"></div>
+                    </li>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -79,7 +90,9 @@
                         </ul>
                     </li>
 
-                    <div class="vertical-divider"></div>
+                    <li>
+                        <div class="vertical-divider"></div>
+                    </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="#">
@@ -88,7 +101,9 @@
                         </a>
                     </li>
 
-                    <div class="vertical-divider"></div>
+                    <li>
+                        <div class="vertical-divider"></div>
+                    </li>
 
                     <li class="nav-item">
                         <a class="nav-link" href="#">
@@ -97,7 +112,9 @@
                         </a>
                     </li>
 
-                    <div class="vertical-divider"></div>
+                    <li>
+                        <div class="vertical-divider"></div>
+                    </li>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -115,17 +132,7 @@
         </div>
     </nav>
 
-    <!-- Custom JS -->
-    <script>
-        function toggleLanguage() {
-            var languageText = document.getElementById('languageText');
-            if (languageText.innerText === 'Vie') {
-                languageText.innerText = 'En';
-            } else {
-                languageText.innerText = 'Vie';
-            }
-        }
-    </script>
+    <script src="assets/scripts/header.js"></script>
 </body>
 
-</html>
+</html>,

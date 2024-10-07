@@ -1,5 +1,6 @@
 /* Đặt kích thước font cho thẻ body và tùy chỉnh thanh cuộn */
 body {
+
     /* Tùy chỉnh chiều rộng của thanh cuộn */
     &::-webkit-scrollbar {
         width: 6px;

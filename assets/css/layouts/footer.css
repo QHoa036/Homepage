@@ -91,28 +91,16 @@
     height: 2px;
 }
 
-/* Floating Bottom Buttons */
-.footer-bottom-buttons {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 20px;
-}
-
-/* Styling for the buttons */
-.footer-bottom-buttons {
-    position: fixed;
-    bottom: 20px;
-    right: 0;
-    display: flex;
-}
-
 .footer-bottom-buttons-btn-zalo {
     position: fixed;
-    bottom: 108px;
+    bottom: 88px;
+    right: 20px;
+    display: flex;
+}
+
+.footer-bottom-buttons-btn-phone {
+    position: fixed;
+    bottom: 20px;
     right: 20px;
     display: flex;
 }

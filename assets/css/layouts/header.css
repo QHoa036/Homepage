@@ -1,56 +1,79 @@
 /* Header Top */
 .bg-header-top {
   background-color: #f15a29;
-  margin: 0;
-  padding: 0;
 }
 
 .navbar-brand-logo {
-  max-width: 100%;
+  width: 220px;
   height: auto;
-  padding-left: 10px;
+}
+
+.navbar-header-logo {
+  width: 30px;
+  height: auto;
+  margin-right: 0.6rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: right;
 }
 
 .navbar-brand-text {
-  width: 100%;
-  font-family: "Baloo";
-  font-size: 35px;
+  font-family: 'Baloo';
   color: white;
+  font-size: 40px;
   font-weight: 400;
-  padding-top: 14px;
-  text-shadow: -1px -1px 0 #005f69, 1px -1px 0 #005f69, -2px 2px 0 #005f69,
-    2px 2px 0 #005f69;
+  text-shadow: -1px -1px 0 #005f69, 1px -1px 0 #005f69, -2px 2px 0 #005f69, 2px 2px 0 #005f69;
 }
 
-/* Search Bar */
-.search-bar {
-  margin-top: 12px;
-  height: 100%;
-  background-color: #ece6f0;
-  padding: 15px 20px;
+/* Searchbar */
+.search-container {
+  flex-grow: 1;
+  max-width: 400px;
+}
+
+.search-input {
+  width: 100%;
+  border: 1px solid #ccc;
   border-radius: 28px;
+  padding: 12px 40px;
+  font-size: 1rem;
 }
 
-.search-bar input {
-  max-width: 100%;
+.search-icon {
+  position: absolute;
+  left: 18px;
+  font-size: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.search-btn {
+  height: 20px;
+  width: 20px;
   border: none;
-  background-color: transparent;
-  padding-left: 10px;
-  outline: none;
+  background: transparent;
+  position: absolute;
+  right: 18px;
+  font-size: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
 
-.search-bar .fa-chevron-left,
-.search-bar .fa-search {
-  color: #5a5a5a;
+/* Toolbar */
+.navbar-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
 }
 
 /* Icon container */
 .icon-container {
+  gap: 0.8rem;
   display: flex;
-  padding-top: 16px;
   align-items: center;
-  justify-content: end;
-  margin: 0 auto;
+  justify-content: center;
 }
 
 .icon-container i {
@@ -58,10 +81,9 @@
   border-radius: 50%;
   border: 2px solid white;
   color: white;
-  height: 50px;
-  width: 50px;
+  height: 44px;
+  width: 44px;
   font-size: 1.1rem;
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,14 +99,14 @@
 .language-switch {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
   background-color: rgba(255, 255, 255, 0.4);
   border-radius: 30px;
   padding: 4px 15px;
   cursor: pointer;
   color: #0d6660;
   font-size: 18px;
-  height: 54px;
+  height: 50px;
 }
 
 .language-switch:hover {
@@ -103,6 +125,12 @@
   align-items: center;
   border-radius: 50%;
   border: 2px solid #0d6660;
+}
+
+@media (max-width: 768px) {
+  .navbar-brand-text {
+    font-size: 26px;
+  }
 }
 
 /* Active class for styling the selected language */
@@ -168,11 +196,14 @@
 
 .dropdown-item:hover {
   background-color: #ece6f0;
+  color: #005f69;
 }
 
 .vertical-divider {
   border-right: 2px solid white;
   height: 100%;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .nav-item.dropdown {

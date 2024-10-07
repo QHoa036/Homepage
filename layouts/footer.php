@@ -16,20 +16,20 @@
         </div>
 
         <div class="container-fluid footer-bottom text-white py-2">
-            <div class="row align-items-start py-3">
+            <div class="row align-items-start py-2">
                 <div class="col-md-6 col-lg-6">
                     <img src="assets/imgs/parts/footer_logo.png" alt="" width="400" class="mt-3">
                     <p class="text-md text-white mt-3 mx-4">
                         <i class="fa-solid fa-at footer-icon"></i>
                         ueh.edu.vn
                     </p>
-                    <p class="text-md text-white mt-3 mx-4">
+                    <p class="text-md text-white my-3 mx-4">
                         <i class="fa-solid fa-location-dot footer-icon"></i>
                         B1.111 – 279 Đ. Nguyễn Tri Phương, Phường 5, Quận 10, Hồ Chí Minh
                     </p>
                 </div>
 
-                <div class="col-md-4 col-lg-4">
+                <div class="col-md-6 col-lg-6">
                     <div>
                         <p class="text-display-lg-bold-32 text-white">Chính sách</p>
                         <div class="footer-divider-main" />
@@ -62,7 +62,7 @@
                     </div>
                 </div>
 
-                <div class="footer-bottom-buttons">
+                <div class="footer-bottom-buttons-btn-phone">
                     <div class="phone-btn">
                         <span class="phone-number">8900-4657</span>
                         <div class="phone-icon">
