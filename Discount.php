@@ -166,6 +166,27 @@
         </div>
     </section>
 
+<!-- đây là phần banner discount -->
+    <section class="BannerDiscount ">
+        <div class="container-fluid imgBannerDiscount">
+            <img src="assets/imgs/banners/discount.png" alt="" class="imgBannerDiscount">
+        </div>
+    </section>
+
+<!-- đây là phần săn voucher -->
+    <section class="voucher">
+        <div class="bgTitlevoucher">
+            <p class="titlevoucher">SĂN VOUCHER KHUYẾN MÃI</p>
+        </div>
+        <div class="container cardVoucher">
+            khuyễn mãi
+        </div>
+        <div class="container cardVoucher">
+            khuyễn mãi
+        </div>
+    </section>
+
+
     <?php include 'layouts/footer.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
