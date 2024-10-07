@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Baloo" />
+    <link href="https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Anton" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Asul&display=swap">
 
@@ -24,15 +25,19 @@
     <link rel="stylesheet" href="assets/css/main/discount.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="carousel/owlcarousel/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="carousel/owlcarousel/assets/owl.theme.default.min.css">
+
     <script src="carousel/vendors/jquery.min.js"></script>
     <script src="carousel/owlcarousel/owl.carousel.js"></script>
 </head>
 </head>
 
 <body>
-<!-- đây là phần của banner -->
+    <?php include 'layouts/header.php'; ?>
+
+    <!-- đây là phần của banner -->
     <section class="Banner">
         <div class="container-fluid bgBanner">
             <div class="row">
@@ -40,83 +45,134 @@
                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="assets/imgs/banners/fd59cb809b2f5acf38c9bbfc1294ecb6 (1).png" alt="" class="bannerbigger">
+                                <img src="assets/imgs/banners/fd59cb809b2f5acf38c9bbfc1294ecb6 (1).png" alt=""
+                                    class="bannerbigger">
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/imgs/banners/12a81205fcf140a955c5dcf69e7d1dd9.png" alt="" class="bannerbigger">
+                                <img src="assets/imgs/banners/12a81205fcf140a955c5dcf69e7d1dd9.png" alt=""
+                                    class="bannerbigger">
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/imgs/banners/b2cf1cdd04ca34d949fec0d5c034e482.png" alt="" class="bannerbigger">
+                                <img src="assets/imgs/banners/b2cf1cdd04ca34d949fec0d5c034e482.png" alt=""
+                                    class="bannerbigger">
                             </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
                 </div>
+
                 <div class="col-md-5 col-sm-12">
                     <div class="col">
                         <div class="row-6 ">
-                            <img src="assets/imgs/banners/b2cf1cdd04ca34d949fec0d5c034e482.png" alt="" class="bannersmaller">
+                            <img src="assets/imgs/banners/b2cf1cdd04ca34d949fec0d5c034e482.png" alt=""
+                                class="bannersmaller">
                         </div>
                         <div class="row-6">
-                            <img src="assets/imgs/banners/12a81205fcf140a955c5dcf69e7d1dd9.png" alt="" class="bannersmaller">
+                            <img src="assets/imgs/banners/12a81205fcf140a955c5dcf69e7d1dd9.png" alt=""
+                                class="bannersmaller">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-<!-- đây là phần flashsales -->
-    <section class="flashsales">
+
+    <!-- đây là phần flashsales -->
+    <section class="Flashsales">
         <div class="container-fluid bgFlashsales">
             <div class="row">
-                <div class="col-md-6">
-                    chi tiết
+                <div class="col-md-6 p-0">
+                    <div class="row-2 bgFlashCountdown">
+                        <img src="assets/imgs/buttons/btn_flashsale.png" alt="" />
+                        <p class="countdown">FLASH SALE: 00 : 40 : 00</p>
+                    </div>
+
+                    <div class="row-10">
+                        <div class="card bgFlashInfo shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h3 class="title">
+                                        Máy Tính Casio FX-580VN X
+                                    </h3>
+
+                                    <div class="discount-badge position-relative m-0 ">
+                                        <span class="badge bg-danger">
+                                            10%
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <small class="content">Mã SP: SP5</small>
+
+                                <div class="colorInfo">
+                                    <div class="d-flex align-items-center">
+                                        <small class="content">Màu sắc: </small>
+
+                                        <span class="discount-color text-dark border-0 px-5 py-2 mx-4">Đen</span>
+                                        <span class="discount-color text-dark border-0 px-5 py-2">Hồng</span>
+                                    </div>
+                                </div>
+
+                                <p class="priceInfo">Đã bán: <strong>500 sp</strong></p>
+
+                                <div class="d-flex justify-content-end align-items-center mb-2">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <del class="text-muted me-2 price">350.000 đ</del>
+                                        <strong class="text-danger me-2 price">315.000 đ</strong>
+                                    </div>
+                                    <button class="btn btn-success btn-circle">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+
+                                <div class="ratings">
+                                    <span>Đánh giá: 1 lượt</span>
+                                    <div class="stars">
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="far fa-star text-muted"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="col-md-6">
                     <div class="owl-carousel owl-theme">
                         <div class="item">
-                        <img src="assets/imgs/products/máy tinh 1.png" alt="">
+                            <img src="assets/imgs/products/máy tinh 1.png" alt="">
                         </div>
                         <div class="item">
-                        <img src="assets/imgs/products/máy tính 2.png" alt="">
+                            <img src="assets/imgs/products/máy tính 2.png" alt="">
                         </div>
                         <div class="item">
-                        <img src="assets/imgs/products/máy tính 3.png" alt="">
+                            <img src="assets/imgs/products/máy tính 3.png" alt="">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <?php include 'layouts/footer.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-    <script>
-        $(document).ready(function() {
-            $('.owl-carousel').owlCarousel({
-            loop: true,
-            margin: 10,
-            nav: false,
-            responsiveClass: true,
-            responsive: {
-                0: {
-                items: 1,
-                },
-            }
-            })
-        })
-    </script>
-    
 
-
+    <?php include 'assets/scripts/discount.js'; ?>
 </body>
 
 </html>

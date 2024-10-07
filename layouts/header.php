@@ -95,7 +95,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="discount.php">
                             <i class="bi bi-fire navbar-header-logo"></i>
                             Khuyến mãi
                         </a>

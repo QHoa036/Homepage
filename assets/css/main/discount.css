@@ -1,8 +1,9 @@
 /* đây là css banner */
-.Banner{
+.Banner {
     padding-top: 10px;
 }
-.bgBanner{
+
+.bgBanner {
     background-color: #005F692E;
     width: 100%;
     height: 100%;
@@ -10,7 +11,8 @@
     border: 2px solid #0000001C;
     padding-bottom: 10px;
 }
-.bannerbigger{
+
+.bannerbigger {
     width: 100%;
     height: 386px;
     top: 273px;
@@ -20,7 +22,8 @@
     opacity: 0px;
     margin-top: 8px;
 }
-.bannersmaller{
+
+.bannersmaller {
     width: 100%;
     height: 188px;
     top: 273px;
@@ -31,22 +34,150 @@
     margin-top: 8px;
 }
 
-
 /* đây là css flashsale */
-.flashsales{
+.Flashsales {
     padding-top: 30px;
 }
 
-.bgFlashsales{
+.bgFlashsales {
     width: 100%;
     height: 100%;
-    top: 727px;
     background-color: #EFB2B966;
     border: 1px solid #00000040
 }
-.item {
-    width: 100%;
-    height: 100%;
-    padding: 15px 30px 0px 0px;
 
+.bgFlashCountdown {
+    width: fit-content;
+    height: 80px;
+    padding: 16px;
+    background-color: #0DF6EB59;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bgFlashCountdown img {
+    height: 80px;
+    width: 60px;
+}
+
+.bgFlashCountdown .countdown {
+    font-family: 'Anton SC';
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+    padding-left: 16px;
+    line-height: 52.69px;
+    text-shadow: -1px -1px 0 red,
+        1px -1px 0 red,
+        -1px 1px 0 red,
+        1px 1px 0 red;
+}
+
+.bgFlashInfo {
+    background-color: #FDE3E3;
+    border-radius: 10px;
+    padding: 0 20px 0 20px;
+    margin: 20px;
+}
+
+.bgFlashInfo .title {
+    font-family: 'Anton SC';
+    font-size: 35px;
+    color: black;
+    font-weight: bold;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bgFlashInfo .content {
+    align-items: center;
+    color: black;
+    display: block;
+    font-family: 'Roboto';
+    font-size: 32px;
+    font-weight: 400;
+    height: 80px;
+    justify-content: center;
+    line-height: 37.5px;
+    text-align: left;
+}
+
+.bgFlashInfo .colorInfo {
+    align-items: center;
+    display: flex;
+    font-family: 'Roboto';
+    font-size: 32px;
+    font-weight: 400;
+    height: 80px;
+    justify-content: start;
+    line-height: 37.5px;
+    text-align: left;
+}
+
+.bgFlashInfo .priceInfo {
+    align-items: center;
+    color: black;
+    display: block;
+    font-family: 'Roboto';
+    font-size: 32px;
+    font-weight: 400;
+    height: 80px;
+    justify-content: center;
+    line-height: 37.5px;
+    text-align: left;
+}
+
+.price {
+    color: #FF6B70;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.bgFlashInfo .priceInfo .price {
+    color: #FF6B70;
+    font-weight: bold;
+}
+
+.discount-badge .badge {
+    width: 60px;
+    height: 60px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Reddit Mono';
+    font-size: 24px;
+}
+
+.discount-color {
+    background-color: #FF6B70;
+    color: #000;
+    gap: 20px;
+    cursor: pointer;
+}
+
+.ratings {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 32px;
+    height: 90px;
+}
+
+.ratings .stars {
+    font-size: 40px;
+}
+
+.btn-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
 }
