@@ -9,8 +9,6 @@
     <!-- Libraries -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="carousel/owlcarousel/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="carousel/owlcarousel/assets/owl.theme.default.min.css">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -32,8 +30,13 @@
 
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="carousel/vendors/jquery.min.js"></script>
-    <script src="carousel/owlcarousel/owl.carousel.js"></script>
+
+    <!-- Carousel -->
+    <link rel="stylesheet" href="./carousel/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="./carousel/owlcarousel/assets/owl.theme.default.min.css">
+
+    <script src="./carousel/vendors/jquery.min.js"></script>
+    <script src="./carousel/owlcarousel/owl.carousel.js"></script>
 </head>
 
 <body>
@@ -46,8 +49,8 @@
 
             // Định nghĩa các route và các file tương ứng của chúng
             $routes = [
-                '/' => 'views/homepage.php',
-                '/discount' => 'views/discount.php',
+                '/' => 'homepage.php',
+                '/discount' => 'discount.php',
             ];
 
             // Hàm để xử lý request và bao gồm file tương ứng
@@ -55,7 +58,7 @@
                 if (array_key_exists($uri, $routes) && file_exists($routes[$uri])) {
                     include $routes[$uri];
                 } else {
-                    include 'views/404.php';
+                    include '404.php';
                 }
             }
 

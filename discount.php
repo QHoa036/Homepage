@@ -6,12 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UEH Stationery</title>
 
-    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Baloo" />
+    <link href="https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Anton" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Asul&display=swap">
+
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
     <link rel="stylesheet" href="assets/css/components/discount.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="carousel/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="carousel/owlcarousel/assets/owl.theme.default.min.css">
+
+    <script src="carousel/vendors/jquery.min.js"></script>
+    <script src="carousel/owlcarousel/owl.carousel.js"></script>
+</head>
 </head>
 
 <body>
-    <!-- Banner Section -->
+    <?php include 'layouts/header.php'; ?>
+
+    <!-- đây là phần của banner -->
     <section class="banner-section">
         <div class="container-fluid bg-banner">
             <div class="row">
@@ -57,7 +83,7 @@
         </div>
     </section>
 
-    <!-- Flashsales Section -->
+    <!-- đây là phần flashsales -->
     <section class="Flashsales">
         <div class="container-fluid bgFlashsales">
             <div class="row">
@@ -137,14 +163,14 @@
         </div>
     </section>
 
-    <!-- Banner Discount Section -->
+    <!-- đây là phần banner discount -->
     <section class="BannerDiscount ">
         <div class="container-fluid imgBannerDiscount">
             <img src="assets/imgs/banners/discount.png" alt="" class="imgBannerDiscount">
         </div>
     </section>
 
-    <!-- Voucher Section -->
+    <!-- đây là phần săn voucher -->
     <section class="voucher">
         <div class="bgTitlevoucher">
             <p class="titlevoucher">SĂN VOUCHER KHUYẾN MÃI</p>
@@ -157,7 +183,13 @@
         </div>
     </section>
 
-    <!-- JS -->
+
+    <?php include 'layouts/footer.php'; ?>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+
     <?php include 'assets/scripts/discount.js'; ?>
 </body>
 
