@@ -1,0 +1,7 @@
+# Bật tính năng viết lại URL
+RewriteEngine On
+
+# Chuyển hướng tất cả mọi thứ đến index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]

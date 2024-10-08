@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="assets/css/layouts/header.css" />
 </head>
 
@@ -14,7 +15,7 @@
             <!-- Left Section: Logo and Title -->
             <div class="d-flex align-items-center">
                 <div class="text-center text-lg-left py-2">
-                    <img src="assets/imgs/parts/header_logo.png" alt="UEH Logo" class="navbar-brand-logo">
+                    <img src="assets/svgs/logo.svg" alt="UEH Logo" class="navbar-brand-logo">
                 </div>
                 <div class="text-center text-lg-left py-2 px-2">
                     <a href="index.php">
@@ -56,12 +57,14 @@
 
     <nav class="navbar navbar-expand-lg bg-header-bottom">
         <div class="container-fluid d-flex justify-content-end align-items-center">
+            <!-- Collapse Button -->
             <button class="navbar-toggler bg-light my-2" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+            <!-- Navbar Links -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
                     <li class="nav-item">
@@ -135,4 +138,4 @@
     <script src="assets/scripts/header.js"></script>
 </body>
 
-</html>,
+</html>

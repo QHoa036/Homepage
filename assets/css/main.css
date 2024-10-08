@@ -16,3 +16,8 @@ body {
         background-image: linear-gradient(-45deg, #084147FF, #005f69);
     }
 }
+
+.outlet {
+    min-height: 100vh;
+    padding: 0;
+}
