@@ -9,35 +9,33 @@
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/components/discount.css" />
 </head>
-</head>
 
 <body>
-    <!-- đây là phần của banner -->
-    <section class="Banner">
-        <div class="container-fluid bgBanner">
+    <!-- Banner Section -->
+    <section class="banner-section">
+        <div class="container-fluid bg-banner">
             <div class="row">
                 <div class="col-md-7 col-sm-12">
-                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div id="carouselHotControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="assets/imgs/banners/fd59cb809b2f5acf38c9bbfc1294ecb6 (1).png" alt=""
-                                    class="bannerbigger">
+                                <img src="assets/imgs/banners/bn_1.png" alt="" class="big-banner">
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/imgs/banners/12a81205fcf140a955c5dcf69e7d1dd9.png" alt=""
-                                    class="bannerbigger">
+                                <img src="assets/imgs/banners/bn_2.png" alt="" class="big-banner">
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/imgs/banners/b2cf1cdd04ca34d949fec0d5c034e482.png" alt=""
-                                    class="bannerbigger">
+                                <img src="assets/imgs/banners/bn_4.png" alt="" class="big-banner">
                             </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselHotControls"
                             data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselHotControls"
                             data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
@@ -47,13 +45,11 @@
 
                 <div class="col-md-5 col-sm-12">
                     <div class="col">
-                        <div class="row-6 ">
-                            <img src="assets/imgs/banners/b2cf1cdd04ca34d949fec0d5c034e482.png" alt=""
-                                class="bannersmaller">
+                        <div class="row-6">
+                            <img src="assets/imgs/banners/bn_4.png" alt="" class="small-banner">
                         </div>
                         <div class="row-6">
-                            <img src="assets/imgs/banners/12a81205fcf140a955c5dcf69e7d1dd9.png" alt=""
-                                class="bannersmaller">
+                            <img src="assets/imgs/banners/bn_2.png" alt="" class="small-banner">
                         </div>
                     </div>
                 </div>
@@ -61,7 +57,7 @@
         </div>
     </section>
 
-    <!-- đây là phần flashsales -->
+    <!-- Flashsales Section -->
     <section class="Flashsales">
         <div class="container-fluid bgFlashsales">
             <div class="row">
@@ -141,14 +137,14 @@
         </div>
     </section>
 
-    <!-- đây là phần banner discount -->
+    <!-- Banner Discount Section -->
     <section class="BannerDiscount ">
         <div class="container-fluid imgBannerDiscount">
             <img src="assets/imgs/banners/discount.png" alt="" class="imgBannerDiscount">
         </div>
     </section>
 
-    <!-- đây là phần săn voucher -->
+    <!-- Voucher Section -->
     <section class="voucher">
         <div class="bgTitlevoucher">
             <p class="titlevoucher">SĂN VOUCHER KHUYẾN MÃI</p>

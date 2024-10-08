@@ -26,6 +26,7 @@
         ];
     ?>
 
+    <!-- Banner Section -->
     <section class="banner-section">
         <div class="container-fluid bg-banner">
             <div class="row">
@@ -71,6 +72,7 @@
         </div>
     </section>
 
+    <!-- Hot Products Section -->
     <section>
         <div class="bg-title-category">
             <p class="title-category">SẢN PHẨM HOT</p>
@@ -102,6 +104,7 @@
         </div>
     </section>
 
+    <!-- Most Sale Sections -->
     <section>
         <div class="bg-title-category">
             <p class="title-category">SẢN PHẨM BÁN CHẠY</p>

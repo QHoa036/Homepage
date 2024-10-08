@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 Page</title>
 
+    <!-- CSS -->
     <link rel="stylesheet" href="assets/css/components/404.css">
 </head>
 
@@ -22,6 +23,7 @@
         </div>
     </div>
 
+    <!-- JS -->
     <script>
         function goBack() {
             window.history.back();
