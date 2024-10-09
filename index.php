@@ -36,6 +36,7 @@
 </head>
 
 <body>
+    <?php include 'layouts/header.php'; ?>
 
     <div class="outlet">
         <?php
@@ -62,6 +63,7 @@
         ?>
     </div>
 
+    <?php include 'layouts/footer.php'; ?>
 
     <!-- JS libraries -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
