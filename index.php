@@ -40,7 +40,6 @@
 </head>
 
 <body>
-    <?php include 'layouts/header.php'; ?>
 
     <div class="outlet">
         <?php
@@ -67,7 +66,6 @@
         ?>
     </div>
 
-    <?php include 'layouts/footer.php'; ?>
 
     <!-- JS libraries -->
     <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>

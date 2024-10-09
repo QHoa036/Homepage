@@ -1,3 +1,4 @@
+@ -1,179 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +23,11 @@
     <link rel="stylesheet" href="assets/css/reset.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
 
+<<<<<<< Updated upstream:discount.php
     <link rel="stylesheet" href="assets/css/components/discount.css" />
+=======
+    <link rel="stylesheet" href="assets/css/main/discount.css" />
+>>>>>>> Stashed changes:views/discount.php
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
@@ -38,30 +43,36 @@
     <?php include 'layouts/header.php'; ?>
 
     <!-- đây là phần của banner -->
+<<<<<<< Updated upstream:discount.php
     <section class="banner-section">
         <div class="container-fluid bg-banner">
+=======
+    <section class="Banner">
+        <div class="container-fluid bgBanner">
+>>>>>>> Stashed changes:views/discount.php
             <div class="row">
                 <div class="col-md-7 col-sm-12">
-                    <div id="carouselHotControls" class="carousel slide" data-bs-ride="carousel">
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="assets/imgs/banners/bn_1.png" alt="" class="big-banner">
+                                <img src="assets/imgs/banners/fd59cb809b2f5acf38c9bbfc1294ecb6 (1).png" alt=""
+                                    class="bannerbigger">
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/imgs/banners/bn_2.png" alt="" class="big-banner">
+                                <img src="assets/imgs/banners/12a81205fcf140a955c5dcf69e7d1dd9.png" alt=""
+                                    class="bannerbigger">
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/imgs/banners/bn_4.png" alt="" class="big-banner">
+                                <img src="assets/imgs/banners/b2cf1cdd04ca34d949fec0d5c034e482.png" alt=""
+                                    class="bannerbigger">
                             </div>
                         </div>
-
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselHotControls"
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                             data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselHotControls"
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
                             data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
@@ -71,11 +82,13 @@
 
                 <div class="col-md-5 col-sm-12">
                     <div class="col">
-                        <div class="row-6">
-                            <img src="assets/imgs/banners/bn_4.png" alt="" class="small-banner">
+                        <div class="row-6 ">
+                            <img src="assets/imgs/banners/b2cf1cdd04ca34d949fec0d5c034e482.png" alt=""
+                                class="bannersmaller">
                         </div>
                         <div class="row-6">
-                            <img src="assets/imgs/banners/bn_2.png" alt="" class="small-banner">
+                            <img src="assets/imgs/banners/12a81205fcf140a955c5dcf69e7d1dd9.png" alt=""
+                                class="bannersmaller">
                         </div>
                     </div>
                 </div>
@@ -163,6 +176,7 @@
         </div>
     </section>
 
+<<<<<<< Updated upstream:discount.php
     <!-- đây là phần banner discount -->
     <section class="BannerDiscount ">
         <div class="container-fluid imgBannerDiscount">
@@ -190,6 +204,14 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
 
+=======
+    <?php include 'layouts/footer.php'; ?>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+
+>>>>>>> Stashed changes:views/discount.php
     <?php include 'assets/scripts/discount.js'; ?>
 </body>
 

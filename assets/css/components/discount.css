@@ -1,82 +1,79 @@
 /** Banner Section */
 .banner-section {
     padding-top: 20px;
-}
-
-.bg-banner {
-    background-color: #005F692E;
+  }
+  
+  .bg-banner {
+    background-color: #005f692e;
     width: 100%;
     height: 100%;
     top: 261px;
-    border: 2px solid #0000001C;
+    border: 2px solid #0000001c;
     padding: 10px 20px;
-}
-
-.big-banner {
+  }
+  
+  .big-banner {
     width: 100%;
     height: 400px;
     border-radius: 15px;
     opacity: 0px;
     margin: 10px 0px 10px 0px;
-}
-
-.small-banner {
+  }
+  
+  .small-banner {
     width: 100%;
     height: 194px;
     border-radius: 15px;
     opacity: 0px;
     margin: 10px 0px 10px 0px;
-}
-
-/* đây là css flashsale */
-.Flashsales {
+  }
+  
+  /* đây là css flashsale */
+  .flashsale-section {
     padding-top: 30px;
-}
-
-.bgFlashsales {
+  }
+  
+  .bg-flashsale {
     width: 100%;
     height: 100%;
-    background-color: #EFB2B966;
-    border: 1px solid #00000040
-}
-
-.bgFlashCountdown {
+    background-color: #efb2b966;
+    border: 1px solid #00000040;
+  }
+  
+  .bg-flashsale-countdown {
     width: fit-content;
     height: 80px;
     padding: 16px;
-    background-color: #0DF6EB59;
+    background-color: #0df6eb59;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.bgFlashCountdown img {
+  }
+  
+  .bg-flashsale-countdown img {
     height: 80px;
     width: 60px;
-}
-
-.bgFlashCountdown .countdown {
-    font-family: 'Anton SC';
+  }
+  
+  .bg-flashsale-countdown .countdown {
+    font-family: "Anton SC";
     font-size: 30px;
     color: white;
     font-weight: bold;
     padding-left: 16px;
     line-height: 52.69px;
-    text-shadow: -1px -1px 0 red,
-        1px -1px 0 red,
-        -1px 1px 0 red,
-        1px 1px 0 red;
-}
-
-.bgFlashInfo {
-    background-color: #FDE3E3;
+    text-shadow: -1px -1px 0 red, 1px -1px 0 red, -1px 1px 0 red, 1px 1px 0 red;
+  }
+  
+  .bg-flash-info {
+    background-color: #fde3e3;
     border-radius: 10px;
     padding: 0 20px 0 20px;
     margin: 20px;
-}
-
-.bgFlashInfo .title {
-    font-family: 'Anton SC';
+  }
+  
+  .bg-flash-info .title {
+    font-family: "Anton SC";
     font-size: 35px;
     color: black;
     font-weight: bold;
@@ -84,58 +81,58 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.bgFlashInfo .content {
+  }
+  
+  .bg-flash-info .content {
     align-items: center;
     color: black;
     display: block;
-    font-family: 'Roboto';
+    font-family: "Roboto";
     font-size: 32px;
     font-weight: 400;
     height: 80px;
     justify-content: center;
     line-height: 37.5px;
     text-align: left;
-}
-
-.bgFlashInfo .colorInfo {
+  }
+  
+  .bg-flash-info .color-info {
     align-items: center;
     display: flex;
-    font-family: 'Roboto';
+    font-family: "Roboto";
     font-size: 32px;
     font-weight: 400;
     height: 80px;
     justify-content: start;
     line-height: 37.5px;
     text-align: left;
-}
-
-.bgFlashInfo .priceInfo {
+  }
+  
+  .bg-flash-info .price-info {
     align-items: center;
     color: black;
     display: block;
-    font-family: 'Roboto';
+    font-family: "Roboto";
     font-size: 32px;
     font-weight: 400;
     height: 80px;
     justify-content: center;
     line-height: 37.5px;
     text-align: left;
-}
-
-.price {
-    color: #FF6B70;
+  }
+  
+  .price {
+    color: #ff6b70;
     font-weight: bold;
     font-size: 32px;
-}
-
-.bgFlashInfo .priceInfo .price {
-    color: #FF6B70;
+  }
+  
+  .bg-flash-info .price-info .price {
+    color: #ff6b70;
     font-weight: bold;
-}
-
-.discount-badge .badge {
+  }
+  
+  .discount-badge .badge {
     width: 60px;
     height: 60px;
     font-weight: bold;
@@ -143,30 +140,30 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Reddit Mono';
+    font-family: "Reddit Mono";
     font-size: 24px;
-}
-
-.discount-color {
-    background-color: #FF6B70;
+  }
+  
+  .discount-color {
+    background-color: #ff6b70;
     color: #000;
     gap: 20px;
     cursor: pointer;
-}
-
-.ratings {
+  }
+  
+  .ratings {
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: 32px;
     height: 90px;
-}
-
-.ratings .stars {
+  }
+  
+  .ratings .stars {
     font-size: 40px;
-}
-
-.btn-circle {
+  }
+  
+  .btn-circle {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -174,14 +171,14 @@
     align-items: center;
     justify-content: center;
     font-size: 1.25rem;
-}
-
-/* đây là banner discount */
-.BannerDiscount {
+  }
+  
+  /* đây là banner discount */
+  .BannerDiscount {
     padding: 50px 10px 50px 10px;
-}
-
-.imgBannerDiscount {
+  }
+  
+  .imgBannerDiscount {
     width: 100%;
     height: 100%;
     top: 1617px;
@@ -189,40 +186,41 @@
     gap: 0px;
     border-radius: 10px 10px 10px 10px;
     opacity: 0px;
-
-}
-
-/* đây là phần săn voucher */
-.bgTitlevoucher {
+  }
+  
+  /* đây là phần săn voucher */
+  .bgTitlevoucher {
     width: 478px;
     height: 107px;
     top: 2658px;
     border-radius: 0px 5px 5px 0px;
     border: 3px solid #188443;
-    background-color: #6BFFA659;
+    background-color: #6bffa659;
     margin-bottom: 30px;
-}
-
-.titlevoucher {
-    font-family: 'Anton';
+  }
+  
+  .titlevoucher {
+    font-family: "Anton";
     font-size: 38px;
     font-weight: 400;
     text-align: center;
-    color: #FFFFFF;
-    text-shadow: -1px -1px 0 #F26F33, 1px -1px 0 #F26F33, -2px 2px 0 #F26F33, 2px 2px 0 #F26F33;
+    color: #ffffff;
+    text-shadow: -1px -1px 0 #f26f33, 1px -1px 0 #f26f33, -2px 2px 0 #f26f33,
+      2px 2px 0 #f26f33;
     padding-top: 20px;
-}
-
-/* Đây là card voucher */
-.cardVoucher {
+  }
+  
+  /* Đây là card voucher */
+  .cardVoucher {
     width: 946px;
     height: 286px;
     top: 2809px;
     border-radius: 20px 20px 20px 20px;
-    background-color: #FBFF0069;
-    border: 3px solid #005F69;
+    background-color: #fbff0069;
+    border: 3px solid #005f69;
     margin-bottom: 30px;
     display: flex;
     align-items: start;
     justify-content: start;
-}
+  }
+  
