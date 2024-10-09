@@ -9,6 +9,8 @@
     <!-- Libraries -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="carousel/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="carousel/owlcarousel/assets/owl.theme.default.min.css">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -29,14 +31,8 @@
     <link rel="stylesheet" href="assets/css/styles.css" />
 
     <!-- JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-    <!-- Carousel -->
-    <link rel="stylesheet" href="./carousel/owlcarousel/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="./carousel/owlcarousel/assets/owl.theme.default.min.css">
-
-    <script src="./carousel/vendors/jquery.min.js"></script>
-    <script src="./carousel/owlcarousel/owl.carousel.js"></script>
+    <script src="carousel/vendors/jquery.min.js"></script>
+    <script src="carousel/owlcarousel/owl.carousel.js"></script>
 </head>
 
 <body>
@@ -49,8 +45,8 @@
 
             // Định nghĩa các route và các file tương ứng của chúng
             $routes = [
-                '/' => 'homepage.php',
-                '/discount' => 'discount.php',
+                '/' => 'views/homepage.php',
+                '/discount' => 'views/discount.php',
             ];
 
             // Hàm để xử lý request và bao gồm file tương ứng
@@ -58,7 +54,7 @@
                 if (array_key_exists($uri, $routes) && file_exists($routes[$uri])) {
                     include $routes[$uri];
                 } else {
-                    include '404.php';
+                    include 'views/404.php';
                 }
             }
 
@@ -70,10 +66,12 @@
     <?php include 'layouts/footer.php'; ?>
 
     <!-- JS libraries -->
-    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+
+    <!-- JS -->
+    <?php include 'assets/scripts/discount.js'; ?>
 </body>
 
 </html>
