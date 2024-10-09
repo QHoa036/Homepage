@@ -26,64 +26,77 @@
     border-radius: 15px;
     opacity: 0px;
     margin: 10px 0px 10px 0px;
-  }
-  
-  /* đây là css flashsale */
-  .flashsale-section {
-    padding-top: 30px;
-  }
-  
-  .bg-flashsale {
+}
+
+/* đây là css flashsale */
+.flashsale-section {
+    padding-top: 50px;
+}
+
+.bg-flashsale {
     width: 100%;
     height: 100%;
-    background-color: #efb2b966;
-    border: 1px solid #00000040;
-  }
-  
-  .bg-flashsale-countdown {
-    width: fit-content;
-    height: 80px;
-    padding: 16px;
-    background-color: #0df6eb59;
+    background-color: #EFB2B966;
+    border: 2px solid #00000040
+}
+
+.bg-flash-countdown {
+    width: 380px;
+    height: auto;
+    padding: 12px 16px;
+    background-color: #0DF6EB59;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
-  }
-  
-  .bg-flashsale-countdown img {
-    height: 80px;
-    width: 60px;
-  }
-  
-  .bg-flashsale-countdown .countdown {
-    font-family: "Anton SC";
+}
+
+.bg-flash-countdown img {
+    height: 70px;
+    width: 50px;
+}
+
+.bg-flash-countdown-text {
+    font-family: 'Anton SC';
     font-size: 30px;
     color: white;
     font-weight: bold;
     padding-left: 16px;
     line-height: 52.69px;
-    text-shadow: -1px -1px 0 red, 1px -1px 0 red, -1px 1px 0 red, 1px 1px 0 red;
-  }
-  
-  .bg-flash-info {
-    background-color: #fde3e3;
+    text-shadow: -1px -1px 0 red,
+        1px -1px 0 red,
+        -1px 1px 0 red,
+        1px 1px 0 red;
+}
+
+.bg-flash-info {
+    background-color: #FDE3E3;
     border-radius: 10px;
-    padding: 0 20px 0 20px;
+    border: 4px solid white;
+    padding: 0;
     margin: 20px;
-  }
-  
-  .bg-flash-info .title {
-    font-family: "Anton SC";
-    font-size: 35px;
-    color: black;
-    font-weight: bold;
-    height: 80px;
+}
+
+.bg-flash-info-body {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    padding: 20px 0;
+}
+
+.bg-flash-info .title {
     align-items: center;
+    color: black;
+    display: flex;
+    font-family: 'Anton SC';
+    font-size: 35px;
+    font-weight: bold;
+    height: auto;
     justify-content: center;
-  }
-  
-  .bg-flash-info .content {
+    line-height: 41.02px;
+}
+
+.bg-flash-info .content {
     align-items: center;
     color: black;
     display: block;
@@ -94,21 +107,21 @@
     justify-content: center;
     line-height: 37.5px;
     text-align: left;
-  }
-  
-  .bg-flash-info .color-info {
+    padding-left: 20px;
+}
+
+.bg-flash-info .color-info {
     align-items: center;
-    display: flex;
-    font-family: "Roboto";
+    display: block;
+    font-family: 'Roboto';
     font-size: 32px;
     font-weight: 400;
-    height: 80px;
-    justify-content: start;
+    justify-content: center;
     line-height: 37.5px;
     text-align: left;
-  }
-  
-  .bg-flash-info .price-info {
+}
+
+.bg-flash-info .price-info {
     align-items: center;
     color: black;
     display: block;
@@ -125,27 +138,49 @@
     color: #ff6b70;
     font-weight: bold;
     font-size: 32px;
-  }
-  
-  .bg-flash-info .price-info .price {
-    color: #ff6b70;
+}
+
+.bg-flash-info .priceInfo .price {
+    color: #FF6B70;
     font-weight: bold;
-  }
-  
-  .discount-badge .badge {
-    width: 60px;
-    height: 60px;
+}
+
+/** Discount Badge */
+.discount-badge {
+    position: relative;
+    display: inline-block;
+    padding: 24px 10px 20px 10px;
+    color: white;
+    background-color: red;
+    font-family: 'Reddit Mono';
+    font-size: 32px;
     font-weight: bold;
-    font-size: 0.8rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: "Reddit Mono";
-    font-size: 24px;
-  }
-  
-  .discount-color {
-    background-color: #ff6b70;
+    clip-path: polygon(0 0, 100% 0, 100% 75%, 50% 100%, 0 75%);
+    text-align: center;
+    height: 120px;
+    width: 100px;
+}
+
+.discount-badge::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 20px solid #f5cac3;
+}
+
+.discount-badge span {
+    display: inline-block;
+}
+
+.discount-color {
+    background-color: #FF6B70;
     color: #000;
     gap: 20px;
     cursor: pointer;
@@ -171,56 +206,4 @@
     align-items: center;
     justify-content: center;
     font-size: 1.25rem;
-  }
-  
-  /* đây là banner discount */
-  .BannerDiscount {
-    padding: 50px 10px 50px 10px;
-  }
-  
-  .imgBannerDiscount {
-    width: 100%;
-    height: 100%;
-    top: 1617px;
-    left: 32px;
-    gap: 0px;
-    border-radius: 10px 10px 10px 10px;
-    opacity: 0px;
-  }
-  
-  /* đây là phần săn voucher */
-  .bgTitlevoucher {
-    width: 478px;
-    height: 107px;
-    top: 2658px;
-    border-radius: 0px 5px 5px 0px;
-    border: 3px solid #188443;
-    background-color: #6bffa659;
-    margin-bottom: 30px;
-  }
-  
-  .titlevoucher {
-    font-family: "Anton";
-    font-size: 38px;
-    font-weight: 400;
-    text-align: center;
-    color: #ffffff;
-    text-shadow: -1px -1px 0 #f26f33, 1px -1px 0 #f26f33, -2px 2px 0 #f26f33,
-      2px 2px 0 #f26f33;
-    padding-top: 20px;
-  }
-  
-  /* Đây là card voucher */
-  .cardVoucher {
-    width: 946px;
-    height: 286px;
-    top: 2809px;
-    border-radius: 20px 20px 20px 20px;
-    background-color: #fbff0069;
-    border: 3px solid #005f69;
-    margin-bottom: 30px;
-    display: flex;
-    align-items: start;
-    justify-content: start;
-  }
-  
+}

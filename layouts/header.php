@@ -18,7 +18,7 @@
                     <img src="assets/svgs/logo.svg" alt="UEH Logo" class="navbar-brand-logo">
                 </div>
                 <div class="text-center text-lg-left py-2 px-2">
-                    <a href="/">
+                    <a href="/homepage/">
                         <p class="navbar-brand-text">STATIONERY</p>
                     </a>
                 </div>
@@ -98,7 +98,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/discount">
+                        <a class="nav-link" href="/homepage/discount">
                             <i class="bi bi-fire navbar-header-logo"></i>
                             Khuyến mãi
                         </a>

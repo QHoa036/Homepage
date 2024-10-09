@@ -68,8 +68,22 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
 
-    <!-- JS -->
-    <?php include 'assets/scripts/discount.js'; ?>
+    <!-- Carousel JS -->
+    <script>
+        $(document).ready(function () {
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: false,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                    },
+                }
+            })
+        })
+    </script>
 </body>
 
 </html>
