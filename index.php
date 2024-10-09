@@ -11,6 +11,11 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="carousel/owlcarousel/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="carousel/owlcarousel/assets/owl.theme.default.min.css">
+    <link rel="stylesheet"
+        ref="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/css/star-rating.min.css" media="all"
+        type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/themes/krajee-svg/theme.css"
+        media="all" rel="stylesheet" type="text/css" />
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -22,18 +27,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Baloo" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton+SC&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Asul&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
-
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/reset.css" />
@@ -42,46 +35,61 @@
     <!-- JS -->
     <script src="carousel/vendors/jquery.min.js"></script>
     <script src="carousel/owlcarousel/owl.carousel.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/js/star-rating.min.js"
+        type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/themes/krajee-svg/theme.js">
+    </script>
 </head>
 
 <body>
+    <!-- Kết nối database -->
+    <?php include "admincp/conn.php"; ?>
+
+    <!-- Header -->
     <?php include 'layouts/header.php'; ?>
 
     <div class="outlet">
         <?php
-            // Lấy tham số URL, loại bỏ dấu gạch chéo ở cuối và chuẩn hóa request URI
-            $requestedUri = '/' . trim(isset($_GET['url']) ? $_GET['url'] : '', '/');
+        // Lấy tham số URL, loại bỏ dấu gạch chéo ở cuối và chuẩn hóa request URI
+        $requestedUri = '/' . trim(isset($_GET['url']) ? $_GET['url'] : '', '/');
 
-            // Định nghĩa các route và các file tương ứng của chúng
-            $routes = [
-                '/' => 'views/homepage.php',
-                '/discount' => 'views/discount.php',
-            ];
+        // Định nghĩa các route và các file tương ứng của chúng
+        $routes = [
+            '/' => 'views/homepage.php',
+            '/discount' => 'views/discount.php',
+        ];
 
-            // Hàm để xử lý request và bao gồm file tương ứng
-            function route($uri, $routes) {
-                if (array_key_exists($uri, $routes) && file_exists($routes[$uri])) {
-                    include $routes[$uri];
-                } else {
-                    include 'views/404.php';
-                }
+        // Hàm để xử lý request và bao gồm file tương ứng
+        function route($uri, $routes)
+        {
+            if (array_key_exists($uri, $routes) && file_exists($routes[$uri])) {
+                include $routes[$uri];
+            } else {
+                include 'views/404.php';
             }
+        }
 
-            // Gọi hàm routing với URI được yêu cầu
-            route($requestedUri, $routes);
+        // Gọi hàm routing với URI được yêu cầu
+        route($requestedUri, $routes);
         ?>
     </div>
 
+    <!-- Footer -->
     <?php include 'layouts/footer.php'; ?>
 
     <!-- JS libraries -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+
 
     <!-- Carousel JS -->
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('.owl-carousel').owlCarousel({
                 loop: true,
                 margin: 10,

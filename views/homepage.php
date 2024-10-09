@@ -13,17 +13,17 @@
 <body>
     <!-- Danh sách sản phẩm  -->
     <?php
-        $products = [
-            ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-            ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-            ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-            ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-            ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-            ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-            ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-            ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-            ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"]
-        ];
+    $products = [
+        ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
+        ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
+        ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
+        ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
+        ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
+        ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
+        ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
+        ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
+        ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"]
+    ];
     ?>
 
     <!-- Banner Section -->
@@ -82,16 +82,16 @@
             <div class="carousel" id="carousel-hot">
                 <div class="carousel-content" id="content-hot">
                     <?php foreach ($products as $product): ?>
-                    <div class="card">
-                        <div class="card-body">
-                            <img src="<?php echo $product['img']; ?>" class="card-img-top" alt="...">
-                            <h5 class="card-title"><?php echo $product['title']; ?></h5>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <p class="card-text"><?php echo $product['sold']; ?></p>
-                                <p class="card-price"><?php echo $product['price']; ?></p>
+                        <div class="card">
+                            <div class="card-body">
+                                <img src="<?php echo $product['img']; ?>" class="card-img-top" alt="...">
+                                <h5 class="card-title"><?php echo $product['title']; ?></h5>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <p class="card-text"><?php echo $product['sold']; ?></p>
+                                    <p class="card-price"><?php echo $product['price']; ?></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     <?php endforeach; ?>
                 </div>
             </div>
@@ -114,16 +114,16 @@
             <div class="carousel" id="carousel-bestseller">
                 <div class="carousel-content" id="content-bestseller">
                     <?php foreach ($products as $product): ?>
-                    <div class="card">
-                        <div class="card-body">
-                            <img src="<?php echo $product['img']; ?>" class="card-img-top" alt="...">
-                            <h5 class="card-title"><?php echo $product['title']; ?></h5>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <p class="card-text"><?php echo $product['sold']; ?></p>
-                                <p class="card-price"><?php echo $product['price']; ?></p>
+                        <div class="card">
+                            <div class="card-body">
+                                <img src="<?php echo $product['img']; ?>" class="card-img-top" alt="...">
+                                <h5 class="card-title"><?php echo $product['title']; ?></h5>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <p class="card-text"><?php echo $product['sold']; ?></p>
+                                    <p class="card-price"><?php echo $product['price']; ?></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     <?php endforeach; ?>
                 </div>
             </div>
@@ -133,6 +133,76 @@
             <button class="carousel-next" id="next-bestseller">
                 <i class="carousel-icon bi bi-chevron-right"></i>
             </button>
+        </div>
+    </section>
+
+    <section class="category-section">
+        <div class="container-fluid text-center">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-12 col-md-6" id="sach-col">
+                    <div class="thumbnail big-thumbnail p-0">
+                        <a href="#L1">
+                            <!-- Mã loại-->
+                            <img src="https://tiki.vn/blog/wp-content/uploads/2023/08/thumb-12.jpg" class="img-fluid" alt="Sách" />
+                            <div class="caption">
+                                <h2>SÁCH</h2>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3" id="phukien-but-col">
+                    <div class="row">
+                        <div class="thumbnail small-thumbnail small-thumbnail-first">
+                            <a href="#L5">
+                                <img src="https://shop.ueh.edu.vn/ueh-souvenir/wp-content/uploads/2022/05/sp-04-1.png"
+                                    class="img-fluid" alt="Phụ kiện" />
+                                <div class="caption">
+                                    <h2>PHỤ KIỆN</h2>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="thumbnail small-thumbnail small-thumbnail-second">
+                            <a href="#L3">
+                                <img src="https://soklong.com/wp-content/uploads/2021/12/ce77ccea0aa6bdfecd4c355c3af3b9f5.jpg"
+                                    class="img-fluid" alt="Bút" />
+                                <div class="caption">
+                                    <h2>BÚT</h2>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3" id="sotay-maytinh-col">
+                    <div class="row">
+                        <div class="thumbnail small-thumbnail small-thumbnail-third">
+                            <a href="#L4">
+                                <img src="https://inbaobigiay.vn/wp-content/uploads/2023/12/in-so-tay-6.jpg"
+                                    class="img-fluid" alt="Sổ tay" />
+                                <div class="caption">
+                                    <h2>SỔ TAY</h2>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="thumbnail small-thumbnail small-thumbnail-fourth">
+                            <a href="#L2">
+                                <img src="https://vanphongphamhl.vn/upload_images/images/2024/01/29/may-tinh-casio-cho-hoc-sinh-cap-3-06.jpg"
+                                    class="img-fluid" alt="Máy tính" />
+                                <div class="caption">
+                                    <h2>MÁY TÍNH</h2>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 

@@ -9,8 +9,6 @@
 
     if($conn){
         mysqLi_query($conn, "SET NAMES 'utf8' ");
-        echo "Success";
-        echo '<br>';
     }
     else{
         echo"Fail";
