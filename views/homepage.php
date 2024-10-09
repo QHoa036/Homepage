@@ -14,15 +14,15 @@
     <!-- Danh sách sản phẩm  -->
     <?php
         $products = [
-            ["img" => "assets/imgs/products/SP2.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-            ["img" => "assets/imgs/products/SP2.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-            ["img" => "assets/imgs/products/SP2.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-            ["img" => "assets/imgs/products/SP2.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-            ["img" => "assets/imgs/products/SP2.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-            ["img" => "assets/imgs/products/SP2.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-            ["img" => "assets/imgs/products/SP2.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-            ["img" => "assets/imgs/products/SP2.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-            ["img" => "assets/imgs/products/SP2.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"]
+            ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
+            ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
+            ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
+            ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
+            ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
+            ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
+            ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
+            ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
+            ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"]
         ];
     ?>
 
