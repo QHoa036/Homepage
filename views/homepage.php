@@ -11,20 +11,8 @@
 </head>
 
 <body>
-    <!-- Danh sách sản phẩm  -->
-    <?php
-    $products = [
-        ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-        ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-        ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-        ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-        ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-        ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-        ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-        ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"],
-        ["img" => "assets/imgs/products/product_1.jpg", "title" => "Sách kinh tế vĩ mô", "sold" => "Đã bán: 300", "price" => "60.000"]
-    ];
-    ?>
+    <!-- Kết nối database -->
+    <?php include "admincp/conn.php"; ?>
 
     <!-- Banner Section -->
     <section class="banner-section">
@@ -74,65 +62,91 @@
 
     <!-- Hot Products Section -->
     <section>
+        <?php
+        // Fetch all best-seller products
+        $hotTrendResult = mysqli_query($conn, 'SELECT * FROM sanpham WHERE HotTrend = 1 ORDER BY HotTrend ASC');
+
+        // Fetch rows as an associative array
+        $hotTrendLst = mysqli_fetch_all($hotTrendResult, MYSQLI_ASSOC);
+
+        // Count the number of best-seller products
+        $productCount = count($hotTrendLst);
+        ?>
+
         <div class="bg-title-category">
-            <p class="title-category">SẢN PHẨM HOT</p>
+            <p class="title-category">SẢN PHẨM BÁN CHẠY</p>
         </div>
 
         <div class="carousel-wrapper" id="wrapper-hot">
             <div class="carousel" id="carousel-hot">
                 <div class="carousel-content" id="content-hot">
-                    <?php foreach ($products as $product): ?>
-                        <div class="card">
+                    <?php foreach ($hotTrendLst as $data): ?>
+                        <div class="card" id="<?= $data['MaSP'] ?>">
                             <div class="card-body">
-                                <img src="<?php echo $product['img']; ?>" class="card-img-top" alt="...">
-                                <h5 class="card-title"><?php echo $product['title']; ?></h5>
+                                <img src="assets/imgs/products/product_1.jpg" class="card-img-top" alt="...">
+                                <h5 class="card-title"><?php echo $data['TenSP']; ?></h5>
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <p class="card-text"><?php echo $product['sold']; ?></p>
-                                    <p class="card-price"><?php echo $product['price']; ?></p>
+                                    <p class="card-old-price"> Đã bán: <?php echo $data['Giagoc']; ?></p>
+                                    <p class="card-price"><?php echo $data['Giaban']; ?></p>
                                 </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 </div>
             </div>
-            <button class="carousel-prev" id="prev-hot">
-                <i class="carousel-icon bi bi-chevron-left"></i>
-            </button>
-            <button class="carousel-next" id="next-hot">
-                <i class="carousel-icon bi bi-chevron-right"></i>
-            </button>
+            <?php if ($productCount > 5): ?>
+                <button class="carousel-prev" id="prev-hot">
+                    <i class="carousel-icon bi bi-chevron-left"></i>
+                </button>
+                <button class="carousel-next" id="next-hot">
+                    <i class="carousel-icon bi bi-chevron-right"></i>
+                </button>
+            <?php endif; ?>
         </div>
     </section>
 
     <!-- Most Sale Sections -->
     <section>
+        <?php
+        // Fetch all best-seller products
+        $bestSellerResult = mysqli_query($conn, 'SELECT * FROM sanpham WHERE BestSeller = 1 ORDER BY BestSeller ASC');
+
+        // Fetch rows as an associative array
+        $bestSellerLst = mysqli_fetch_all($bestSellerResult, MYSQLI_ASSOC);
+
+        // Count the number of best-seller products
+        $productCount = count($bestSellerLst);
+        ?>
+
         <div class="bg-title-category">
-            <p class="title-category">SẢN PHẨM BÁN CHẠY</p>
+            <p class="title-category">SẢN PHẨM HOT</p>
         </div>
 
         <div class="carousel-wrapper" id="wrapper-bestseller">
             <div class="carousel" id="carousel-bestseller">
                 <div class="carousel-content" id="content-bestseller">
-                    <?php foreach ($products as $product): ?>
-                        <div class="card">
+                    <?php foreach ($bestSellerLst as $data): ?>
+                        <div class="card" id="<?= $data['MaSP'] ?>">
                             <div class="card-body">
-                                <img src="<?php echo $product['img']; ?>" class="card-img-top" alt="...">
-                                <h5 class="card-title"><?php echo $product['title']; ?></h5>
+                                <img src="assets/imgs/products/product_1.jpg" class="card-img-top" alt="...">
+                                <h5 class="card-title"><?php echo $data['TenSP']; ?></h5>
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <p class="card-text"><?php echo $product['sold']; ?></p>
-                                    <p class="card-price"><?php echo $product['price']; ?></p>
+                                    <p class="card-old-price"> Đã bán: <?php echo $data['Giagoc']; ?></p>
+                                    <p class="card-price"><?php echo $data['Giaban']; ?></p>
                                 </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 </div>
             </div>
-            <button class="carousel-prev" id="prev-bestseller">
-                <i class="carousel-icon bi bi-chevron-left"></i>
-            </button>
-            <button class="carousel-next" id="next-bestseller">
-                <i class="carousel-icon bi bi-chevron-right"></i>
-            </button>
+            <?php if ($productCount > 5): ?>
+                <button class="carousel-prev" id="prev-hot">
+                    <i class="carousel-icon bi bi-chevron-left"></i>
+                </button>
+                <button class="carousel-next" id="next-hot">
+                    <i class="carousel-icon bi bi-chevron-right"></i>
+                </button>
+            <?php endif; ?>
         </div>
     </section>
 

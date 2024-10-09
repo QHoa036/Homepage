@@ -57,7 +57,7 @@
 
 .card {
   width: 245px;
-  height: 360px;
+  height: 350px;
   left: 30px;
   border-radius: 10px 10px 10px 10px;
   border: 2px solid #005f69;
@@ -70,7 +70,7 @@
 
 .card-title {
   font-family: "Asul";
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   text-align: center;
   color: #005f69;
@@ -93,8 +93,15 @@
   color: red;
 }
 
+.card-old-price {
+  font-family: "Roboto";
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  color: gray;
+}
+
 /** Carousel */
-/* Common styles for all carousels */
 .carousel-wrapper {
   height: 100%;
   width: 100%;
@@ -268,10 +275,14 @@
   top: 45%;
   left: 0;
   width: 100%;
-  color: white;
+  
   text-shadow: 1px 2px 2px #000000;
   font-size: 2rem;
   font-family: "Anton SC", sans-serif;
   font-weight: 400;
   font-style: normal;
+}
+
+.caption h2 {
+  color: white;
 }
