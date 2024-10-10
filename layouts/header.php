@@ -2,9 +2,6 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="assets/css/layouts/header.css" />
 </head>
 
@@ -18,7 +15,7 @@
                     <img src="assets/svgs/logo.svg" alt="UEH Logo" class="navbar-brand-logo">
                 </div>
                 <div class="text-center text-lg-left py-2 px-2">
-                    <a href="/homepage/">
+                    <a href="<?php echo url('/'); ?>">
                         <p class="navbar-brand-text">STATIONERY</p>
                     </a>
                 </div>
@@ -98,7 +95,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/homepage/discount">
+                        <a class="nav-link" href="<?php echo url('/discount'); ?>">
                             <i class="bi bi-fire navbar-header-logo"></i>
                             Khuyến mãi
                         </a>

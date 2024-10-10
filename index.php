@@ -53,16 +53,43 @@
         $routes = [
             '/' => 'views/homepage.php',
             '/discount' => 'views/discount.php',
+            '/product/{id}' => 'views/product.php', // Route động với tham số {id}
         ];
 
         // Hàm để xử lý request và bao gồm file tương ứng
         function route($uri, $routes)
         {
-            if (array_key_exists($uri, $routes) && file_exists($routes[$uri])) {
-                include $routes[$uri];
-            } else {
-                include 'views/404.php';
+            foreach ($routes as $route => $file) {
+                // Chuyển đổi route thành regex
+                $routePattern = preg_replace('/\{[a-zA-Z0-9_]+\}/', '([a-zA-Z0-9_]+)', $route);
+                $routePattern = str_replace('/', '\/', $routePattern);
+                $routePattern = '/^' . $routePattern . '$/';
+
+                // Kiểm tra nếu URI khớp với route
+                if (preg_match($routePattern, $uri, $matches)) {
+                    array_shift($matches); // Bỏ phần tử đầu tiên (toàn bộ chuỗi khớp)
+                    if (file_exists($file)) {
+                        // Truyền các tham số vào file được bao gồm
+                        include $file;
+                        return;
+                    }
+                }
             }
+            // Nếu không khớp route nào, bao gồm file 404
+            include 'views/404.php';
+        }
+
+        // Hàm để tạo URL từ route
+        function url($path)
+        {
+            // Lấy URL cơ sở từ server
+            $baseUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+
+            // Lấy đường dẫn thư mục hiện tại
+            $currentDir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
+
+            // Tạo URL đầy đủ
+            return $baseUrl . $currentDir . '/' . trim($path, '/');
         }
 
         // Gọi hàm routing với URI được yêu cầu
@@ -83,7 +110,7 @@
 
     <!-- Carousel JS -->
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('.owl-carousel').owlCarousel({
                 loop: true,
                 margin: 10,
