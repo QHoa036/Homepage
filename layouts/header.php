@@ -135,7 +135,7 @@
         </div>
     </nav>
 
-    <script src="assets/scripts/header.js"></script>
+    <script src="assets/scripts/layouts/header.js"></script>
 </body>
 
 </html>

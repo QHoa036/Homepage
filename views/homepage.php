@@ -12,7 +12,7 @@
 
 <body>
     <!-- Kết nối database -->
-    <?php include "admincp/conn.php"; ?>
+    <?php include "database/conn.php"; ?>
 
     <!-- Banner Section -->
     <section class="banner-section">
@@ -81,26 +81,26 @@
             <div class="carousel" id="carousel-hot">
                 <div class="carousel-content" id="content-hot">
                     <?php foreach ($hotTrendLst as $data): ?>
-                        <div class="card" id="<?= $data['MaSP'] ?>">
-                            <div class="card-body">
-                                <img src="assets/imgs/products/product_1.jpg" class="card-img-top" alt="...">
-                                <h5 class="card-title"><?php echo $data['TenSP']; ?></h5>
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <p class="card-old-price"> Đã bán: <?php echo $data['Giagoc']; ?></p>
-                                    <p class="card-price"><?php echo $data['Giaban']; ?></p>
-                                </div>
+                    <div class="card" id="<?= $data['MaSP'] ?>">
+                        <div class="card-body">
+                            <img src="assets/imgs/products/product_1.jpg" class="card-img-top" alt="...">
+                            <h5 class="card-title"><?php echo $data['TenSP']; ?></h5>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <p class="card-old-price"> Đã bán: <?php echo $data['Giagoc']; ?></p>
+                                <p class="card-price"><?php echo $data['Giaban']; ?></p>
                             </div>
                         </div>
+                    </div>
                     <?php endforeach; ?>
                 </div>
             </div>
             <?php if ($productCount > 5): ?>
-                <button class="carousel-prev" id="prev-hot">
-                    <i class="carousel-icon bi bi-chevron-left"></i>
-                </button>
-                <button class="carousel-next" id="next-hot">
-                    <i class="carousel-icon bi bi-chevron-right"></i>
-                </button>
+            <button class="carousel-prev" id="prev-hot">
+                <i class="carousel-icon bi bi-chevron-left"></i>
+            </button>
+            <button class="carousel-next" id="next-hot">
+                <i class="carousel-icon bi bi-chevron-right"></i>
+            </button>
             <?php endif; ?>
         </div>
     </section>
@@ -119,24 +119,24 @@
         <div class="bg-title-category">
             <p class="title-category">SẢN PHẨM BÁN CHẠY</p>
         </div>
-        
+
         <div class="row carousel-wrapper">
             <?php foreach ($bestSellerLst as $data): ?>
-                <div class="col-md-2 me-3">
-                    <div class="card" id="<?= $data['MaSP'] ?>">
-                        <div class="card-body">
-                            <img src="assets/imgs/products/product_1.jpg" class="card-img-top" alt="...">
-                            <h5 class="card-title"><?php echo $data['TenSP']; ?></h5>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <p class="card-old-price"> Đã bán: <?php echo $data['Giagoc']; ?></p>
-                                <p class="card-price"><?php echo $data['Giaban']; ?></p>
-                            </div>
+            <div class="col-md-2 me-3">
+                <div class="card" id="<?= $data['MaSP'] ?>">
+                    <div class="card-body">
+                        <img src="assets/imgs/products/product_1.jpg" class="card-img-top" alt="...">
+                        <h5 class="card-title"><?php echo $data['TenSP']; ?></h5>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <p class="card-old-price"> Đã bán: <?php echo $data['Giagoc']; ?></p>
+                            <p class="card-price"><?php echo $data['Giaban']; ?></p>
                         </div>
                     </div>
                 </div>
+            </div>
             <?php endforeach; ?>
         </div>
-    </section>          
+    </section>
 
     <!-- Category SECTION -->
     <section class="category-section">
@@ -146,7 +146,8 @@
                     <div class="thumbnail big-thumbnail p-0">
                         <a href="#L1">
                             <!-- Mã loại-->
-                            <img src="https://tiki.vn/blog/wp-content/uploads/2023/08/thumb-12.jpg" class="img-fluid" alt="Sách" />
+                            <img src="https://tiki.vn/blog/wp-content/uploads/2023/08/thumb-12.jpg" class="img-fluid"
+                                alt="Sách" />
                             <div class="caption">
                                 <h2>SÁCH</h2>
                             </div>

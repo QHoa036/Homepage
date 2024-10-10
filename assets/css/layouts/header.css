@@ -15,11 +15,12 @@
 }
 
 .navbar-brand-text {
-  font-family: 'Baloo';
+  font-family: "Baloo";
   color: white;
   font-size: 40px;
   font-weight: 400;
-  text-shadow: -1px -1px 0 #005f69, 1px -1px 0 #005f69, -2px 2px 0 #005f69, 2px 2px 0 #005f69;
+  text-shadow: -1px -1px 0 #005f69, 1px -1px 0 #005f69, -2px 2px 0 #005f69,
+    2px 2px 0 #005f69;
 }
 
 /* Searchbar */
