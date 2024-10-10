@@ -180,7 +180,7 @@
 
 .dropdown-menu {
   margin: 0;
-  background-color: #01444b;
+  background-color: white;
   width: 100%;
   position: absolute;
   border: none;
@@ -189,7 +189,7 @@
 }
 
 .dropdown-item {
-  color: white;
+  color: black;
 }
 
 .dropdown-item:hover {

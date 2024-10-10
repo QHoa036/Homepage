@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="assets/css/components/homepage.css" />
 </head>
 
@@ -76,26 +79,26 @@
             <div class="carousel" id="carousel-hot">
                 <div class="carousel-content" id="content-hot">
                     <?php foreach ($hotTrendLst as $data): ?>
-                        <div class="card" id="<?= $data['MaSP'] ?>">
-                            <div class="card-body">
-                                <img src="assets/imgs/products/product_1.jpg" class="card-img-top" alt="...">
-                                <h5 class="card-title"><?php echo $data['TenSP']; ?></h5>
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <p class="card-old-price"> Đã bán: <?php echo $data['Giagoc']; ?></p>
-                                    <p class="card-price"><?php echo $data['Giaban']; ?></p>
-                                </div>
+                    <div class="card" id="<?= $data['MaSP'] ?>">
+                        <div class="card-body">
+                            <img src="assets/imgs/products/product_1.jpg" class="card-img-top" alt="...">
+                            <h5 class="card-title"><?php echo $data['TenSP']; ?></h5>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <p class="card-old-price"> Đã bán: <?php echo $data['Giagoc']; ?></p>
+                                <p class="card-price"><?php echo $data['Giaban']; ?></p>
                             </div>
                         </div>
+                    </div>
                     <?php endforeach; ?>
                 </div>
             </div>
             <?php if ($productCount > 5): ?>
-                <button class="carousel-prev" id="prev-hot">
-                    <i class="carousel-icon bi bi-chevron-left"></i>
-                </button>
-                <button class="carousel-next" id="next-hot">
-                    <i class="carousel-icon bi bi-chevron-right"></i>
-                </button>
+            <button class="carousel-prev" id="prev-hot">
+                <i class="carousel-icon bi bi-chevron-left"></i>
+            </button>
+            <button class="carousel-next" id="next-hot">
+                <i class="carousel-icon bi bi-chevron-right"></i>
+            </button>
             <?php endif; ?>
         </div>
     </section>
@@ -117,18 +120,18 @@
 
         <div class="row carousel-wrapper">
             <?php foreach ($bestSellerLst as $data): ?>
-                <div class="col-md-2 me-3">
-                    <div class="card" id="<?= $data['MaSP'] ?>">
-                        <div class="card-body">
-                            <img src="assets/imgs/products/product_1.jpg" class="card-img-top" alt="...">
-                            <h5 class="card-title"><?php echo $data['TenSP']; ?></h5>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <p class="card-old-price"> Đã bán: <?php echo $data['Giagoc']; ?></p>
-                                <p class="card-price"><?php echo $data['Giaban']; ?></p>
-                            </div>
+            <div class="col-md-2 me-3">
+                <div class="card" id="<?= $data['MaSP'] ?>">
+                    <div class="card-body">
+                        <img src="assets/imgs/products/product_1.jpg" class="card-img-top" alt="...">
+                        <h5 class="card-title"><?php echo $data['TenSP']; ?></h5>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <p class="card-old-price"> Đã bán: <?php echo $data['Giagoc']; ?></p>
+                            <p class="card-price"><?php echo $data['Giaban']; ?></p>
                         </div>
                     </div>
                 </div>
+            </div>
             <?php endforeach; ?>
         </div>
     </section>

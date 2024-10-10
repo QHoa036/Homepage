@@ -263,61 +263,46 @@
 /** Card Voucher */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 24px;
-    padding: 40px;
-}
-
-@media (max-width: 768px) {
-    .grid-container {
-        grid-template-columns: repeat(1, 1fr);
-    }
+    margin: 20px auto;
+    max-width: 900px;
 }
 
 .voucher-card {
-    background-color: #FBFF0069;
-    border: 2px solid #005F69;
+    display: flex;
+    border: 1px solid #e0e0e0;
     border-radius: 10px;
     padding: 20px;
-    display: flex;
-    align-items: start;
-    justify-content: center;
-    width: 100%;
-    max-width: 600px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: background-color 0.3s ease;
 }
 
 .voucher-image {
     width: 150px;
-    height: 150px;
+    height: auto;
     border-radius: 8px;
 }
 
-.row {
-    height: 100%;
-}
-
 .voucher-title {
-    padding-top: 10px;
-    font-size: 40px;
+    font-size: 24px;
     font-weight: bold;
-    font-family: "Roboto Serif";
-    line-height: 30px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 600px;
 }
 
 .voucher-details {
     display: flex;
     flex-direction: column;
-    justify-content: end;
-    height: 100%;
-    padding-top: 20px;
+    justify-content: space-between;
+    margin-left: 20px;
 }
 
 .voucher-details .text {
     font-size: 16px;
     font-weight: 400;
-    font-family: "Roboto Serif";
-    line-height: 30px;
 }
 
 .voucher-button {
@@ -327,19 +312,13 @@
     border-radius: 5px;
     padding: 10px 20px;
     font-size: 16px;
-    font-weight: 400;
-    font-family: "Roboto Serif";
-    line-height: 30px;
     cursor: pointer;
-    height: 60px;
-    width: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 10px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 
 .voucher-button:hover {
-    background-color: #FF6B70;
+    background-color: #ff5333;
     color: white;
 }
