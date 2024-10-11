@@ -18,7 +18,7 @@
                     <img src="assets/svgs/logo.svg" alt="UEH Logo" class="navbar-brand-logo">
                 </div>
                 <div class="text-center text-lg-left py-2 px-2">
-                    <a href="<?php echo url('/'); ?>">
+                    <a href="">
                         <p class="navbar-brand-text">STATIONERY</p>
                     </a>
                 </div>
@@ -126,8 +126,8 @@
                             Đăng nhập
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Đăng nhập</a></li>
-                            <li><a class="dropdown-item" href="#">Đăng ký</a></li>
+                            <li><a class="dropdown-item" href="<?php echo url('/signin'); ?>">Đăng nhập</a></li>
+                            <li><a class="dropdown-item" href="<?php echo url('/signup'); ?>">Đăng ký</a></li>
                         </ul>
                     </li>
                 </ul>

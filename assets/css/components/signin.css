@@ -1,19 +1,6 @@
-body {
-    font-family: "Roboto Slab", system-ui;
-    background-color: #ffffff;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
-.container {
+.login-container {
     padding: 40px;
-    max-width: 100%;
     width: 100%;
-    margin: 20px;
     box-sizing: border-box;
 }
 
@@ -26,10 +13,10 @@ body {
     font-family: "Anton SC", system-ui;
     font-weight: 300;
     text-align: center;
-    font-size: 40px;
-    background-color: #005f69be;
+    font-size: 32px;
+    background-color: #005F69CC;
     width: fit-content;
-    padding: 10px 40px;
+    padding: 30px 40px;
     color: #ffffff;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.482)
 }
@@ -41,9 +28,11 @@ form {
     padding: 0px 0;
 }
 
+input[type="username"],
 input[type="email"],
 input[type="password"] {
     width: 100%;
+    max-width: 100%;
     padding: 10px;
     background-color: #cdcdcd6a;
     border: 2px solid #005F69;
@@ -61,7 +50,7 @@ input[type="password"] {
     margin-top: 20px;
 }
 
-a.login-btn {
+.login-btn {
     text-decoration: none;
     padding: 15px 30px;
     border-radius: 3px;
@@ -72,16 +61,12 @@ a.login-btn {
     text-align: center;
     width: 48%;
     text-shadow: 1px 1px 0 #336c72,
-        /* Left */
         -1px -1px 0 #336c72,
-        /* Right */
         1px -1px 0 #336c72,
-        /* Top */
         -1px 1px 0 #336c72;
-    /* Bottom */
 }
 
-a.signup-btn {
+.signup-btn {
     text-decoration: none;
     padding: 15px 30px;
     border-radius: 3px;
@@ -92,16 +77,12 @@ a.signup-btn {
     text-align: center;
     width: 48%;
     text-shadow: 1px 1px 0 #336c72,
-        /* Left */
         -1px -1px 0 #336c72,
-        /* Right */
         1px -1px 0 #336c72,
-        /* Top */
         -1px 1px 0 #336c72;
-    /* Bottom */
 }
 
-a.signup-btn {
+.signup-btn {
     width: 180px;
     background-color: #F26F33;
     color: white;
@@ -112,7 +93,7 @@ a.signup-btn {
     box-shadow: 0px 0px 10px rgba(62, 62, 62, 0.215);
 }
 
-a.login-btn {
+.login-btn {
     width: 180px;
     background-color: #F26F33;
     color: white;
@@ -143,8 +124,8 @@ a.login-btn {
         padding: 8px 30px;
     }
 
-    a.login-btn,
-    a.signup-btn {
+    .login-btn,
+    .signup-btn {
         width: 160px;
         font-size: 18px;
     }
@@ -156,8 +137,8 @@ a.login-btn {
         padding: 8px 25px;
     }
 
-    a.login-btn,
-    a.signup-btn {
+    .login-btn,
+    .signup-btn {
         width: 140px;
         font-size: 16px;
     }
@@ -173,8 +154,8 @@ a.login-btn {
         padding: 6px 20px;
     }
 
-    a.login-btn,
-    a.signup-btn {
+    .login-btn,
+    .signup-btn {
         width: 130px;
         font-size: 15px;
     }
@@ -195,8 +176,8 @@ a.login-btn {
         padding: 5px 15px;
     }
 
-    a.login-btn,
-    a.signup-btn {
+    .login-btn,
+    .signup-btn {
         width: 120px;
         font-size: 14px;
     }

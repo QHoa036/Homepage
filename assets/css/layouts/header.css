@@ -137,6 +137,7 @@
 }
 
 /* Header Bottom */
+/* Header Bottom */
 .bg-header-bottom {
   display: flex;
   align-items: center;
@@ -154,7 +155,7 @@
 .nav-link {
   color: white;
   font-size: 20px;
-  padding: 12px;
+  padding: 10px 15px;
 }
 
 .nav-link i {
@@ -163,10 +164,10 @@
 
 .nav-item {
   margin: 0;
-  display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  font-size: 24px;
   color: white;
   text-decoration: none;
   cursor: pointer;
@@ -194,14 +195,11 @@
 
 .dropdown-item:hover {
   background-color: #ece6f0;
-  color: #005f69;
 }
 
 .vertical-divider {
   border-right: 2px solid white;
   height: 100%;
-  display: inline-block;
-  vertical-align: middle;
 }
 
 .nav-item.dropdown {

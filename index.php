@@ -30,6 +30,9 @@
     <!-- JS -->
     <script src="carousel/vendors/jquery.min.js"></script>
     <script src="carousel/owlcarousel/owl.carousel.js"></script>
+
+    <!-- Header -->
+    <link rel="stylesheet" href="assets/css/layouts/header.css" />
 </head>
 
 <body>
@@ -43,9 +46,13 @@
 
             // Định nghĩa các route và các file tương ứng của chúng
             $routes = [
-                '/' => 'views/homepage.php',
-                '/discount' => 'views/discount.php',
-                '/product/{id}' => 'views/product.php',  // Route động với tham số {id}
+                '/' => 'views/homepage.php', // Trang chủ
+                '/discount' => 'views/discount.php', // Khuyến mãi
+                '/signin' => 'views/signin.php', // Đăng nhập
+                '/signup' => 'views/signup.php', // Đăng ký
+                '/forgot-password' => 'views/quenMK.php', // Quên mật khẩu
+                '/category/{name}' => 'views/category.php', // Danh mục sản phẩm {name}
+                '/product/{id}' => 'views/product.php',  // Chi tiết sản phẩm {id}
             ];
 
             // Hàm để xử lý request và bao gồm file tương ứng
