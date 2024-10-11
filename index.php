@@ -38,54 +38,54 @@
 
     <div class="outlet">
         <?php
-        // Lấy tham số URL, loại bỏ dấu gạch chéo ở cuối và chuẩn hóa request URI
-        $requestedUri = '/' . trim(isset($_GET['url']) ? $_GET['url'] : '', '/');
+            // Lấy tham số URL, loại bỏ dấu gạch chéo ở cuối và chuẩn hóa request URI
+            $requestedUri = '/' . trim(isset($_GET['url']) ? $_GET['url'] : '', '/');
 
-        // Định nghĩa các route và các file tương ứng của chúng
-        $routes = [
-            '/' => 'views/homepage.php',
-            '/discount' => 'views/discount.php',
-            '/product/{id}' => 'views/product.php', // Route động với tham số {id}
-        ];
+            // Định nghĩa các route và các file tương ứng của chúng
+            $routes = [
+                '/' => 'views/homepage.php',
+                '/discount' => 'views/discount.php',
+                '/product/{id}' => 'views/product.php',  // Route động với tham số {id}
+            ];
 
-        // Hàm để xử lý request và bao gồm file tương ứng
-        function route($uri, $routes)
-        {
-            foreach ($routes as $route => $file) {
-                // Chuyển đổi route thành regex
-                $routePattern = preg_replace('/\{[a-zA-Z0-9_]+\}/', '([a-zA-Z0-9_]+)', $route);
-                $routePattern = str_replace('/', '\/', $routePattern);
-                $routePattern = '/^' . $routePattern . '$/';
+            // Hàm để xử lý request và bao gồm file tương ứng
+            function route($uri, $routes)
+            {
+                foreach ($routes as $route => $file) {
+                    // Chuyển đổi route thành regex
+                    $routePattern = preg_replace('/\{[a-zA-Z0-9_]+\}/', '([a-zA-Z0-9_]+)', $route);
+                    $routePattern = str_replace('/', '\/', $routePattern);
+                    $routePattern = '/^' . $routePattern . '$/';
 
-                // Kiểm tra nếu URI khớp với route
-                if (preg_match($routePattern, $uri, $matches)) {
-                    array_shift($matches); // Bỏ phần tử đầu tiên (toàn bộ chuỗi khớp)
-                    if (file_exists($file)) {
-                        // Truyền các tham số vào file được bao gồm
-                        include $file;
-                        return;
+                    // Kiểm tra nếu URI khớp với route
+                    if (preg_match($routePattern, $uri, $matches)) {
+                        array_shift($matches);  // Bỏ phần tử đầu tiên (toàn bộ chuỗi khớp)
+                        if (file_exists($file)) {
+                            // Truyền các tham số vào file được bao gồm
+                            include $file;
+                            return;
+                        }
                     }
                 }
+                // Nếu không khớp route nào, bao gồm file 404
+                include 'views/404.php';
             }
-            // Nếu không khớp route nào, bao gồm file 404
-            include 'views/404.php';
-        }
 
-        // Hàm để tạo URL từ route
-        function url($path)
-        {
-            // Lấy URL cơ sở từ server
-            $baseUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+            // Hàm để tạo URL từ route
+            function url($path)
+            {
+                // Lấy URL cơ sở từ server
+                $baseUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . "://$_SERVER[HTTP_HOST]";
 
-            // Lấy đường dẫn thư mục hiện tại
-            $currentDir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
+                // Lấy đường dẫn thư mục hiện tại
+                $currentDir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
 
-            // Tạo URL đầy đủ
-            return $baseUrl . $currentDir . '/' . trim($path, '/');
-        }
+                // Tạo URL đầy đủ
+                return $baseUrl . $currentDir . '/' . trim($path, '/');
+            }
 
-        // Gọi hàm routing với URI được yêu cầu
-        route($requestedUri, $routes);
+            // Gọi hàm routing với URI được yêu cầu
+            route($requestedUri, $routes);
         ?>
     </div>
 

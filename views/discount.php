@@ -10,7 +10,7 @@
 
 <body>
     <!-- Kết nối database -->
-    <?php include "database/conn.php"; ?>
+    <?php include 'database/conn.php'; ?>
 
     <!-- Banner Section -->
     <section class="banner-section">
@@ -61,10 +61,10 @@
     <!-- Flashsales Section -->
     <section class="flashsale-section">
         <?php
-        // Lấy sản phẩm đang được giảm giá
-        $flashsaleResult = mysqli_query($conn, 'SELECT *  FROM sanpham INNER JOIN danhgia ON sanpham.MaSP = danhgia.MaSP WHERE MaKM IS NOT NULL LIMIT 1');
-        // Lấy các hàng dưới dạng mảng kết hợp
-        $flashsaleData = mysqli_fetch_all($flashsaleResult, MYSQLI_ASSOC);
+            // Lấy sản phẩm đang được giảm giá
+            $flashsaleResult = mysqli_query($conn, 'SELECT *  FROM sanpham INNER JOIN danhgia ON sanpham.MaSP = danhgia.MaSP WHERE MaKM IS NOT NULL LIMIT 1');
+            // Lấy các hàng dưới dạng mảng kết hợp
+            $flashsaleData = mysqli_fetch_all($flashsaleResult, MYSQLI_ASSOC);
         ?>
 
         <div class="container-fluid bg-flashsale">
@@ -94,14 +94,14 @@
                                 <div class="d-flex justify-content-between align-items-center">
                                     <p class="content me-2">Màu sắc: </p>
                                     <?php
-                                        $colors = ['Đen', 'Hồng'];
-                                        foreach ($colors as $color) {
-                                            echo '<span
+                                    $colors = ['Đen', 'Hồng'];
+                                    foreach ($colors as $color) {
+                                        echo '<span
                                                 class="discount-color border-0 px-5 py-2 mx-4 d-flex
                                                 align-items-center justify-content-center">'
-                                                . htmlspecialchars($color) . '</span>';
-                                        }
-                                        ?>
+                                            . htmlspecialchars($color) . '</span>';
+                                    }
+                                    ?>
                                 </div>
 
                                 <p class="content">Đã bán: <strong class="ms-3">500 sp</strong></p>
@@ -124,17 +124,18 @@
 
                                     <div class="discount-stars me-4">
                                         <?php
-                                            for ($i = 0; $i < $data['DiemDG']; $i++) { ?>
+                                        for ($i = 0; $i < $data['DiemDG']; $i++) {
+                                        ?>
                                         <i id="<?php echo $data['MaDG']; ?>" class="fas fa-star text-warning"></i>
                                         <?php } ?>
 
-                                        <!--                                            
+                                        <!--
                                             <i class="fas fa-star text-warning"></i>
                                             <i class="fas fa-star text-warning"></i>
                                             <i class="fas fa-star text-warning"></i>
                                             <i class="fas fa-star text-warning"></i>
                                             <i class="far fa-star text-warning"></i>
-                                             -->
+                                        -->
                                     </div>
                                 </div>
                             </div>
@@ -172,46 +173,43 @@
         <div class="bg-title-voucher text-center mb-4">
             <p class="title-voucher">SĂN VOUCHER KHUYẾN MÃI</p>
         </div>
-
         <?php
-            // Fetch voucher data from the database
+            // Lấy dữ liệu voucher từ cơ sở dữ liệu
             $discountResult = mysqli_query($conn, 'SELECT * FROM khuyenmai ORDER BY NgayKT ASC');
             $discountLst = mysqli_fetch_all($discountResult, MYSQLI_ASSOC);
 
-            // List of random voucher images
+            // Danh sách các hình ảnh voucher ngẫu nhiên
             $voucherImages = [
-                "assets/imgs/vouchers/voucher_1.png",
-                "assets/imgs/vouchers/voucher_2.png",
+                'assets/imgs/vouchers/voucher_1.png',
+                'assets/imgs/vouchers/voucher_2.png',
             ];
 
-            // Define specific background colors for specific vouchers
+            // Định nghĩa màu nền cụ thể cho từng hình ảnh voucher
             $voucherBgColors = [
-                'voucher_1' => '#FBFF00',   
-                'voucher_2' => '#E6FFFF',
+                'assets/imgs/vouchers/voucher_1.png' => '#FBFF00',
+                'assets/imgs/vouchers/voucher_2.png' => '#E6FFFF',
             ];
         ?>
-
         <div class="grid-container">
             <?php foreach ($discountLst as $data): ?>
             <?php
-                // Determine the background color for the current voucher
-                if (array_key_exists($data['MaKM'], $voucherBgColors)) {
-                    // Use predefined background color for specific vouchers
-                    $backgroundColor = $voucherBgColors[$data['MaKM']];
-                }
-                // Randomly select an image from the voucherImages array
-                $randomImage = $voucherImages[array_rand($voucherImages)];
+            // Chọn ngẫu nhiên một hình ảnh từ mảng voucherImages
+            $randomImage = $voucherImages[array_rand($voucherImages)];
+
+            // Xác định màu nền cho voucher hiện tại dựa trên hình ảnh đã chọn
+            $backgroundColor = $voucherBgColors[$randomImage];
             ?>
             <div class="voucher-card" style="background-color: <?php echo $backgroundColor; ?>;">
                 <div class="voucher-image">
                     <img src="<?php echo $randomImage; ?>" alt="Voucher Image" class="voucher-image">
                 </div>
+
                 <div class="voucher-details">
                     <div class="voucher-title"><?php echo $data['TenCT']; ?></div>
                     <div class="text"><?php echo $data['DieuKien']; ?></div>
-                    <div class="text">Có hiệu lực từ <?php echo $data['NgayBD']; ?> - <?php echo $data['NgayKT']; ?>
-                    </div>
+                    <div class="text">Có hiệu lực từ <?php echo $data['NgayBD']; ?> - <?php echo $data['NgayKT']; ?></div>
                 </div>
+
                 <button class="voucher-button">Lưu</button>
             </div>
             <?php endforeach; ?>
