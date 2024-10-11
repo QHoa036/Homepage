@@ -54,6 +54,7 @@ if (isset($_POST['login'])) {
                 'TenDangNhap' => $row['TenDangNhap'],
                 'Hang' => $row['Hang']
             ];
+            $userData = json_encode($_SESSION['user']);
             redirectToSignin();
             exit();
         } else {
@@ -105,7 +106,6 @@ if (isset($_POST['login'])) {
             </div>
         </form>
     </div>
-
 
 </body>
 

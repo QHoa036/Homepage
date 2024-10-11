@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -98,7 +95,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo url('/discount'); ?>">
+                        <a class="nav-link" href="">
                             <i class="bi bi-fire navbar-header-logo"></i>
                             Khuyến mãi
                         </a>
@@ -119,6 +116,12 @@
                         <div class="vertical-divider"></div>
                     </li>
 
+                    <?php 
+                        if (isset($_SESSION['mySession'])) {
+                            
+                            exit();
+                        }
+                    ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
