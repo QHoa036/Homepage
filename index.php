@@ -1,9 +1,9 @@
-<?php 
+<?php
 session_start();
 ob_start();
 
 include 'database/conn.php';
-if(!isset($_SESSION['user'])) {
+if (!isset($_SESSION['user'])) {
     url('/');
 }
 ?>
@@ -51,66 +51,72 @@ if(!isset($_SESSION['user'])) {
 
     <div class="outlet">
         <?php
-            // Lấy tham số URL, loại bỏ dấu gạch chéo ở cuối và chuẩn hóa request URI
-            $requestedUri = '/' . trim(isset($_GET['url']) ? $_GET['url'] : '', '/');
+        // Lấy tham số URL, loại bỏ dấu gạch chéo ở cuối và chuẩn hóa request URI
+        $requestedUri = '/' . trim(isset($_GET['url']) ? $_GET['url'] : '', '/');
 
-            // Định nghĩa các route và các file tương ứng của chúng
-            $routes = [
-                '/home' => 'views/homepage.php', // Trang chủ
-                '/discount' => 'views/discount.php', // Khuyến mãi
-                '/signin' => 'views/signin.php', // Đăng nhập
-                '/signup' => 'views/signup.php', // Đăng ký
-                '/forgot-password' => 'views/quenMK.php', // Quên mật khẩu
-                '/category/{name}' => 'views/category.php', // Danh mục sản phẩm {name}
-                '/product/{id}' => 'views/product.php',  // Chi tiết sản phẩm {id}
-            ];
+        // Định nghĩa các route và các file tương ứng của chúng
+        $routes = [
+            '/home' => 'views/homepage.php', // Trang chủ
+            '/about' => 'views/about.php', // Giới thiệu
+            '/category/{id}' => 'views/category.php', // Danh mục sản phẩm {id}
+            '/discounts' => 'views/discount.php', // Khuyến mãi
+            '/questions' => 'views/questions.php', // Hỏi đáp
+            '/signin' => 'views/signin.php', // Đăng nhập
+            '/signup' => 'views/signup.php', // Đăng ký
+            '/forgot-password' => 'views/quenMK.php', // Quên mật khẩu
+            '/product/{id}' => 'views/product.php',  // Chi tiết sản phẩm {id}
+        ];
 
-            // Hàm để xử lý request và bao gồm file tương ứng
-            function route($uri, $routes)
-            {
-                foreach ($routes as $route => $file) {
-                    // Chuyển đổi route thành regex
-                    $routePattern = preg_replace('/\{[a-zA-Z0-9_]+\}/', '([a-zA-Z0-9_]+)', $route);
-                    $routePattern = str_replace('/', '\/', $routePattern);
-                    $routePattern = '/^' . $routePattern . '$/';
+        // Hàm để xử lý request và bao gồm file tương ứng
+        function route($uri, $routes)
+        {
+            global $matches; // Ensure $matches are available globally
+            foreach ($routes as $route => $file) {
+                // Convert route to regex
+                $routePattern = preg_replace('/\{([a-zA-Z0-9_]+)\}/', '(?P<$1>[a-zA-Z0-9_]+)', $route);
+                $routePattern = str_replace('/', '\/', $routePattern);
+                $routePattern = '/^' . $routePattern . '$/';
 
-                    // Kiểm tra nếu URI khớp với route
-                    if (preg_match($routePattern, $uri, $matches)) {
-                        array_shift($matches);  // Bỏ phần tử đầu tiên (toàn bộ chuỗi khớp)
-                        if (file_exists($file)) {
-                            // Truyền các tham số vào file được bao gồm
-                            include $file;
-                            return;
-                        }
+                // Check if URI matches the route
+                if (preg_match($routePattern, $uri, $matches)) {
+                    array_shift($matches);  // Remove the full match
+
+                    // Check if the file exists
+                    if (file_exists($file)) {
+                        include $file;
+                        return;
                     }
                 }
-                // Nếu không khớp route nào, bao gồm file 404
-                include 'views/404.php';
             }
+            // If no route matches, include 404 page
+            include 'views/404.php';
+        }
 
-            // Hàm để tạo URL từ route
-            function url($path)
-            {
-                // Lấy URL cơ sở từ server
-                $baseUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . "://$_SERVER[HTTP_HOST]";
 
-                // Lấy đường dẫn thư mục hiện tại
-                $currentDir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
+        // Hàm để tạo URL từ route
+        function url($path)
+        {
+            // Lấy URL cơ sở từ server
+            $baseUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . "://$_SERVER[HTTP_HOST]";
 
-                // Tạo URL đầy đủ
-                return $baseUrl . $currentDir . '/' . trim($path, '/');
-            }
+            // Lấy đường dẫn thư mục hiện tại
+            $currentDir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
 
-            // Hàm để đăng xuất
-            function logout()
-            {
-                unset($_SESSION['mySession']);
-                unset($_SESSION['user']);
-                url('/signin');
-            }
+            // Tạo URL đầy đủ
+            return $baseUrl . $currentDir . '/' . trim($path, '/');
+        }
 
-            // Gọi hàm routing với URI được yêu cầu
-            route($requestedUri, $routes);
+        // Hàm để đăng xuất
+        function logout()
+        {
+            unset($_SESSION['mySession']);
+            unset($_SESSION['user']);
+            header("Location: " . url('/signin'));
+            exit(); // Dừng thực thi để đảm bảo chuyển hướng
+        }
+
+        // Gọi hàm routing với URI được yêu cầu
+        route($requestedUri, $routes);
         ?>
     </div>
 
@@ -125,7 +131,7 @@ if(!isset($_SESSION['user'])) {
 
     <!-- Carousel JS -->
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('.owl-carousel').owlCarousel({
                 loop: true,
                 margin: 10,

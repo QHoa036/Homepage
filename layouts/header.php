@@ -2,7 +2,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="assets/css/layouts/header.css" />
+    <link rel="stylesheet" href="<?php echo url('/assets/css/layouts/header.css') ?>" />
 </head>
 
 <body>
@@ -12,7 +12,7 @@
             <!-- Left Section: Logo and Title -->
             <div class="d-flex align-items-center">
                 <div class="text-center text-lg-left py-2">
-                    <img src="assets/svgs/logo.svg" alt="UEH Logo" class="navbar-brand-logo">
+                    <img src="<?php echo url('/assets/svgs/logo.svg') ?>" alt="UEH Logo" class="navbar-brand-logo">
                 </div>
                 <div class="text-center text-lg-left py-2 px-2">
                     <a href="<?php echo url('/home'); ?>">
@@ -72,7 +72,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="<?php echo url('/about'); ?>">
                             <i class="bi bi-people-fill navbar-header-logo"></i>
                             Giới thiệu
                         </a>
@@ -89,11 +89,20 @@
                             Danh mục sản phẩm
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Sách</a></li>
-                            <li><a class="dropdown-item" href="#">Bút</a></li>
-                            <li><a class="dropdown-item" href="#">Phụ kiện</a></li>
-                            <li><a class="dropdown-item" href="#">Máy tính</a></li>
-                            <li><a class="dropdown-item" href="#">Sổ tay</a></li>
+                            <?php
+                            // Lấy loại sản phẩm
+                            $categoryResult = mysqli_query($conn, 'SELECT MaLoai, TenLoai FROM loaisanpham');
+                            // Lấy các hàng dưới dạng mảng kết hợp
+                            $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
+                            ?>
+
+                            <?php foreach ($categoryData as $data): ?>
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="<?php echo url('/category/' . $data['MaLoai']); ?>"><?php echo $data['TenLoai'] ?>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
                         </ul>
                     </li>
 
@@ -102,7 +111,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo url('/discount'); ?>">
+                        <a class="nav-link" href="<?php echo url('/discounts'); ?>">
                             <i class="bi bi-fire navbar-header-logo"></i>
                             Khuyến mãi
                         </a>
@@ -113,7 +122,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="<?php echo url('/questions'); ?>">
                             <i class="bi bi-question-circle-fill navbar-header-logo"></i>
                             Hỏi đáp
                         </a>
@@ -132,31 +141,31 @@
                         // Show user's name     
                         $name = $user['TenTV'];
                     ?>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="bi bi-person-circle navbar-header-logo"></i>
-                            <?php echo $name; ?>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="<?php logout() ?>">Đăng xuất</a></li>
-                        </ul>
-                    </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="bi bi-person-circle navbar-header-logo"></i>
+                                <?php echo $name; ?>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="<?php logout() ?>">Đăng xuất</a></li>
+                            </ul>
+                        </li>
                     <?php
                     } else {
                         // User is not logged in, show login and signup options
                     ?>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <i class="bi bi-box-arrow-in-right navbar-header-logo"></i>
-                            Đăng nhập
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="<?php echo url('/signin'); ?>">Đăng nhập</a></li>
-                            <li><a class="dropdown-item" href="<?php echo url('/signup'); ?>">Đăng ký</a></li>
-                        </ul>
-                    </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="bi bi-box-arrow-in-right navbar-header-logo"></i>
+                                Đăng nhập
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="<?php echo url('/signin'); ?>">Đăng nhập</a></li>
+                                <li><a class="dropdown-item" href="<?php echo url('/signup'); ?>">Đăng ký</a></li>
+                            </ul>
+                        </li>
                     <?php
                     }
                     ?>
@@ -165,7 +174,7 @@
         </div>
     </nav>
 
-    <script src="assets/scripts/layouts/header.js"></script>
+    <script src="<?php echo url('/assets/scripts/layouts/header.js') ?>"></script>
 </body>
 
 </html>
