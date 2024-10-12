@@ -90,9 +90,6 @@
 
                             <div class="bg-flash-info-body">
                                 <p class="content">Mã SP: <strong class="ms-3"><?php echo $data['MaSP']; ?></strong></p>
-
-                               
-
                                 <p class="content">Đã bán: <strong class="ms-3">500 sp</strong></p>
 
                                 <div class="w-100 d-flex justify-content-end align-items-center px-4">
@@ -196,7 +193,8 @@
                 <div class="voucher-details">
                     <div class="voucher-title"><?php echo $data['TenCT']; ?></div>
                     <div class="text"><?php echo $data['DieuKien']; ?></div>
-                    <div class="text">Có hiệu lực từ <?php echo $data['NgayBD']; ?> - <?php echo $data['NgayKT']; ?></div>
+                    <div class="text">Có hiệu lực từ <?php echo $data['NgayBD']; ?> - <?php echo $data['NgayKT']; ?>
+                    </div>
                 </div>
 
                 <button class="voucher-button">Lưu</button>
@@ -210,8 +208,3 @@
 </body>
 
 </html>
-
-
-
-
-

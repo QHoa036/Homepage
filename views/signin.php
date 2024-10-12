@@ -2,17 +2,10 @@
 include 'database/conn.php';
 
 function redirectToSignin() {
-    // Get the current URL dynamically
-    $currentUrl = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    // $currentDir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') . '/';
+    // header("location: $currentDir");
 
-    // Parse the URL to get the base path
-    $parsedUrl = parse_url($currentUrl);
-    $basePath = $parsedUrl['scheme'] . '://' . $parsedUrl['host'] . dirname($parsedUrl['path']) . '/';
-
-    // Output JavaScript to change the URL
-    echo "<script type='text/javascript'>
-            window.location.href = '$basePath';
-        </script>";
+    header('location: home');
 }
 
 // Kiểm tra xem user đăng nhập chưa
@@ -54,7 +47,6 @@ if (isset($_POST['login'])) {
                 'TenDangNhap' => $row['TenDangNhap'],
                 'Hang' => $row['Hang']
             ];
-            $userData = json_encode($_SESSION['user']);
             redirectToSignin();
             exit();
         } else {

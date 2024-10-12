@@ -1,6 +1,11 @@
 <?php 
 session_start();
 ob_start();
+
+include 'database/conn.php';
+if(!isset($_SESSION['user'])) {
+    url('/');
+}
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +56,7 @@ ob_start();
 
             // Định nghĩa các route và các file tương ứng của chúng
             $routes = [
-                '/' => 'views/homepage.php', // Trang chủ
+                '/home' => 'views/homepage.php', // Trang chủ
                 '/discount' => 'views/discount.php', // Khuyến mãi
                 '/signin' => 'views/signin.php', // Đăng nhập
                 '/signup' => 'views/signup.php', // Đăng ký
@@ -94,6 +99,14 @@ ob_start();
 
                 // Tạo URL đầy đủ
                 return $baseUrl . $currentDir . '/' . trim($path, '/');
+            }
+
+            // Hàm để đăng xuất
+            function logout()
+            {
+                unset($_SESSION['mySession']);
+                unset($_SESSION['user']);
+                url('/signin');
             }
 
             // Gọi hàm routing với URI được yêu cầu

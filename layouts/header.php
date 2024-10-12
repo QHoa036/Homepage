@@ -15,7 +15,7 @@
                     <img src="assets/svgs/logo.svg" alt="UEH Logo" class="navbar-brand-logo">
                 </div>
                 <div class="text-center text-lg-left py-2 px-2">
-                    <a href="">
+                    <a href="<?php echo url('/home'); ?>">
                         <p class="navbar-brand-text">STATIONERY</p>
                     </a>
                 </div>
@@ -23,9 +23,16 @@
 
             <!-- Center Section: Search Bar -->
             <div class="d-flex align-items-center justify-content-center position-relative search-container py-3">
-                <i class="fas fa-chevron-left search-icon"></i>
-                <input type="text" class="search-input" placeholder="Tìm kiếm">
-                <button class="search-btn"><i class="fas fa-search"></i></button>
+                <span><i class="fas fa-chevron-left search-icon"></i></span>
+                <input type="text" class="form-control search-input" id="search-input" placeholder="Tìm kiếm">
+                <div class="searchbar-dropdown">
+                    <ul class="searchbar-dropdown-menu" id="searchbar-dropdown-menu">
+                        <li class="searchbar-dropdown-item">Sổ caro</li>
+                        <li class="searchbar-dropdown-item">Dây đeo thẻ</li>
+                        <li class="searchbar-dropdown-item">Sách Toán cao cấp</li>
+                    </ul>
+                </div>
+                <span><button class="search-btn"><i class="fas fa-search"></i></button></span>
             </div>
 
             <!-- Right Section: Icon Buttons -->
@@ -95,7 +102,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="<?php echo url('/discount'); ?>">
                             <i class="bi bi-fire navbar-header-logo"></i>
                             Khuyến mãi
                         </a>
@@ -116,11 +123,28 @@
                         <div class="vertical-divider"></div>
                     </li>
 
-                    <?php 
-                        if (isset($_SESSION['mySession'])) {
-                            
-                            exit();
-                        }
+                    <?php
+                    if (isset($_SESSION['mySession'])) {
+
+                        // Get user info
+                        $user = $_SESSION['user'];
+
+                        // Show user's name     
+                        $name = $user['TenTV'];
+                    ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="bi bi-person-circle navbar-header-logo"></i>
+                            <?php echo $name; ?>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="<?php logout() ?>">Đăng xuất</a></li>
+                        </ul>
+                    </li>
+                    <?php
+                    } else {
+                        // User is not logged in, show login and signup options
                     ?>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -133,6 +157,9 @@
                             <li><a class="dropdown-item" href="<?php echo url('/signup'); ?>">Đăng ký</a></li>
                         </ul>
                     </li>
+                    <?php
+                    }
+                    ?>
                 </ul>
             </div>
         </div>
