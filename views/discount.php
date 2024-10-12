@@ -91,18 +91,7 @@
                             <div class="bg-flash-info-body">
                                 <p class="content">Mã SP: <strong class="ms-3"><?php echo $data['MaSP']; ?></strong></p>
 
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <p class="content me-2">Màu sắc: </p>
-                                    <?php
-                                    $colors = ['Đen', 'Hồng'];
-                                    foreach ($colors as $color) {
-                                        echo '<span
-                                                class="discount-color border-0 px-5 py-2 mx-4 d-flex
-                                                align-items-center justify-content-center">'
-                                            . htmlspecialchars($color) . '</span>';
-                                    }
-                                    ?>
-                                </div>
+                               
 
                                 <p class="content">Đã bán: <strong class="ms-3">500 sp</strong></p>
 
@@ -221,3 +210,8 @@
 </body>
 
 </html>
+
+
+
+
+
