@@ -114,7 +114,7 @@ function url($path)
         $hotTrendLst = mysqli_fetch_all($hotTrendResult, MYSQLI_ASSOC);
 
         // Count the number of best-seller products
-        $productCount = count($hotTrendLst);
+        $hotTrendCount = count($hotTrendLst);
         ?>
 
         <div class="bg-title-category">
@@ -127,7 +127,7 @@ function url($path)
                     <?php foreach ($hotTrendLst as $data): ?>
                         <div class="card" id="<?= $data['MaSP'] ?>">
                             <div class="card-body">
-                                <img src="assets/imgs/products/product_1.jpg" class="card-img-top" alt="...">
+                                <img src="<?php echo "assets/imgs/products/" . $data['Hinhanh'] ?>" class="card-img-top" alt="...">
                                 <h5 class="card-title"><?php echo $data['TenSP']; ?></h5>
                                 <div class="d-flex align-items-center justify-content-between">
                                     <p class="card-old-price"> Đã bán: <?php echo $data['Giagoc']; ?></p>
@@ -138,7 +138,7 @@ function url($path)
                     <?php endforeach; ?>
                 </div>
             </div>
-            <?php if ($productCount > 5): ?>
+            <?php if ($hotTrendCount > 5): ?>
                 <button class="carousel-prev" id="prev-hot">
                     <i class="carousel-icon bi bi-chevron-left"></i>
                 </button>
@@ -158,27 +158,39 @@ function url($path)
         // Fetch rows as an associative array
         $bestSellerLst = mysqli_fetch_all($bestSellerResult, MYSQLI_ASSOC);
 
+        // COunt
+        $bestSellerCount = count($bestSellerLst)
         ?>
 
         <div class="bg-title-category">
             <p class="title-category">SẢN PHẨM BÁN CHẠY</p>
         </div>
 
-        <div class="row carousel-wrapper">
-            <?php foreach ($bestSellerLst as $data): ?>
-                <div class="col-md-2 me-3">
-                    <div class="card" id="<?= $data['MaSP'] ?>">
-                        <div class="card-body">
-                            <img src="assets/imgs/products/product_1.jpg" class="card-img-top" alt="...">
-                            <h5 class="card-title"><?php echo $data['TenSP']; ?></h5>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <p class="card-old-price"> Đã bán: <?php echo $data['Giagoc']; ?></p>
-                                <p class="card-price"><?php echo $data['Giaban']; ?></p>
+        <div class="carousel-wrapper" id="wrapper-bestseller">
+            <div class="carousel" id="carousel-bestseller">
+                <div class="carousel-content" id="content-bestseller">
+                    <?php foreach ($bestSellerResult as $data): ?>
+                        <div class="card" id="<?= $data['MaSP'] ?>">
+                            <div class="card-body">
+                                <img src="<?php echo "assets/imgs/products/" . $data['Hinhanh'] ?>" class="card-img-top" alt="...">
+                                <h5 class="card-title"><?php echo $data['TenSP']; ?></h5>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <p class="card-old-price"> Đã bán: <?php echo $data['Giagoc']; ?></p>
+                                    <p class="card-price"><?php echo $data['Giaban']; ?></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
-            <?php endforeach; ?>
+            </div>
+            <?php if ($bestSellerCount > 5): ?>
+                <button class="carousel-prev" id="prev-hot">
+                    <i class="carousel-icon bi bi-chevron-left"></i>
+                </button>
+                <button class="carousel-next" id="next-hot">
+                    <i class="carousel-icon bi bi-chevron-right"></i>
+                </button>
+            <?php endif; ?>
         </div>
     </section>
 
@@ -265,6 +277,7 @@ function url($path)
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+
 </body>
 
 </html>

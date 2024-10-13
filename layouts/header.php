@@ -22,21 +22,55 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
             </div>
 
             <!-- Center Section: Search Bar -->
-            <div class="d-flex align-items-center justify-content-center position-relative search-container py-3">
-                <span><i class="fas fa-chevron-left search-icon"></i></span>
-                <input type="text" class="form-control search-input" id="search-input" placeholder="Tìm kiếm">
-                <div class="searchbar-dropdown">
-                    <ul class="searchbar-dropdown-menu" id="searchbar-dropdown-menu">
-                        <?php foreach ($categoryData as $data): ?>
-                            <a href="<?php echo 'category.php#' . $data['MaLoai']; ?>" style="color: black">
-                                <li class="searchbar-dropdown-item"><?php echo $data['TenLoai'] ?>
-                                </li>
-                            </a>
-                        <?php endforeach; ?>
-                    </ul>
+            <?php
+            if (isset($_GET['search-category'])) {
+                // Get the search term from the URL (sanitize it to avoid SQL injection)
+                $searchTerm = trim(strtolower($conn->real_escape_string($_GET['search-category'])));
+
+                // Perform the query to search for a category or product matching the search term
+                $query = "SELECT MaLoai FROM loaisanpham WHERE TenLoai LIKE '%$searchTerm%'";
+                $searchResult = mysqli_query($conn, $query);
+
+                // Check if the result is found
+                if (mysqli_num_rows($searchResult) > 0) {
+                    // Fetch the result
+                    $searchData = mysqli_fetch_assoc($searchResult);
+                    // Redirect to the category page with the dynamic ID
+                    header('Location: category.php#' . $searchData['MaLoai']);
+                    exit();
+                } else {
+                    // Redirect back to the search page with a failure indicator
+                    header('Location: category.php?error=notfound');
+                    exit();
+                }
+            }
+            ?>
+            <form action="category.php" method="get">
+                <div class="d-flex align-items-center justify-content-center position-relative search-container py-3">
+                    <span><i class="fas fa-chevron-left search-icon"></i></span>
+                    <input type="text" class="form-control search-input" name="search-category" id="search-input" placeholder="Tìm kiếm">
+                    <div class="searchbar-dropdown">
+                        <ul class="searchbar-dropdown-menu" id="searchbar-dropdown-menu">
+                            <?php foreach ($categoryData as $data): ?>
+                                <a href="<?php echo 'category.php#' . $data['MaLoai']; ?>" style="color: black">
+                                    <li class="searchbar-dropdown-item"><?php echo $data['TenLoai'] ?></li>
+                                </a>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                    <span><button type="submit" class="search-btn"><i class="fas fa-search"></i></button></span>
                 </div>
-                <span><button class="search-btn"><i class="fas fa-search"></i></button></span>
-            </div>
+            </form>
+
+            <!-- JavaScript to handle error alert -->
+            <script>
+                // Check if there's an error parameter in the URL (indicating no match found)
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.has('error') && urlParams.get('error') === 'notfound') {
+                    alert('Cannot find the data');
+                }
+            </script>
+
 
             <!-- Right Section: Icon Buttons -->
             <div class="d-flex align-items-center justify-content-between">
@@ -177,6 +211,8 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
             </div>
         </div>
     </nav>
+
+
 
 </body>
 
