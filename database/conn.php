@@ -1,5 +1,4 @@
 <?php
-
     $server = 'localhost';
     $user = 'root';
     $pass = '';
@@ -11,6 +10,6 @@
         mysqLi_query($conn, "SET NAMES 'utf8' ");
     }
     else{
-        echo"Fail";
+        echo "Fail";
     }
 ?>

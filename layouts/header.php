@@ -1,9 +1,9 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="<?php echo url('/assets/css/layouts/header.css') ?>" />
-</head>
+<?php
+// Lấy loại sản phẩm
+$categoryResult = mysqli_query($conn, 'SELECT MaLoai, TenLoai FROM loaisanpham');
+// Lấy các hàng dưới dạng mảng kết hợp
+$categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
+?>
 
 <body>
     <nav class="navbar navbar-expand-lg bg-header-top">
@@ -12,10 +12,10 @@
             <!-- Left Section: Logo and Title -->
             <div class="d-flex align-items-center">
                 <div class="text-center text-lg-left py-2">
-                    <img src="<?php echo url('/assets/svgs/logo.svg') ?>" alt="UEH Logo" class="navbar-brand-logo">
+                    <img src="assets/svgs/logo.svg" alt="UEH Logo" class="navbar-brand-logo">
                 </div>
                 <div class="text-center text-lg-left py-2 px-2">
-                    <a href="<?php echo url('/home'); ?>">
+                    <a href="homepage.php">
                         <p class="navbar-brand-text">STATIONERY</p>
                     </a>
                 </div>
@@ -27,9 +27,12 @@
                 <input type="text" class="form-control search-input" id="search-input" placeholder="Tìm kiếm">
                 <div class="searchbar-dropdown">
                     <ul class="searchbar-dropdown-menu" id="searchbar-dropdown-menu">
-                        <li class="searchbar-dropdown-item">Sổ caro</li>
-                        <li class="searchbar-dropdown-item">Dây đeo thẻ</li>
-                        <li class="searchbar-dropdown-item">Sách Toán cao cấp</li>
+                        <?php foreach ($categoryData as $data): ?>
+                            <a href="<?php echo 'category.php#' . $data['MaLoai']; ?>" style="color: black">
+                                <li class="searchbar-dropdown-item"><?php echo $data['TenLoai'] ?>
+                                </li>
+                            </a>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
                 <span><button class="search-btn"><i class="fas fa-search"></i></button></span>
@@ -72,7 +75,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo url('/about'); ?>">
+                        <a class="nav-link" href="#">
                             <i class="bi bi-people-fill navbar-header-logo"></i>
                             Giới thiệu
                         </a>
@@ -89,17 +92,10 @@
                             Danh mục sản phẩm
                         </a>
                         <ul class="dropdown-menu">
-                            <?php
-                            // Lấy loại sản phẩm
-                            $categoryResult = mysqli_query($conn, 'SELECT MaLoai, TenLoai FROM loaisanpham');
-                            // Lấy các hàng dưới dạng mảng kết hợp
-                            $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
-                            ?>
-
                             <?php foreach ($categoryData as $data): ?>
                                 <li>
                                     <a class="dropdown-item"
-                                        href="<?php echo url('/category/' . $data['MaLoai']); ?>"><?php echo $data['TenLoai'] ?>
+                                        href="<?php echo 'category.php#' . $data['MaLoai']; ?>"><?php echo $data['TenLoai'] ?>
                                     </a>
                                 </li>
                             <?php endforeach; ?>
@@ -111,7 +107,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo url('/discounts'); ?>">
+                        <a class="nav-link" href="discounts.php">
                             <i class="bi bi-fire navbar-header-logo"></i>
                             Khuyến mãi
                         </a>
@@ -122,7 +118,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo url('/questions'); ?>">
+                        <a class="nav-link" href="questions.php">
                             <i class="bi bi-question-circle-fill navbar-header-logo"></i>
                             Hỏi đáp
                         </a>
@@ -148,7 +144,15 @@
                                 <?php echo $name; ?>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="<?php logout() ?>">Đăng xuất</a></li>
+                                <?php
+                                // Hàm để đăng xuất
+                                function logout()
+                                {
+                                    unset($_SESSION['mySession']);
+                                    unset($_SESSION['user']);
+                                }
+                                ?>
+                                <li><a class="dropdown-item" href="<?php echo logout() ?>">Đăng xuất</a></li>
                             </ul>
                         </li>
                     <?php
@@ -162,8 +166,8 @@
                                 Đăng nhập
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="<?php echo url('/signin'); ?>">Đăng nhập</a></li>
-                                <li><a class="dropdown-item" href="<?php echo url('/signup'); ?>">Đăng ký</a></li>
+                                <li><a class="dropdown-item" href="signin.php">Đăng nhập</a></li>
+                                <li><a class="dropdown-item" href="signup.php">Đăng ký</a></li>
                             </ul>
                         </li>
                     <?php
@@ -174,7 +178,6 @@
         </div>
     </nav>
 
-    <script src="<?php echo url('/assets/scripts/layouts/header.js') ?>"></script>
 </body>
 
 </html>

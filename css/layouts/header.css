@@ -91,6 +91,11 @@
   cursor: pointer;
 }
 
+.searchbar-dropdown-item a{
+  text-decoration: none;
+  color: black;
+}
+
 .searchbar-dropdown-item:last-child {
   border-bottom: none;
 }

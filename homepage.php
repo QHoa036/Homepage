@@ -1,16 +1,62 @@
+<?php
+session_start();
+ob_start();
+
+include 'database/conn.php';
+
+// Hàm để tạo URL từ route
+function url($path)
+{
+    // Lấy URL cơ sở từ server
+    $baseUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . "://$_SERVER[HTTP_HOST]";
+
+    // Lấy đường dẫn thư mục hiện tại
+    $currentDir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
+
+    // Tạo URL đầy đủ
+    return $baseUrl . $currentDir . '/' . trim($path, '/');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UEH Stationery</title>
 
-    <link rel="stylesheet" href="assets/css/components/homepage.css" />
+    <!-- Libraries -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/layouts/header.css" />
+    <link rel="stylesheet" href="css/layouts/footer.css" />
+
+    <!-- JS -->
+    <script src="carousel/vendors/jquery.min.js"></script>
+    <script src="carousel/owlcarousel/owl.carousel.js"></script>
+
+    <link rel="stylesheet" href="css/homepage.css" />
 </head>
 
 <body>
-    <!-- Kết nối database -->
-    <?php include "database/conn.php"; ?>
+    <!-- Header -->
+    <?php include 'layouts/header.php'; ?>
 
     <!-- Banner Section -->
     <section class="banner-section">
@@ -79,26 +125,26 @@
             <div class="carousel" id="carousel-hot">
                 <div class="carousel-content" id="content-hot">
                     <?php foreach ($hotTrendLst as $data): ?>
-                    <div class="card" id="<?= $data['MaSP'] ?>">
-                        <div class="card-body">
-                            <img src="assets/imgs/products/product_1.jpg" class="card-img-top" alt="...">
-                            <h5 class="card-title"><?php echo $data['TenSP']; ?></h5>
-                            <div class="d-flex align-items-center justify-content-between">
-                                <p class="card-old-price"> Đã bán: <?php echo $data['Giagoc']; ?></p>
-                                <p class="card-price"><?php echo $data['Giaban']; ?></p>
+                        <div class="card" id="<?= $data['MaSP'] ?>">
+                            <div class="card-body">
+                                <img src="assets/imgs/products/product_1.jpg" class="card-img-top" alt="...">
+                                <h5 class="card-title"><?php echo $data['TenSP']; ?></h5>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <p class="card-old-price"> Đã bán: <?php echo $data['Giagoc']; ?></p>
+                                    <p class="card-price"><?php echo $data['Giaban']; ?></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     <?php endforeach; ?>
                 </div>
             </div>
             <?php if ($productCount > 5): ?>
-            <button class="carousel-prev" id="prev-hot">
-                <i class="carousel-icon bi bi-chevron-left"></i>
-            </button>
-            <button class="carousel-next" id="next-hot">
-                <i class="carousel-icon bi bi-chevron-right"></i>
-            </button>
+                <button class="carousel-prev" id="prev-hot">
+                    <i class="carousel-icon bi bi-chevron-left"></i>
+                </button>
+                <button class="carousel-next" id="next-hot">
+                    <i class="carousel-icon bi bi-chevron-right"></i>
+                </button>
             <?php endif; ?>
         </div>
     </section>
@@ -120,18 +166,18 @@
 
         <div class="row carousel-wrapper">
             <?php foreach ($bestSellerLst as $data): ?>
-            <div class="col-md-2 me-3">
-                <div class="card" id="<?= $data['MaSP'] ?>">
-                    <div class="card-body">
-                        <img src="assets/imgs/products/product_1.jpg" class="card-img-top" alt="...">
-                        <h5 class="card-title"><?php echo $data['TenSP']; ?></h5>
-                        <div class="d-flex align-items-center justify-content-between">
-                            <p class="card-old-price"> Đã bán: <?php echo $data['Giagoc']; ?></p>
-                            <p class="card-price"><?php echo $data['Giaban']; ?></p>
+                <div class="col-md-2 me-3">
+                    <div class="card" id="<?= $data['MaSP'] ?>">
+                        <div class="card-body">
+                            <img src="assets/imgs/products/product_1.jpg" class="card-img-top" alt="...">
+                            <h5 class="card-title"><?php echo $data['TenSP']; ?></h5>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <p class="card-old-price"> Đã bán: <?php echo $data['Giagoc']; ?></p>
+                                <p class="card-price"><?php echo $data['Giaban']; ?></p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             <?php endforeach; ?>
         </div>
     </section>
@@ -208,8 +254,17 @@
         </div>
     </section>
 
-    <!-- JS -->
-    <script src="assets/scripts/homepage.js"></script>
+    <!-- Footer -->
+    <?php include 'layouts/footer.php'; ?>
+
+    <!-- Scripts -->
+    <script src="scripts/header.js"></script>
+    <script src="scripts/homepage.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 </body>
 
 </html>
