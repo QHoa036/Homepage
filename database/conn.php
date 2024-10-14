@@ -3,8 +3,9 @@
     $user = 'root';
     $pass = '';
     $database = 'uehstationery';
+    $port = '3307';
 
-    $conn = new mysqLi($server, $user, $pass, $database);
+    $conn = mysqli_connect($server, $user, $pass, $database, $port);
 
     if($conn){
         mysqLi_query($conn, "SET NAMES 'utf8' ");

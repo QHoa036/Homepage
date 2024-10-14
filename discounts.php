@@ -111,25 +111,19 @@
 
             <div class="flashsale-carousel owl-carousel owl-theme">
                 <?php foreach ($flashsaleData as $data): ?>
-                    <div class="container-fluid bg-flashsale">
+                    <div class="container-fluid bg-flashsale" data-endtime="<?php echo $data['NgayKT']; ?>">
                         <div class="row">
                             <div class="col-md-6 p-0">
                                 <div class="d-flex justify-content-center align-items-center mh-100 h-100 position-relative">
                                     <div class="bg-flash-countdown position-absolute top-0 start-0 ">
                                         <img src="assets/imgs/buttons/btn_flashsale.png" alt="" style="height: 70px; width: 50px"></img>
-                                        <p class="bg-flash-countdown-text">FLASH SALE: <span id="countdown"></span></p>
+                                        <p class="bg-flash-countdown-text">FLASH SALE: <span id="flashsale-countdown"></span></p>
                                     </div>
 
                                     <div class="bg-flash-info shadow-sm border-4">
-
                                         <div class="d-flex justify-content-between align-items-center px-3">
-                                            <h3 class="title">
-                                                <?php echo $data['TenSP']; ?>
-                                            </h3>
-
-                                            <div class="discount-badge">
-                                                <?php echo $data['PhamtramKM']; ?><span>%</span>
-                                            </div>
+                                            <h3 class="title"><?php echo $data['TenSP']; ?></h3>
+                                            <div class="discount-badge"><?php echo $data['PhamtramKM']; ?><span>%</span></div>
                                         </div>
 
                                         <div class="bg-flash-info-body">
@@ -168,7 +162,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -182,10 +175,7 @@
                     </div>
                 <?php endforeach; ?>
             </div>
-
         </section>
-
-
 
         <!-- Banner Discount Section -->
         <section class="banner-discount-section">
@@ -249,12 +239,44 @@
 
     <!-- Scripts -->
     <script src="scripts/header.js"></script>
-    <script src="scripts/discount.js"></script>
+    <script>
+        function initCountdown(durationInMinutes, elementId) {
+            function startCountdown() {
+                // Set the date we're counting down to
+                var countDownDate = new Date().getTime() + durationInMinutes * 60 * 1000; // durationInMinutes from now
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+                // Update the count down every 1 second
+                var x = setInterval(function() {
+
+                    // Get today's date and time
+                    var now = new Date().getTime();
+
+                    // Find the distance between now and the count down date
+                    var distance = countDownDate - now;
+
+                    // Time calculations for hours, minutes and seconds
+                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    // Display the result in the specified element
+                    document.getElementById(elementId).innerHTML = hours + " : " + minutes + " : " + seconds;
+
+                    // If the count down is over, reset the countdown
+                    if (distance < 0) {
+                        clearInterval(x);
+                        startCountdown(); // Restart the countdown
+                    }
+                }, 1000);
+            }
+
+            startCountdown(); // Start the initial countdown
+        }
+
+        // Initialize countdown for each flash sale item
+        initCountdown(15, 'flashsale-countdown');
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+
 
     <!-- Carousel JS -->
     <script>
@@ -262,7 +284,7 @@
             $(".flashsale-carousel").owlCarousel({
                 loop: true,
                 margin: 10,
-                nav: true,
+                nav: false,
                 dots: true,
                 autoplay: true,
                 autoplayTimeout: 3000,
@@ -278,6 +300,46 @@
                     }
                 }
             });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var owl = $('.flashsale-carousel');
+            var countdownInterval;
+
+            function initializeCountdown(endTime, countdownElement) {
+                clearInterval(countdownInterval);
+                countdownInterval = setInterval(function() {
+                    var now = new Date().getTime();
+                    var distance = new Date(endTime).getTime() - now;
+
+                    if (distance < 0) {
+                        clearInterval(countdownInterval);
+                        countdownElement.innerHTML = "EXPIRED";
+                        return;
+                    }
+
+                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    countdownElement.innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
+                }, 1000);
+            }
+
+            owl.on('changed.owl.carousel', function(event) {
+                var currentItem = $(event.target).find('.owl-item').eq(event.item.index).find('.container-fluid');
+                var endTime = currentItem.data('endtime');
+                var countdownElement = currentItem.find('#flashsale-countdown')[0];
+                initializeCountdown(endTime, countdownElement);
+            });
+
+            // Initialize countdown for the first item
+            var firstItem = owl.find('.owl-item').eq(0).find('.container-fluid');
+            var firstEndTime = firstItem.data('endtime');
+            var firstCountdownElement = firstItem.find('#flashsale-countdown')[0];
+            initializeCountdown(firstEndTime, firstCountdownElement);
         });
     </script>
 
