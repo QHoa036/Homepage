@@ -2,18 +2,18 @@
 .bg-header-top {
   background-color: #f15a29;
 }
-
+/* Logo ueh */
 .navbar-brand-logo {
   width: 220px;
   height: auto;
 }
-
+/* icon địa chỉ, sđt, facebook */
 .navbar-header-logo {
   width: 24px;
   height: auto;
   margin-right: 0.6rem;
 }
-
+/* tên STATIONERY */
 .navbar-brand-text {
   font-family: "Baloo";
   color: white;
@@ -24,13 +24,14 @@
 }
 
 /* Searchbar */
+/* Background thanh tìm kiếm */
 .search-container {
   flex-grow: 1;
   max-width: 400px;
   width: 100%;
   position: relative;
 }
-
+/* data user nhập */
 .search-input {
   width: 100%; 
   border: 1px solid #ccc;
@@ -38,7 +39,7 @@
   padding: 12px 40px;
   font-size: 1rem;
 }
-
+/* icon của thanh search */
 .search-icon {
   position: absolute;
   left: 18px;
@@ -60,7 +61,7 @@
   cursor: pointer;
 }
 
-/** Dropdown for search bar */
+/** Dropdown cho search bar */
 .searchbar-dropdown {
   position: absolute;
   top: 80%; 
@@ -104,7 +105,7 @@
   background-color: #f1f1f1;
 }
 
-/* Toolbar */
+/* vị trí CÁc icon địa chỉ, sđt, fb */
 .navbar-toolbar {
   display: flex;
   align-items: center;
@@ -112,14 +113,14 @@
   flex-direction: row;
 }
 
-/* Icon container */
+/* chứa các icon địa chỉ, sđt, fb */
 .icon-container {
   gap: 0.8rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
+/* các icon địa chỉ, sđt,fb */
 .icon-container i {
   background-color: transparent;
   border-radius: 50%;
@@ -139,7 +140,7 @@
   transition: all 0.3s ease;
 }
 
-/* Language Switcher */
+/* Ngôn ngữ */
 .language-switch {
   display: flex;
   align-items: center;
@@ -158,31 +159,17 @@
   color: #005f69;
   transition: all 0.3s ease;
 }
-
-.language-switch .fa-globe {
-  color: white;
-  background-color: #0d6660;
-  margin-left: 8px;
-  font-size: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  border: 2px solid #0d6660;
+.active-language {
+  font-weight: bold;
 }
-
+/* respnsive cho cỡ chữ title của web*/
 @media (max-width: 768px) {
   .navbar-brand-text {
     font-size: 26px;
   }
 }
 
-/* Active class for styling the selected language */
-.active-language {
-  font-weight: bold;
-}
 
-/* Header Bottom */
 /* Header Bottom */
 .bg-header-bottom {
   display: flex;

@@ -9,7 +9,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
     <nav class="navbar navbar-expand-lg bg-header-top">
         <div class="container-fluid d-flex align-items-center">
 
-            <!-- Left Section: Logo and Title -->
+            <!-- Logo và title của web-->
             <div class="d-flex align-items-center">
                 <div class="text-center text-lg-left py-2">
                     <img src="assets/svgs/logo.svg" alt="UEH Logo" class="navbar-brand-logo">
@@ -21,34 +21,37 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                 </div>
             </div>
 
-            <!-- Center Section: Search Bar -->
+            <!-- Thanh tìm kiếm -->
             <?php
             if (isset($_GET['search-category'])) {
-                // Get the search term from the URL (sanitize it to avoid SQL injection)
+                // Lấy data tìm kiếm của người dùng trong đó: 
+                // trim để xóa các khoảng trắng, strlower để chuyển về chữ thường, real_escape_string loại bỏ các kí tự đặc biệt
                 $searchTerm = trim(strtolower($conn->real_escape_string($_GET['search-category'])));
 
-                // Perform the query to search for a category or product matching the search term
+                // Lấy các mã loại có têm trùng với data người dùng nhập vào
                 $query = "SELECT MaLoai FROM loaisanpham WHERE TenLoai LIKE '%$searchTerm%'";
                 $searchResult = mysqli_query($conn, $query);
 
-                // Check if the result is found
+                // kiểm tra kết quả tìm được
                 if (mysqli_num_rows($searchResult) > 0) {
-                    // Fetch the result
+                    // Lấy kết quả tìm kiếm dưới dạng mảng
                     $searchData = mysqli_fetch_assoc($searchResult);
-                    // Redirect to the category page with the dynamic ID
+                    // Đưa đến trang category tại loại sản phẩm đó
                     header('Location: category.php#' . $searchData['MaLoai']);
                     exit();
                 } else {
-                    // Redirect back to the search page with a failure indicator
+                    // Đưa đến trang không tìm thấy loại sản phẩm
                     header('Location: category.php?error=notfound');
                     exit();
                 }
             }
             ?>
+            <!-- form get  -->
             <form action="category.php" method="get">
                 <div class="d-flex align-items-center justify-content-center position-relative search-container py-3">
                     <span><i class="fas fa-chevron-left search-icon"></i></span>
                     <input type="text" class="form-control search-input" name="search-category" id="search-input" placeholder="Tìm kiếm">
+                    <!-- dropdown trong thanh tìm kiếm -->
                     <div class="searchbar-dropdown">
                         <ul class="searchbar-dropdown-menu" id="searchbar-dropdown-menu">
                             <?php foreach ($categoryData as $data): ?>
@@ -62,17 +65,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                 </div>
             </form>
 
-            <!-- JavaScript to handle error alert -->
-            <script>
-                // Check if there's an error parameter in the URL (indicating no match found)
-                const urlParams = new URLSearchParams(window.location.search);
-                if (urlParams.has('error') && urlParams.get('error') === 'notfound') {
-                    alert('Cannot find the data');
-                }
-            </script>
-
-
-            <!-- Right Section: Icon Buttons -->
+            <!-- Các icon -->
             <div class="d-flex align-items-center justify-content-between">
                 <div class="navbar-toolbar py-1">
                     <div class="icon-container">
@@ -96,18 +89,20 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
         </div>
     </nav>
 
+    <!-- Các button chuyển trang -->
     <nav class="navbar navbar-expand-lg bg-header-bottom">
         <div class="container-fluid d-flex justify-content-end align-items-center">
-            <!-- Collapse Button -->
+            <!-- button khi ở màn hình điện thoại -->
             <button class="navbar-toggler bg-light my-2" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- Navbar Links -->
+            <!-- Các link của các trang -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
+                    <!-- trang giới thiệu -->
                     <li class="nav-item">
                         <a class="nav-link" href="#">
                             <i class="bi bi-people-fill navbar-header-logo"></i>
@@ -118,7 +113,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                     <li>
                         <div class="vertical-divider"></div>
                     </li>
-
+                    <!-- Danh mục sản phẩm -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
@@ -139,7 +134,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                     <li>
                         <div class="vertical-divider"></div>
                     </li>
-
+                    <!-- Khuyến mãi -->
                     <li class="nav-item">
                         <a class="nav-link" href="discounts.php">
                             <i class="bi bi-fire navbar-header-logo"></i>
@@ -150,7 +145,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                     <li>
                         <div class="vertical-divider"></div>
                     </li>
-
+                    <!-- Hỏi đáp -->
                     <li class="nav-item">
                         <a class="nav-link" href="questions.php">
                             <i class="bi bi-question-circle-fill navbar-header-logo"></i>
@@ -161,17 +156,19 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                     <li>
                         <div class="vertical-divider"></div>
                     </li>
-
+                    <!-- Đăng nhập, đăng ký và đăng xuất -->
                     <?php
+                    // Kiểm tra mySession có đăng nhập chưa
                     if (isset($_SESSION['mySession'])) {
 
-                        // Get user info
+                        // Lấy thông tin của user
                         $user = $_SESSION['user'];
 
-                        // Show user's name     
+                        // Lấy tên của user     
                         $name = $user['TenTV'];
                     ?>
                         <li class="nav-item dropdown">
+                            <!-- In ra tên của user -->
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 <i class="bi bi-person-circle navbar-header-logo"></i>
@@ -182,6 +179,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                                 // Hàm để đăng xuất
                                 function logout()
                                 {
+                                    // Xóa dữ liệu mySesion và user
                                     unset($_SESSION['mySession']);
                                     unset($_SESSION['user']);
                                 }
@@ -191,7 +189,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                         </li>
                     <?php
                     } else {
-                        // User is not logged in, show login and signup options
+                        // Khi user chưa đăng nhập thì hiển thị button đăng nhập và đăng ký
                     ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"

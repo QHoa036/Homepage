@@ -1,21 +1,7 @@
 <?php
 session_start();
-ob_start();
-
+// kết nối database
 include 'database/conn.php';
-
-// Hàm để tạo URL từ route
-function url($path)
-{
-    // Lấy URL cơ sở từ server
-    $baseUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . "://$_SERVER[HTTP_HOST]";
-
-    // Lấy đường dẫn thư mục hiện tại
-    $currentDir = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
-
-    // Tạo URL đầy đủ
-    return $baseUrl . $currentDir . '/' . trim($path, '/');
-}
 ?>
 
 <!DOCTYPE html>
@@ -63,6 +49,7 @@ function url($path)
         <div class="container-fluid bg-banner">
             <div class="row">
                 <div class="col-md-7 col-sm-12">
+                    <!-- Dùng carousel cho big banner -->
                     <div id="carouselHotControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
@@ -104,40 +91,45 @@ function url($path)
         </div>
     </section>
 
-    <!-- Hot Products Section -->
+    <!-- Section sản phẩm hot-->
     <section>
         <?php
-        // Fetch all best-seller products
+        // Lấy các sản phẩm bán chạy 
         $hotTrendResult = mysqli_query($conn, 'SELECT * FROM sanpham WHERE HotTrend = 1 ORDER BY HotTrend ASC');
 
-        // Fetch rows as an associative array
+        // lấy tất cả các hàng của sản phẩm bán chạy trả về một mảng
         $hotTrendLst = mysqli_fetch_all($hotTrendResult, MYSQLI_ASSOC);
 
-        // Count the number of best-seller products
+        // Đếm số sản phẩm bán chạy
         $hotTrendCount = count($hotTrendLst);
         ?>
-
+        <!-- tiêu đề -->
         <div class="bg-title-category">
             <p class="title-category">SẢN PHẨM HOT</p>
         </div>
-
+        <!-- Các sản phẩm bán chạy được đặt trong carousel -->
         <div class="carousel-wrapper" id="wrapper-hot">
             <div class="carousel" id="carousel-hot">
                 <div class="carousel-content" id="content-hot">
+                    <!-- Mỗi một thẻ div trong foreach là 1 card dản phẩm -->
                     <?php foreach ($hotTrendLst as $data): ?>
                         <div class="card" id="<?= $data['MaSP'] ?>">
                             <div class="card-body">
+                                <!--Hình ảnh -->
                                 <img src="<?php echo "assets/imgs/products/" . $data['Hinhanh'] ?>" class="card-img-top" alt="...">
+                                <!--Tên sản phẩm   -->
                                 <h5 class="card-title"><?php echo $data['TenSP']; ?></h5>
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <p class="card-old-price"> Đã bán: <?php echo $data['Giagoc']; ?></p>
-                                    <p class="card-price"><?php echo $data['Giaban']; ?></p>
+                                    <p class="card-old-price"> Đã bán: 300</p>
+                                    <!-- Giá bán -->
+                                    <p class="card-price"><?php echo number_format($data['Giaban'], 0, ",", "."); ?>đ</p>
                                 </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 </div>
             </div>
+            <!-- Nếu sản phẩm nhiều hơn 5 thì mới hiện button mũi tên -->
             <?php if ($hotTrendCount > 5): ?>
                 <button class="carousel-prev" id="prev-hot">
                     <i class="carousel-icon bi bi-chevron-left"></i>
@@ -149,40 +141,45 @@ function url($path)
         </div>
     </section>
 
-    <!-- Most Sale Sections -->
+    <!-- Sections sản phẩm bán chạy -->
     <section>
         <?php
-        // Fetch all best-seller products
+        // Lấy tất cả sản phẩm bán chạy
         $bestSellerResult = mysqli_query($conn, 'SELECT * FROM sanpham WHERE BestSeller = 1 ORDER BY BestSeller ASC');
 
-        // Fetch rows as an associative array
+        // Lấy các hàng cảu sản phẩm bán chạy và trả về một mảng
         $bestSellerLst = mysqli_fetch_all($bestSellerResult, MYSQLI_ASSOC);
 
-        // COunt
+        // Đếm có bao nhiêu sản phẩm bán chạy
         $bestSellerCount = count($bestSellerLst)
         ?>
-
+        <!-- tiêu đề  -->
         <div class="bg-title-category">
             <p class="title-category">SẢN PHẨM BÁN CHẠY</p>
         </div>
-
+        <!-- Các sản phẩm bán chạy được đặt trong carousel -->
         <div class="carousel-wrapper" id="wrapper-bestseller">
             <div class="carousel" id="carousel-bestseller">
                 <div class="carousel-content" id="content-bestseller">
+                    <!-- Mỗi thẻ div trong foreach là một card của sản phẩm -->
                     <?php foreach ($bestSellerResult as $data): ?>
                         <div class="card" id="<?= $data['MaSP'] ?>">
                             <div class="card-body">
+                                <!-- hình ảnh -->
                                 <img src="<?php echo "assets/imgs/products/" . $data['Hinhanh'] ?>" class="card-img-top" alt="...">
+                                <!-- Tên sản phẩm -->
                                 <h5 class="card-title"><?php echo $data['TenSP']; ?></h5>
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <p class="card-old-price"> Đã bán: <?php echo $data['Giagoc']; ?></p>
-                                    <p class="card-price"><?php echo $data['Giaban']; ?></p>
+                                    <p class="card-old-price"> Đã bán: 500</p>
+                                    <!-- Giá bán -->
+                                    <p class="card-price"><?php echo number_format($data['Giaban'], 0, ",", "."); ?>đ</p>
                                 </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
                 </div>
             </div>
+            <!-- Nếu có 5 card sản phẩm trở lên thì mới hiện button mũi tên -->
             <?php if ($bestSellerCount > 5): ?>
                 <button class="carousel-prev" id="prev-hot">
                     <i class="carousel-icon bi bi-chevron-left"></i>
@@ -198,10 +195,12 @@ function url($path)
     <section class="category-section">
         <div class="container-fluid text-center">
             <div class="row d-flex justify-content-center align-items-center">
+                <!-- thumbnail lớn -->
                 <div class="col-12 col-md-6" id="sach-col">
                     <div class="thumbnail big-thumbnail p-0">
-                        <a href="#L1">
-                            <!-- Mã loại-->
+                        <!-- Link đến trang category của sách -->
+                        <a href="category.php#L1">
+                            
                             <img src="https://tiki.vn/blog/wp-content/uploads/2023/08/thumb-12.jpg" class="img-fluid"
                                 alt="Sách" />
                             <div class="caption">
@@ -214,7 +213,8 @@ function url($path)
                 <div class="col-6 col-md-3" id="phukien-but-col">
                     <div class="row">
                         <div class="thumbnail small-thumbnail small-thumbnail-first">
-                            <a href="#L5">
+                            <!-- Link đến trang category của phụ kiện -->
+                            <a href="category.php#L5">
                                 <img src="https://shop.ueh.edu.vn/ueh-souvenir/wp-content/uploads/2022/05/sp-04-1.png"
                                     class="img-fluid" alt="Phụ kiện" />
                                 <div class="caption">
@@ -226,7 +226,8 @@ function url($path)
 
                     <div class="row">
                         <div class="thumbnail small-thumbnail small-thumbnail-second">
-                            <a href="#L3">
+                            <!-- Link đến trang category của bút -->
+                            <a href="category.php#L3">
                                 <img src="https://soklong.com/wp-content/uploads/2021/12/ce77ccea0aa6bdfecd4c355c3af3b9f5.jpg"
                                     class="img-fluid" alt="Bút" />
                                 <div class="caption">
@@ -240,7 +241,8 @@ function url($path)
                 <div class="col-6 col-md-3" id="sotay-maytinh-col">
                     <div class="row">
                         <div class="thumbnail small-thumbnail small-thumbnail-third">
-                            <a href="#L4">
+                            <!-- Link đến trang category của sổ tay -->
+                            <a href="category.php#L4">
                                 <img src="https://inbaobigiay.vn/wp-content/uploads/2023/12/in-so-tay-6.jpg"
                                     class="img-fluid" alt="Sổ tay" />
                                 <div class="caption">
@@ -252,7 +254,8 @@ function url($path)
 
                     <div class="row">
                         <div class="thumbnail small-thumbnail small-thumbnail-fourth">
-                            <a href="#L2">
+                            <!-- Link đến trang category của máy tính -->
+                            <a href="category.php#L2">
                                 <img src="https://vanphongphamhl.vn/upload_images/images/2024/01/29/may-tinh-casio-cho-hoc-sinh-cap-3-06.jpg"
                                     class="img-fluid" alt="Máy tính" />
                                 <div class="caption">

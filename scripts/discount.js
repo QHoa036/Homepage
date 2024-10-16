@@ -24,7 +24,7 @@ $(document).ready(function() {
 document.addEventListener('DOMContentLoaded', function() {
     //* Khởi tạo biến và hàm
     var owl = $('.flashsale-carousel'); // Biến chứa carousel
-    var countdownInterval; // Biến chứa interval của đồng hồ đếm ngược
+    var countdownInterval; // Biến chứa khoảng tg của đồng hồ đếm ngược
 
     //* Hàm khởi tạo đồng hồ đếm ngược
     function initializeCountdown(endTime, countdownElement) {

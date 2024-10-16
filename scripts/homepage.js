@@ -1,3 +1,4 @@
+// Carousel
 const gap = 16;
 
 function setupCarousel(carouselId, contentId, nextId, prevId) {
@@ -31,6 +32,6 @@ function setupCarousel(carouselId, contentId, nextId, prevId) {
   window.addEventListener("resize", (e) => (width = carousel.offsetWidth));
 }
 
-// Setup carousels
+// Cài đặt carousel
 setupCarousel("carousel-hot", "content-hot", "next-hot", "prev-hot");
 setupCarousel("carousel-bestseller", "content-bestseller", "next-bestseller", "prev-bestseller");
