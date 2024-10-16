@@ -37,17 +37,17 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                     // Lấy kết quả tìm kiếm dưới dạng mảng
                     $searchData = mysqli_fetch_assoc($searchResult);
                     // Đưa đến trang category tại loại sản phẩm đó
-                    header('Location: category.php#' . $searchData['MaLoai']);
+                    header('Location: danhmucsp.php#' . $searchData['MaLoai']);
                     exit();
                 } else {
                     // Đưa đến trang không tìm thấy loại sản phẩm
-                    header('Location: category.php?error=notfound');
+                    header('Location: danhmucsp.php?error=notfound');
                     exit();
                 }
             }
             ?>
             <!-- form get  -->
-            <form action="category.php" method="get">
+            <form action="danhmucsp.php" method="get">
                 <div class="d-flex align-items-center justify-content-center position-relative search-container py-3">
                     <span><i class="fas fa-chevron-left search-icon"></i></span>
                     <input type="text" class="form-control search-input" name="search-category" id="search-input" placeholder="Tìm kiếm">
@@ -55,7 +55,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                     <div class="searchbar-dropdown">
                         <ul class="searchbar-dropdown-menu" id="searchbar-dropdown-menu">
                             <?php foreach ($categoryData as $data): ?>
-                                <a href="<?php echo 'category.php#' . $data['MaLoai']; ?>" style="color: black">
+                                <a href="<?php echo 'danhmucsp.php#' . $data['MaLoai']; ?>" style="color: black">
                                     <li class="searchbar-dropdown-item"><?php echo $data['TenLoai'] ?></li>
                                 </a>
                             <?php endforeach; ?>
@@ -104,7 +104,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
                     <!-- trang giới thiệu -->
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="gioithieu.php">
                             <i class="bi bi-people-fill navbar-header-logo"></i>
                             Giới thiệu
                         </a>
@@ -124,7 +124,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                             <?php foreach ($categoryData as $data): ?>
                                 <li>
                                     <a class="dropdown-item"
-                                        href="<?php echo 'category.php#' . $data['MaLoai']; ?>"><?php echo $data['TenLoai'] ?>
+                                        href="<?php echo 'danhmucsp.php#' . $data['MaLoai']; ?>"><?php echo $data['TenLoai'] ?>
                                     </a>
                                 </li>
                             <?php endforeach; ?>
@@ -198,7 +198,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                                 Đăng nhập
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="signin.php">Đăng nhập</a></li>
+                                <li><a class="dropdown-item" href="login.php">Đăng nhập</a></li>
                                 <li><a class="dropdown-item" href="signup.php">Đăng ký</a></li>
                             </ul>
                         </li>

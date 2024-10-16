@@ -118,7 +118,12 @@ include 'database/conn.php';
                                 <!--Hình ảnh -->
                                 <img src="<?php echo "assets/imgs/products/" . $data['Hinhanh'] ?>" class="card-img-top" alt="...">
                                 <!--Tên sản phẩm   -->
-                                <h5 class="card-title"><?php echo $data['TenSP']; ?></h5>
+                                <h5 class="card-title" data-bs-toggle="tooltip"
+                                    data-bs-title="Đến trang Chi tiết sản phẩm <?= $data['TenSP'] ?>">
+                                    <a href="./chitietsp.php?MaSP=<?= $data['MaSP'] ?>" class="text-decoration-none" style="color: #005f69;">
+                                        <?= $data['TenSP'] ?>
+                                    </a>
+                                </h5>
                                 <div class="d-flex align-items-center justify-content-between">
                                     <p class="card-old-price"> Đã bán: 300</p>
                                     <!-- Giá bán -->
@@ -168,7 +173,12 @@ include 'database/conn.php';
                                 <!-- hình ảnh -->
                                 <img src="<?php echo "assets/imgs/products/" . $data['Hinhanh'] ?>" class="card-img-top" alt="...">
                                 <!-- Tên sản phẩm -->
-                                <h5 class="card-title"><?php echo $data['TenSP']; ?></h5>
+                                <h5 class="card-title" data-bs-toggle="tooltip"
+                                    data-bs-title="Đến trang Chi tiết sản phẩm <?= $data['TenSP'] ?>">
+                                    <a href="./chitietsp.php?MaSP=<?= $data['MaSP'] ?>" class="text-decoration-none" style="color: #005f69;">
+                                        <?= $data['TenSP'] ?>
+                                    </a>
+                                </h5>
                                 <div class="d-flex align-items-center justify-content-between">
                                     <p class="card-old-price"> Đã bán: 500</p>
                                     <!-- Giá bán -->
@@ -199,8 +209,8 @@ include 'database/conn.php';
                 <div class="col-12 col-md-6" id="sach-col">
                     <div class="thumbnail big-thumbnail p-0">
                         <!-- Link đến trang category của sách -->
-                        <a href="category.php#L1">
-                            
+                        <a href="danhmucsp.php#L1">
+
                             <img src="https://tiki.vn/blog/wp-content/uploads/2023/08/thumb-12.jpg" class="img-fluid"
                                 alt="Sách" />
                             <div class="caption">
@@ -214,7 +224,7 @@ include 'database/conn.php';
                     <div class="row">
                         <div class="thumbnail small-thumbnail small-thumbnail-first">
                             <!-- Link đến trang category của phụ kiện -->
-                            <a href="category.php#L5">
+                            <a href="danhmucsp.php#L5">
                                 <img src="https://shop.ueh.edu.vn/ueh-souvenir/wp-content/uploads/2022/05/sp-04-1.png"
                                     class="img-fluid" alt="Phụ kiện" />
                                 <div class="caption">
@@ -227,7 +237,7 @@ include 'database/conn.php';
                     <div class="row">
                         <div class="thumbnail small-thumbnail small-thumbnail-second">
                             <!-- Link đến trang category của bút -->
-                            <a href="category.php#L3">
+                            <a href="danhmucsp.php#L3">
                                 <img src="https://soklong.com/wp-content/uploads/2021/12/ce77ccea0aa6bdfecd4c355c3af3b9f5.jpg"
                                     class="img-fluid" alt="Bút" />
                                 <div class="caption">
@@ -242,7 +252,7 @@ include 'database/conn.php';
                     <div class="row">
                         <div class="thumbnail small-thumbnail small-thumbnail-third">
                             <!-- Link đến trang category của sổ tay -->
-                            <a href="category.php#L4">
+                            <a href="danhmucsp.php#L4">
                                 <img src="https://inbaobigiay.vn/wp-content/uploads/2023/12/in-so-tay-6.jpg"
                                     class="img-fluid" alt="Sổ tay" />
                                 <div class="caption">
@@ -255,7 +265,7 @@ include 'database/conn.php';
                     <div class="row">
                         <div class="thumbnail small-thumbnail small-thumbnail-fourth">
                             <!-- Link đến trang category của máy tính -->
-                            <a href="category.php#L2">
+                            <a href="danhmucsp.php#L2">
                                 <img src="https://vanphongphamhl.vn/upload_images/images/2024/01/29/may-tinh-casio-cho-hoc-sinh-cap-3-06.jpg"
                                     class="img-fluid" alt="Máy tính" />
                                 <div class="caption">
@@ -281,6 +291,10 @@ include 'database/conn.php';
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 
+    <script>
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    </script>
 </body>
 
 </html>

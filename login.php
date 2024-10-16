@@ -14,7 +14,7 @@ if (isset($_POST['login'])) {
 
     // Fetch user from the taikhoan and thanhvien tables using a join
     $sql = "
-            SELECT taikhoan.MaTK, taikhoan.TenDangNhap, taikhoan.MatKhau, thanhvien.TenTV, thanhvien.Email, thanhvien.Gioitinh, thanhvien.DiaChi, thanhvien.SDT, thanhvien.Hang
+            SELECT taikhoan.MaTK, taikhoan.TenDangNhap, taikhoan.MatKhau, thanhvien.MaTV, thanhvien.TenTV, thanhvien.Email, thanhvien.Gioitinh, thanhvien.DiaChi, thanhvien.SDT, thanhvien.Hang
             FROM taikhoan
             JOIN thanhvien ON taikhoan.MaTK = thanhvien.MaTK
             WHERE taikhoan.TenDangNhap = '$username'
@@ -38,10 +38,11 @@ if (isset($_POST['login'])) {
                 'Diachi' => $row['DiaChi'],
                 'SDT' => $row['SDT'],
                 'MaTK' => $row['MaTK'],
+                'MaTV' => $row['MaTV'],
                 'TenDangNhap' => $row['TenDangNhap'],
-                'Hang' => $row['Hang']
+                'Hang' => $row['Hang'],
             ];
-            header('location: homepage.php');
+            header('location: giohang.php');
             exit();
         } else {
             $error_message = 'Tài khoản hoặc mật khẩu sai';
@@ -85,7 +86,7 @@ if (isset($_POST['login'])) {
     <script src="carousel/vendors/jquery.min.js"></script>
     <script src="carousel/owlcarousel/owl.carousel.js"></script>
 
-    <link rel="stylesheet" href="css/signin.css">
+    <link rel="stylesheet" href="css/login.css">
 </head>
 
 <body>
@@ -98,17 +99,24 @@ if (isset($_POST['login'])) {
                 <h1>ĐĂNG NHẬP TÀI KHOẢN</h1>
             </div>
 
-            <form action="signin.php" method="post">
-                <label for="username">Tên đăng nhập *</label>
+            <!-- Form đăng nhập -->
+            <form action="login.php" method="post">
+                <!--Tên tài khoản -->
+                <label for="username">Tên tài khoản *</label>
                 <input type="username" name="username" id="username" placeholder="Username">
 
+
+                <!-- Mật khẩu -->
                 <label for="password">Mật khẩu *</label>
                 <input type="password" name="password" id="password" placeholder="Password">
 
+
+                <!-- Quên mật khẩu -->
                 <div class="extra-options">
-                    <a href="forgot-password.php">Quên mật khẩu?</a>
+                    <a href="quenMK.php">Quên mật khẩu?</a>
                 </div>
 
+                <!-- Hiển thị thông báo lỗi (nếu thông tin đăng nhập sai) -->
                 <?php if (!empty($error_message)): ?>
                     <div class="error-message" style="color: red; margin-top: 10px; font-weight: bold;">
                         <?php echo $error_message; ?>
@@ -116,7 +124,9 @@ if (isset($_POST['login'])) {
                 <?php endif; ?>
 
                 <div class="buttons">
+                    <!-- Nút để đăng nhập và chuyển sang trang đăng ký -->
                     <button type="submit" name="login" class="login-btn">ĐĂNG NHẬP</button>
+                    <!-- Nút để chuyển đến trang đăng ký -->
                     <button type="button" onclick="window.location.href='signup.php'" class="signup-btn">ĐĂNG KÝ</button>
                 </div>
             </form>
