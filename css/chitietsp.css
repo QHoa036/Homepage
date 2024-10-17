@@ -1,4 +1,4 @@
-/* CSS cho chi tiết sp */
+/* css cho chi tiết sp */
 .img-thumbnail img {
     width: 100%;
     object-fit: fill;
@@ -34,7 +34,14 @@ img.xzoom-gallery {
     background-color: orangered;
 }
 
-/* CSS cho các sp liên quan */
+
+
+
+/* css cho các sp liên quan */
+
+
+
+
 .card-title {
     font-family: "Asul", serif;
     font-weight: 400;

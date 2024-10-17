@@ -2,17 +2,30 @@
 .bg-header-top {
   background-color: #f15a29;
 }
+
+.header-top-container {
+  display: flex;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 /* Logo ueh */
 .navbar-brand-logo {
   width: 220px;
   height: auto;
 }
+
 /* icon địa chỉ, sđt, facebook */
 .navbar-header-logo {
   width: 24px;
   height: auto;
   margin-right: 0.6rem;
 }
+
 /* tên STATIONERY */
 .navbar-brand-text {
   font-family: "Baloo";
@@ -30,15 +43,20 @@
   max-width: 400px;
   width: 100%;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-items: center;
 }
+
 /* data user nhập */
 .search-input {
-  width: 100%; 
+  width: 100%;
   border: 1px solid #ccc;
   border-radius: 28px;
   padding: 12px 40px;
   font-size: 1rem;
 }
+
 /* icon của thanh search */
 .search-icon {
   position: absolute;
@@ -64,7 +82,7 @@
 /** Dropdown cho search bar */
 .searchbar-dropdown {
   position: absolute;
-  top: 80%; 
+  top: 80%;
   left: 0;
   width: 100%;
   z-index: 1000;
@@ -73,11 +91,11 @@
 .searchbar-dropdown-menu {
   display: none;
   position: absolute;
-  top: 100%; 
+  top: 100%;
   left: 0;
   width: 100%;
   background-color: white;
-  border-radius: 0 0 20px 20px; 
+  border-radius: 0 0 20px 20px;
   border: 2px solid #ccc;
   border-top: none;
   padding: 0;
@@ -92,7 +110,7 @@
   cursor: pointer;
 }
 
-.searchbar-dropdown-item a{
+.searchbar-dropdown-item a {
   text-decoration: none;
   color: black;
 }
@@ -106,6 +124,12 @@
 }
 
 /* vị trí CÁc icon địa chỉ, sđt, fb */
+.toolbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .navbar-toolbar {
   display: flex;
   align-items: center;
@@ -120,6 +144,7 @@
   align-items: center;
   justify-content: center;
 }
+
 /* các icon địa chỉ, sđt,fb */
 .icon-container i {
   background-color: transparent;
@@ -141,7 +166,13 @@
 }
 
 /* Ngôn ngữ */
-.language-switch {
+.language-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.locale-switcher {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -154,21 +185,33 @@
   height: 50px;
 }
 
-.language-switch:hover {
+.locale-switcher:hover {
   background-color: white;
   color: #005f69;
   transition: all 0.3s ease;
 }
+
 .active-language {
   font-weight: bold;
 }
+
+
 /* respnsive cho cỡ chữ title của web*/
 @media (max-width: 768px) {
   .navbar-brand-text {
     font-size: 26px;
   }
-}
 
+  .search-container {
+    flex-grow: 1;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-items: center;
+  }
+}
 
 /* Header Bottom */
 .bg-header-bottom {
@@ -242,4 +285,8 @@
 
 .nav-item.dropdown {
   position: relative;
+}
+
+.header-bottom-container {
+  display: flex;
 }

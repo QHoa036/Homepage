@@ -1,4 +1,11 @@
 <?php
+
+// // Kiểm tra xem user đăng nhập chưa
+// if (isset($_SESSION['mySession'])) {
+//     header('location: homepage.php');
+//     exit();
+// }
+
 // Lấy loại sản phẩm
 $categoryResult = mysqli_query($conn, 'SELECT MaLoai, TenLoai FROM loaisanpham');
 // Lấy các hàng dưới dạng mảng kết hợp
@@ -7,10 +14,10 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
 
 <body>
     <nav class="navbar navbar-expand-lg bg-header-top">
-        <div class="container-fluid d-flex align-items-center">
+        <div class="container-fluid align-items-center">
 
             <!-- Logo và title của web-->
-            <div class="d-flex align-items-center">
+            <div class="logo-container">
                 <div class="text-center text-lg-left py-2">
                     <img src="assets/svgs/logo.svg" alt="UEH Logo" class="navbar-brand-logo">
                 </div>
@@ -47,26 +54,24 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
             }
             ?>
             <!-- form get  -->
-            <form action="danhmucsp.php" method="get">
-                <div class="d-flex align-items-center justify-content-center position-relative search-container py-3">
-                    <span><i class="fas fa-chevron-left search-icon"></i></span>
-                    <input type="text" class="form-control search-input" name="search-category" id="search-input" placeholder="Tìm kiếm">
-                    <!-- dropdown trong thanh tìm kiếm -->
-                    <div class="searchbar-dropdown">
-                        <ul class="searchbar-dropdown-menu" id="searchbar-dropdown-menu">
-                            <?php foreach ($categoryData as $data): ?>
-                                <a href="<?php echo 'danhmucsp.php#' . $data['MaLoai']; ?>" style="color: black">
-                                    <li class="searchbar-dropdown-item"><?php echo $data['TenLoai'] ?></li>
-                                </a>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
-                    <span><button type="submit" class="search-btn"><i class="fas fa-search"></i></button></span>
+            <form action="danhmucsp.php" method="get" class="search-container py-3">
+                <span><i class="fas fa-chevron-left search-icon"></i></span>
+                <input type="text" class="form-control search-input" name="search-category" id="search-input" placeholder="Tìm kiếm">
+                <!-- dropdown trong thanh tìm kiếm -->
+                <div class="searchbar-dropdown">
+                    <ul class="searchbar-dropdown-menu" id="searchbar-dropdown-menu">
+                        <?php foreach ($categoryData as $data): ?>
+                            <a href="<?php echo 'danhmucsp.php#' . $data['MaLoai']; ?>" style="color: black">
+                                <li class="searchbar-dropdown-item"><?php echo $data['TenLoai'] ?></li>
+                            </a>
+                        <?php endforeach; ?>
+                    </ul>
                 </div>
+                <span><button type="submit" class="search-btn"><i class="fas fa-search"></i></button></span>
             </form>
 
             <!-- Các icon -->
-            <div class="d-flex align-items-center justify-content-between">
+            <div class="toolbar-container">
                 <div class="navbar-toolbar py-1">
                     <div class="icon-container">
                         <i class="fas fa-phone-alt"></i>
@@ -76,13 +81,11 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                 </div>
             </div>
 
-            <div class="d-flex align-items-center justify-content-between">
+            <div class="language-container">
                 <div class="navbar-toolbar py-1">
-                    <div class="language-switch" id="languageSwitch" onclick="toggleLanguage()">
-                        <span id="languageText" class="active-language">VN</span>
-                        <div class="language-switch-container">
-                            <i class="fas fa-globe"></i>
-                        </div>
+                    <div class="locale-switcher" id="languageSwitch" onclick="toggleLanguage()">
+                        <span id="languageText" class="active-language me-2">VN</span>
+                        <i class="fas fa-globe"></i>
                     </div>
                 </div>
             </div>
@@ -91,9 +94,9 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
 
     <!-- Các button chuyển trang -->
     <nav class="navbar navbar-expand-lg bg-header-bottom">
-        <div class="container-fluid d-flex justify-content-end align-items-center">
+        <div class="container-fluid justify-content-end align-items-center">
             <!-- button khi ở màn hình điện thoại -->
-            <button class="navbar-toggler bg-light my-2" type="button" data-bs-toggle="collapse"
+            <button class="navbar-toggler bg-light my-1" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -157,40 +160,19 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                         <div class="vertical-divider"></div>
                     </li>
                     <!-- Đăng nhập, đăng ký và đăng xuất -->
-                    <?php
-                    // Kiểm tra mySession có đăng nhập chưa
-                    if (isset($_SESSION['mySession'])) {
-
-                        // Lấy thông tin của user
-                        $user = $_SESSION['user'];
-
-                        // Lấy tên của user     
-                        $name = $user['TenTV'];
-                    ?>
+                    <?php if (isset($_SESSION['user']) && (isset($_SESSION['mySession']))): ?>
                         <li class="nav-item dropdown">
                             <!-- In ra tên của user -->
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 <i class="bi bi-person-circle navbar-header-logo"></i>
-                                <?php echo $name; ?>
+                                <?= $_SESSION['user']['TenTV'] ?? 'Không có dữ liệu' ?>
                             </a>
                             <ul class="dropdown-menu">
-                                <?php
-                                // Hàm để đăng xuất
-                                function logout()
-                                {
-                                    // Xóa dữ liệu mySesion và user
-                                    unset($_SESSION['mySession']);
-                                    unset($_SESSION['user']);
-                                }
-                                ?>
-                                <li><a class="dropdown-item" href="<?php echo logout() ?>">Đăng xuất</a></li>
+                                <li><a class="dropdown-item" href='logout.php' name="logout" class="logout-btn">Đăng xuất</a></li>
                             </ul>
                         </li>
-                    <?php
-                    } else {
-                        // Khi user chưa đăng nhập thì hiển thị button đăng nhập và đăng ký
-                    ?>
+                    <?php else: ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
@@ -202,9 +184,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                                 <li><a class="dropdown-item" href="signup.php">Đăng ký</a></li>
                             </ul>
                         </li>
-                    <?php
-                    }
-                    ?>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>

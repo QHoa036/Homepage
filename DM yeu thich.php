@@ -52,55 +52,77 @@ $userID = $_SESSION['user']['MaTV']; // Lấy mã thành viên của người d�
     <!-- Header -->
     <?php include 'layouts/header.php'; ?>
 
-    <div class="outlet">
-        <!-- Phần yêu thích -->
-        <div class="cart-section">
-            <div class="row">
-                <div class="title-inner-container">
-                    <i class="fa-solid fa-cart-shopping"></i> <!-- Icon giỏ hàng -->
-                    <h2>DANH SÁCH YÊU THÍCH</h2>
+    <div class="container">
+        <!-- Phần thông tin người dùng -->
+        <div class="profile-section">
+            <h2>THÔNG TIN CÁ NHÂN</h2>
+            <div class="profile-info">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/002/387/693/small_2x/user-profile-icon-free-vector.jpg" alt="Profile Picture"> <!-- Hình đại diện người dùng -->
+                <div>
+                    <!-- Hiển thị thông tin người dùng -->
+                    <?php if (isset($_SESSION['user'])): ?>
+                        <p><strong>Họ và tên:</strong> <?= $_SESSION['user']['TenTV'] ?? 'Không có dữ liệu' ?></p> <!-- Tên người dùng -->
+                        <p><strong>Email:</strong> <?= $_SESSION['user']['Email'] ?? 'Không có dữ liệu' ?></p> <!-- Địa chỉ email -->
+                        <p><strong>Username:</strong> <?= $_SESSION['user']['TenDangNhap'] ?? 'Không có dữ liệu' ?></p> <!-- Tên đăng nhập -->
+                        <p><strong>Địa chỉ:</strong> <?= $_SESSION['user']['Diachi'] ?? 'Không có dữ liệu' ?></p> <!-- Địa chỉ người dùng -->
+                        <p><strong>Số điện thoại:</strong> <?= $_SESSION['user']['SDT'] ?? 'Không có dữ liệu' ?></p> <!-- Số điện thoại -->
+                        <p><strong>Hạng TV:</strong> <?= $_SESSION['user']['Hang'] ?? 'Không có dữ liệu' ?></p> <!-- Hạng thành viên -->
+                    <?php else: ?>
+                        <p>Bạn chưa đăng nhập.</p> <!-- Thông báo nếu người dùng chưa đăng nhập -->
+                    <?php endif; ?>
                 </div>
             </div>
+        </div>
+    </div>
+    <hr>
 
-            <br>
 
-            <div class="cart-item">
-                <img src="./assets/imgs/products/SP1.jpg" alt="SP1"> <!-- Hình ảnh sản phẩm -->
+    <!-- Phần yêu thích -->
+    <div class="cart-section">
+        <div class="d-flex align-items-center">
+            <i class="fa-solid fa-cart-shopping"></i> <!-- Icon giỏ hàng -->
+            <h2>DANH SÁCH YÊU THÍCH</h2>
+        </div>
+        <br>
+        <div class="cart-item">
+            <img src="./assets/imgs/products/SP1.jpg" alt="SP1"> <!-- Hình ảnh sản phẩm -->
+            <div class="cart-item-details">
+                <p><strong>Sách Kinh tế vi mô</strong></p> <!-- Tên sản phẩm -->
+                <p>Mã SP: SP1</p> <!-- Mã sản phẩm -->
+                <p>Chương trình khuyến mãi:
+                    <span style="color:  #ff4b4b; font-weight: bold">Flash Sale - Giảm giá</span>
+                </p>
 
-                <div class="cart-item-details">
-                    <p><strong>Sách Kinh tế vi mô</strong></p> <!-- Tên sản phẩm -->
-                    <p>Mã SP: SP1</p> <!-- Mã sản phẩm -->
-                    <p>Chương trình khuyến mãi:
-                        <span style="color:  #ff4b4b; font-weight: bold">Flash Sale - Giảm giá</span>
-                    </p>
-                </div>
 
-                <div class="cart-item-price">
-                    <h5 class="text-secondary text-decoration-line-through">60000<sup>đ</sup></h5> <!-- Giá gốc -->
-                    <h4 class="text-danger">
-                        50000<sup>đ</sup> <!-- Giá hiện tại (có thể là giá khuyến mãi hoặc giá gốc) -->
-                    </h4>
-                </div>
+            </div>
+            <div class="cart-item-price">
+                <h5 class="text-secondary text-decoration-line-through">60000<sup>đ</sup></h5> <!-- Giá gốc -->
+                <h4 class="text-danger">
+                    50000<sup>đ</sup> <!-- Giá hiện tại (có thể là giá khuyến mãi hoặc giá gốc) -->
+                </h4>
             </div>
 
-            <div class="cart-item">
-                <img src="./assets/imgs/products/SP2.jpg" alt="SP2"> <!-- Hình ảnh sản phẩm -->
 
-                <div class="cart-item-details">
-                    <p><strong>Sách Kinh tế vĩ mô</strong></p> <!-- Tên sản phẩm -->
-                    <p>Mã SP: SP2</p> <!-- Mã sản phẩm -->
-                    <p>Chương trình khuyến mãi:
-                        <span style="color:  #ff4b4b; font-weight: bold">Flash Sale - Giảm giá</span>
-                    </p>
-                </div>
+        </div>
+        <div class="cart-item">
+            <img src="./assets/imgs/products/SP2.jpg" alt="SP2"> <!-- Hình ảnh sản phẩm -->
+            <div class="cart-item-details">
+                <p><strong>Sách Kinh tế vĩ mô</strong></p> <!-- Tên sản phẩm -->
+                <p>Mã SP: SP2</p> <!-- Mã sản phẩm -->
+                <p>Chương trình khuyến mãi:
+                    <span style="color:  #ff4b4b; font-weight: bold">Flash Sale - Giảm giá</span>
+                </p>
 
-                <div class="cart-item-price">
-                    <h5 class="text-secondary text-decoration-line-through">60000<sup>đ</sup></h5> <!-- Giá gốc -->
-                    <h4 class="text-danger">
-                        50000<sup>đ</sup> <!-- Giá hiện tại (có thể là giá khuyến mãi hoặc giá gốc) -->
-                    </h4>
-                </div>
+
             </div>
+            <div class="cart-item-price">
+                <h5 class="text-secondary text-decoration-line-through">60000<sup>đ</sup></h5> <!-- Giá gốc -->
+                <h4 class="text-danger">
+                    50000<sup>đ</sup> <!-- Giá hiện tại (có thể là giá khuyến mãi hoặc giá gốc) -->
+                </h4>
+            </div>
+
+
         </div>
     </div>
 
@@ -109,6 +131,11 @@ $userID = $_SESSION['user']['MaTV']; // Lấy mã thành viên của người d�
 
     <!-- Scripts -->
     <script src="scripts/header.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
 </body>
 
 </html>

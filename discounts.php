@@ -1,3 +1,12 @@
+<?php
+session_start();
+//Nếu chưa đăng nhập -> Chuyển tới trang Login
+// if (!isset($_SESSION['mySession'])) {
+//     header('location:login.php');
+//     exit();
+// }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -113,85 +122,92 @@
                 <!-- Mỗi sản phẩm  là một thẻ div trong foreach-->
                 <?php foreach ($flashsaleData as $data): ?>
                     <div class="container-fluid bg-flashsale" data-endtime="<?php echo $data['NgayKT']; ?>">
-                        <form action="giohang.php" method="post">
-                            <div class="row">
-                                <!-- Thông tin sản phẩm khuyến mãi -->
-                                <div class="col-md-6 p-0">
-                                    <div class="d-flex justify-content-center align-items-center mh-100 h-100 position-relative">
-                                        <!-- Countdown cảu tiên để flashsale -->
-                                        <div class="bg-flash-countdown position-absolute top-0 start-0 ">
-                                            <img src="assets/imgs/buttons/btn_flashsale.png" alt="" style="height: 70px; width: 50px"></img>
-                                            <p class="bg-flash-countdown-text">FLASH SALE: <span id="flashsale-countdown"></span></p>
-                                        </div>
-                                        <!-- card thông tin của sản phẩm -->
-                                        <div class="bg-flash-info  mb-3 shadow-sm border-4">
-
-                                            <div class="d-flex justify-content-between align-items-center px-3">
-                                                <!-- Tên sản phẩm -->
-                                                <h3 class="title" data-bs-toggle="tooltip"
-                                                    data-bs-title="Đến trang Chi tiết sản phẩm <?= $data['TenSP'] ?>">
-                                                    <a href="./chitietsp.php?MaSP=<?= $data['MaSP'] ?>" class="text-decoration-none" style="color: #005f69;">
-                                                        <?= $data['TenSP'] ?>
-                                                    </a>
-                                                </h3>
-                                                <!-- Phần trăm khuyến mãi -->
-                                                <div class="discount-badge">
-                                                    <?php echo $data['PhamtramKM']; ?><span>%</span>
-                                                </div>
-                                            </div>
-
-                                            <div class="bg-flash-info-body">
-                                                <!-- mã sản phẩm -->
-                                                <p class="content">Mã SP: <strong class="ms-3"><?php echo $data['MaSP']; ?></strong></p>
-                                                <p class="content">Đã bán: <strong class="ms-3">500 sp</strong></p>
-
-                                                <div class="w-100 d-flex justify-content-end align-items-center px-4">
-                                                    <!-- Giá gốc và giá khuyến mãi -->
-                                                    <div class="d-flex justify-content-center align-items-center">
-                                                        <del class="text-muted me-2 discount-price"><?php echo number_format($data['Giaban'], 0, ",", "."); ?><u>đ</u></del>
-                                                        <strong class="text-danger me-2 discount-price"><?php echo number_format($data['GiaKM'], 0, ",", "."); ?><u>đ</u></strong>
-                                                    </div>
-
-                                                    <button type="submit" class="btn btn-success btn-circle" name="addtocartbtn" value="1" data-bs-toggle="tooltip"
-                                                        data-bs-title="Thêm vào giỏ hàng">
-                                                        <i class="fas fa-plus"></i>
-                                                    </button>
-                                                </div>
-                                                <!-- Sao đánh giá -->
-                                                <div class="discount-ratings">
-                                                    <?php
-                                                    // Lấy mã sản phẩm
-                                                    $productID = $data['MaSP'];
-                                                    //Lấy số lượng đánh giá
-                                                    $countRatingResult = mysqli_query($conn, "SELECT COUNT(DiemDG) AS totalRatings FROM danhgia WHERE MaSP = '$productID'");
-                                                    $countRatingRow = mysqli_fetch_assoc($countRatingResult);
-                                                    $totalRatings = $countRatingRow['totalRatings'];
-                                                    //Lấy rating trung bình
-                                                    $avgRatingResult = mysqli_query($conn, "SELECT AVG(DiemDG) AS avgRating FROM danhgia WHERE MaSP = '$productID'");
-                                                    $avgRatingRow = mysqli_fetch_assoc($avgRatingResult);
-                                                    $averageRating = round($avgRatingRow['avgRating'], 0);
-                                                    ?>
-                                                    <!-- Đánh giá -->
-                                                    <p class="content">Đánh giá: <strong class="ms-3"><?= $totalRatings ?> lượt</strong></p>
-                                                    <div class="discount-stars me-4">
-                                                        <!-- Rating star -->
-                                                        <div class="ratings d-flex flex-column align-items-center">
-                                                            <input value="<?= $averageRating ?>" data-size="sm" class="rating" data-readonly="true" data-show-clear="false" data-show-caption="false">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                        <!-- Để thành form -->
+                        <div class="row">
+                            <!-- Thông tin sản phẩm khuyến mãi -->
+                            <div class="col-md-6 p-0">
+                                <div
+                                    class="d-flex justify-content-center align-items-center mh-100 h-100 position-relative">
+                                    <!-- Countdown cảu tiên để flashsale -->
+                                    <div class="bg-flash-countdown position-absolute top-0 start-0 ">
+                                        <img src="assets/imgs/buttons/btn_flashsale.png" alt=""
+                                            style="height: 70px; width: 50px"></img>
+                                        <p class="bg-flash-countdown-text">FLASH SALE: <span
+                                                id="flashsale-countdown"></span></p>
                                     </div>
-                                </div>
-                                <!-- Hình ảnh sản phẩm -->
-                                <div class="col-md-6">
-                                    <div class="item pb-3">
-                                        <img src="<?php echo "assets/imgs/products/" . $data['Hinhanh'] ?>" alt="">
+                                    <!-- card thông tin của sản phẩm -->
+                                    <div class="bg-flash-info  mb-3 shadow-sm border-4">
+
+                                        <div class="d-flex justify-content-between align-items-center px-3">
+                                            <!-- Tên sản phẩm -->
+                                            <h3 class="title" data-bs-toggle="tooltip"
+                                                data-bs-title="Đến trang Chi tiết sản phẩm <?= $data['TenSP'] ?>">
+                                                <a href="./chitietsp.php?MaSP=<?= $data['MaSP'] ?>"
+                                                    class="text-decoration-none" style="color: #005f69;">
+                                                    <?= $data['TenSP'] ?>
+                                                </a>
+                                            </h3>
+                                            <!-- Phần trăm khuyến mãi -->
+                                            <div class="discount-badge">
+                                                10<span>%</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="bg-flash-info-body">
+                                            <!-- mã sản phẩm -->
+                                            <p class="content">Mã SP: <strong
+                                                    class="ms-3"><?php echo $data['MaSP']; ?></strong></p>
+                                            <p class="content">Đã bán: <strong class="ms-3">500 sp</strong></p>
+
+                                            <div class="w-100 d-flex justify-content-end align-items-center px-4">
+                                                <!-- Giá gốc và giá khuyến mãi -->
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <del
+                                                        class="text-muted me-2 discount-price"><?php echo number_format($data['Giaban'], 0, ",", "."); ?><u>đ</u></del>
+                                                    <strong
+                                                        class="text-danger me-2 discount-price"><?php echo number_format($data['GiaKM'], 0, ",", "."); ?><u>đ</u></strong>
+                                                </div>
+
+                                                <a class="btn btn-dark btn-circle"
+                                                    href="./chitietsp.php?MaSP=<?= $data['MaSP'] ?>">
+                                                    <i class="fa-regular fa-eye"></i>
+                                                </a>
+                                            </div>
+                                            <!-- Sao đánh giá -->
+                                            <div class="discount-ratings">
+                                                <?php
+                                                // Lấy mã sản phẩm
+                                                $productID = $data['MaSP'];
+                                                //Lấy số lượng đánh giá
+                                                $countRatingResult = mysqli_query($conn, "SELECT COUNT(DiemDG) AS totalRatings FROM danhgia WHERE MaSP = '$productID'");
+                                                $countRatingRow = mysqli_fetch_assoc($countRatingResult);
+                                                $totalRatings = $countRatingRow['totalRatings'];
+                                                //Lấy rating trung bình
+                                                $avgRatingResult = mysqli_query($conn, "SELECT AVG(DiemDG) AS avgRating FROM danhgia WHERE MaSP = '$productID'");
+                                                $avgRatingRow = mysqli_fetch_assoc($avgRatingResult);
+                                                $averageRating = round($avgRatingRow['avgRating'], 0);
+                                                ?>
+                                                <!-- Đánh giá -->
+                                                <p class="content">Đánh giá: <strong class="ms-3"><?= $totalRatings ?>
+                                                        lượt</strong></p>
+                                                <div class="discount-stars me-4">
+                                                    <!-- Rating star -->
+                                                    <div class="ratings d-flex flex-column align-items-center">
+                                                        <input value="<?= $averageRating ?>" data-size="sm" class="rating"
+                                                            data-readonly="true" data-show-clear="false"
+                                                            data-show-caption="false">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                            <!-- Hình ảnh sản phẩm -->
+                            <div class="col-md-6 item pb-3">
+                                <img src="<?php echo "assets/imgs/products/" . $data['Hinhanh'] ?>" alt="">
+                            </div>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -243,7 +259,9 @@
                         <div class="voucher-details">
                             <div class="voucher-title"><?php echo $data['TenCT']; ?></div>
                             <div class="text"><?php echo $data['DieuKien']; ?></div>
-                            <div class="text">Có hiệu lực từ <strong><?php echo date_format(date_create($data['NgayBD']), "d/m/Y"); ?> - <?php echo date_format(date_create($data['NgayKT']), "d/m/Y"); ?></strong>
+                            <div class="text">Có hiệu lực từ
+                                <strong><?php echo date_format(date_create($data['NgayBD']), "d/m/Y"); ?> -
+                                    <?php echo date_format(date_create($data['NgayKT']), "d/m/Y"); ?></strong>
                             </div>
                         </div>
 

@@ -42,7 +42,7 @@ if (isset($_POST['login'])) {
                 'TenDangNhap' => $row['TenDangNhap'],
                 'Hang' => $row['Hang'],
             ];
-            header('location: giohang.php');
+            header('location: homepage.php');
             exit();
         } else {
             $error_message = 'Tài khoản hoặc mật khẩu sai';
@@ -94,7 +94,7 @@ if (isset($_POST['login'])) {
     <?php include 'layouts/header.php'; ?>
 
     <div class="outlet">
-        <div class="login-container">
+        <div class="container login-container">
             <div class="title">
                 <h1>ĐĂNG NHẬP TÀI KHOẢN</h1>
             </div>

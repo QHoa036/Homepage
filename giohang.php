@@ -3,18 +3,41 @@ include "database/conn.php"; // Kết nối đến cơ sở dữ liệu
 session_start();
 
 // Nếu chưa đăng nhập -> Chuyển tới trang Login
-// if (!isset($_SESSION['mySession'])) {
-//     header('location:login.php'); // Chuyển hướng đến trang đăng nhập
-//     exit();
-// }
+if (!isset($_SESSION['mySession'])) {
+    header('location:login.php'); // Chuyển hướng đến trang đăng nhập
+    exit();
+}
 
 // User hiện tại
 $userID = $_SESSION['user']['MaTV']; // Lấy mã thành viên của người dùng hiện tại
 
-// Lấy giỏ hàng của user hiện tại
-$cartResult = mysqli_query($conn, "SELECT * FROM giohang WHERE MaTV = '$userID' ORDER BY MaGH ASC");
-$cartRow = mysqli_fetch_assoc($cartResult); // Lấy thông tin giỏ hàng
-$cartID = $cartRow['MaGH']; // Lưu mã giỏ hàng
+// Kiểm tra nếu user đã đăng nhập và có ID
+if (isset($userID)) {
+    // Truy vấn giỏ hàng hiện tại của người dùng
+    $cartResult = mysqli_query($conn, "SELECT * FROM giohang WHERE MaTV = '$userID' ORDER BY MaGH ASC");
+
+    // Nếu người dùng đã có giỏ hàng
+    if ($cartRow = mysqli_fetch_assoc($cartResult)) {
+        $cartID = $cartRow['MaGH']; // Lấy mã giỏ hàng hiện tại
+    } else {
+        // Người dùng chưa có giỏ hàng, tạo giỏ hàng mới
+        $insertCartQuery = "
+            INSERT INTO giohang (MaTV, Ngaytao, Tong, TinhTrang)
+            VALUES ('$userID', NOW(), 0, 'chua hoan tat')";  // Set default values: Tong = 0, TinhTrang = 'chua hoan tat'
+
+        // Thực thi câu lệnh thêm giỏ hàng
+        if (mysqli_query($conn, $insertCartQuery)) {
+            // Lấy mã giỏ hàng mới vừa được tạo
+            $cartID = mysqli_insert_id($conn);
+        } else {
+            // Xử lý lỗi nếu không thể tạo giỏ hàng
+            echo "Lỗi khi tạo giỏ hàng: " . mysqli_error($conn);
+        }
+    }
+} else {
+    // Nếu người dùng chưa đăng nhập, có thể chuyển hướng đến trang đăng nhập
+    echo "Vui lòng đăng nhập để tạo giỏ hàng.";
+}
 
 // Khởi tạo biến tổng giá trị giỏ hàng
 $totalPrice = 0;
@@ -176,7 +199,7 @@ if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluon
     <!-- Header -->
     <?php include 'layouts/header.php'; ?>
 
-    <div class="outlet">
+    <div class="container ">
         <!-- Phần thông tin người dùng -->
         <div class="profile-section">
             <h2>THÔNG TIN CÁ NHÂN</h2>
@@ -184,7 +207,7 @@ if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluon
                 <img src="https://static.vecteezy.com/system/resources/thumbnails/002/387/693/small_2x/user-profile-icon-free-vector.jpg" alt="Profile Picture"> <!-- Hình đại diện người dùng -->
                 <div>
                     <!-- Hiển thị thông tin người dùng -->
-                    <?php if (isset($_SESSION['user']) && isset($_SESSION['mySession'])): ?>
+                    <?php if (isset($_SESSION['user'])): ?>
                         <p><strong>Họ và tên:</strong> <?= $_SESSION['user']['TenTV'] ?? 'Không có dữ liệu' ?></p> <!-- Tên người dùng -->
                         <p><strong>Email:</strong> <?= $_SESSION['user']['Email'] ?? 'Không có dữ liệu' ?></p> <!-- Địa chỉ email -->
                         <p><strong>Username:</strong> <?= $_SESSION['user']['TenDangNhap'] ?? 'Không có dữ liệu' ?></p> <!-- Tên đăng nhập -->
@@ -197,87 +220,103 @@ if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluon
                 </div>
             </div>
         </div>
-        <hr>
+    </div>
+    <hr>
 
-        <!-- Phần giỏ hàng -->
-        <div class="cart-section">
-            <div class="giohang-d-flex align-items-center">
-                <i class="fa-solid fa-cart-shopping"></i> <!-- Icon giỏ hàng -->
-                <h2>GIỎ HÀNG</h2>
-            </div>
 
-            <br>
 
-            <?php if ($totalPrice > 0) { ?> <!-- Kiểm tra xem giỏ hàng có sản phẩm không -->
-                <?php
-                // Lấy chi tiết giỏ hàng để hiển thị các sản phẩm
-                $cartDetailsResult = mysqli_query($conn, "SELECT chitietgiohang.*, sanpham.TenSP, sanpham.Hinhanh, sanpham.Giaban, sanpham.GiaKM
+
+    <!-- Phần giỏ hàng -->
+    <div class="cart-section">
+        <div class="d-flex align-items-center">
+            <i class="fa-solid fa-cart-shopping"></i> <!-- Icon giỏ hàng -->
+            <h2>GIỎ HÀNG</h2>
+        </div>
+        <br>
+
+
+
+
+        <?php if ($totalPrice > 0) { ?> <!-- Kiểm tra xem giỏ hàng có sản phẩm không -->
+            <?php
+            // Lấy chi tiết giỏ hàng để hiển thị các sản phẩm
+            $cartDetailsResult = mysqli_query($conn, "SELECT chitietgiohang.*, sanpham.TenSP, sanpham.Hinhanh, sanpham.Giaban, sanpham.GiaKM
                                                 FROM chitietgiohang
                                                 JOIN sanpham ON chitietgiohang.MaSP = sanpham.MaSP
                                                 WHERE chitietgiohang.MaGH = '$cartID'
                                                 ORDER BY chitietgiohang.MaCTGH ASC");
-                ?>
-                <?php while ($cartDetailsRow = mysqli_fetch_assoc($cartDetailsResult)) { ?> <!-- Lặp qua các sản phẩm trong giỏ hàng -->
-                    <div class="cart-item">
-                        <img src="./assets/imgs/products/<?= htmlspecialchars($cartDetailsRow['Hinhanh']) ?>" alt="<?= htmlspecialchars($cartDetailsRow['TenSP']) ?>"> <!-- Hình ảnh sản phẩm -->
-                        <div class="cart-item-details">
-                            <p><strong><?= htmlspecialchars($cartDetailsRow['TenSP']) ?></strong></p> <!-- Tên sản phẩm -->
-                            <p>Mã SP: <?= htmlspecialchars($cartDetailsRow['MaSP']) ?></p> <!-- Mã sản phẩm -->
-                            <p>Chương trình khuyến mãi:
-                                <?php if ($cartDetailsRow['GiaKM'] != NULL) { ?> <!-- Kiểm tra xem có giá khuyến mãi không -->
-                                    <span style="color:  #ff4b4b; font-weight: bold">Flash Sale - Giảm giá</span> <!-- Hiển thị thông báo khuyến mãi với màu đỏ -->
-                                <?php } else { ?>
-                                    <span style="color:  #ff4b4b; font-weight: bold">Không có khuyến mãi</span> <!-- Thông báo không có khuyến mãi với màu đỏ -->
-                                <?php } ?>
-                            </p>
-                        </div>
-
-                        <div class="cart-item-price">
+            ?>
+            <?php while ($cartDetailsRow = mysqli_fetch_assoc($cartDetailsResult)) { ?> <!-- Lặp qua các sản phẩm trong giỏ hàng -->
+                <div class="cart-item">
+                    <img src="./assets/imgs/products/<?= htmlspecialchars($cartDetailsRow['Hinhanh']) ?>" alt="<?= htmlspecialchars($cartDetailsRow['TenSP']) ?>"> <!-- Hình ảnh sản phẩm -->
+                    <div class="cart-item-details">
+                        <p><strong><?= htmlspecialchars($cartDetailsRow['TenSP']) ?></strong></p> <!-- Tên sản phẩm -->
+                        <p>Mã SP: <?= htmlspecialchars($cartDetailsRow['MaSP']) ?></p> <!-- Mã sản phẩm -->
+                        <p>Chương trình khuyến mãi:
                             <?php if ($cartDetailsRow['GiaKM'] != NULL) { ?> <!-- Kiểm tra xem có giá khuyến mãi không -->
-                                <h5 class="text-secondary text-decoration-line-through"><?= number_format($cartDetailsRow['Giaban'], 0, ",", ".") ?><sup>đ</sup></h5> <!-- Giá gốc -->
+                                <span style="color:  #ff4b4b; font-weight: bold">Flash Sale - Giảm giá</span> <!-- Hiển thị thông báo khuyến mãi với màu đỏ -->
+                            <?php } else { ?>
+                                <span style="color:  #ff4b4b; font-weight: bold">Không có khuyến mãi</span> <!-- Thông báo không có khuyến mãi với màu đỏ -->
                             <?php } ?>
-                            <h4 class="text-danger">
-                                <?= number_format($cartDetailsRow['GiaKM'] ? $cartDetailsRow['GiaKM'] : $cartDetailsRow['Giaban'], 0, ",", ".") ?><sup>đ</sup> <!-- Giá hiện tại (có thể là giá khuyến mãi hoặc giá gốc) -->
-                            </h4>
+                        </p>
+
+
+
+
+                    </div>
+                    <div class="cart-item-price">
+                        <?php if ($cartDetailsRow['GiaKM'] != NULL) { ?> <!-- Kiểm tra xem có giá khuyến mãi không -->
+                            <h5 class="text-secondary text-decoration-line-through"><?= number_format($cartDetailsRow['Giaban'], 0, ",", ".") ?><sup>đ</sup></h5> <!-- Giá gốc -->
+                        <?php } ?>
+                        <h4 class="text-danger">
+                            <?= number_format($cartDetailsRow['GiaKM'] ? $cartDetailsRow['GiaKM'] : $cartDetailsRow['Giaban'], 0, ",", ".") ?><sup>đ</sup> <!-- Giá hiện tại (có thể là giá khuyến mãi hoặc giá gốc) -->
+                        </h4>
+                    </div>
+                    <form action="giohang.php" method="post">
+                        <div class="number form-group mb-3">
+                            <label><strong>Số lượng:</strong></label>
+                            <input type="number" class="input-sm rounded update-input" id="soluong" name="soluong" value="<?= htmlspecialchars($cartDetailsRow['SoLuong']) ?>" min="1" />
                         </div>
+                        <!-- Hidden input để gửi mã sản phẩm -->
+                        <input type="hidden" name="MaSP" value="<?= htmlspecialchars($cartDetailsRow['MaSP']) ?>">
 
-                        <form action="giohang.php" method="post">
-                            <div class="number form-group mb-3">
-                                <label><strong>Số lượng:</strong></label>
-                                <input type="number" class="input-sm rounded update-input" id="soluong" name="soluong" value="<?= htmlspecialchars($cartDetailsRow['SoLuong']) ?>" min="1" />
-                            </div>
-                            <!-- Hidden input để gửi mã sản phẩm -->
-                            <input type="hidden" name="MaSP" value="<?= htmlspecialchars($cartDetailsRow['MaSP']) ?>">
 
-                            <!-- Nút cập nhật -->
-                            <button type="submit" class="btn btn-primary update-btn" name="updateCart">Cập nhật</button>
-                            <div class="cart-item-remove">
-                                <form method="POST" action="">
-                                    <input type="hidden" name="MaSP" value="<?= htmlspecialchars($cartDetailsRow['MaSP']) ?>"> <!-- Lưu mã sản phẩm để xóa -->
-                                    <button type="submit" class="btn btn-danger remove-btn" name="remove">Xóa</button> <!-- Nút xóa sản phẩm -->
-                                </form>
-                            </div>
-                        </form>
-                    </div>
-                <?php } ?>
-                <br>
 
-                <!-- Tổng tiền -->
-                <div class="cart-summary giohang-d-flex justify-content-between align-items-center">
-                    <div class="total-price-container d-flex align-items-center">
-                        <p class="total-price">Tổng: <?= number_format($totalPrice, 0, ",", ".") ?>đ</p> <!-- Tổng giá trị giỏ hàng -->
-                        <!-- Form để thanh toán -->
-                        <form method="POST" action="Hoadon.php">
-                            <input type="hidden" name="cart" value=''>
-                            <button type="submit" class="checkout-btn">Mua</button> <!-- Nút thanh toán -->
-                        </form>
-                    </div>
+
+                        <!-- Nút cập nhật -->
+                        <button type="submit" class="btn btn-primary update-btn" name="updateCart">Cập nhật</button>
+                        <div class="cart-item-remove">
+                            <form method="POST" action="">
+                                <input type="hidden" name="MaSP" value="<?= htmlspecialchars($cartDetailsRow['MaSP']) ?>"> <!-- Lưu mã sản phẩm để xóa -->
+                                <button type="submit" class="btn btn-danger remove-btn" name="remove">Xóa</button> <!-- Nút xóa sản phẩm -->
+                            </form>
+                        </div>
+                    </form>
+
+
+
+
+
                 </div>
-
-            <?php } else { ?>
-                <p>Giỏ hàng của bạn trống.</p> <!-- Thông báo nếu giỏ hàng trống -->
             <?php } ?>
-        </div>
+
+            <br>
+
+            <!-- Tổng tiền -->
+            <div class="cart-summary d-flex justify-content-between align-items-center">
+                <div class="total-price-container d-flex align-items-center">
+                    <p class="total-price">Tổng: <?= number_format($totalPrice, 0, ",", ".") ?>đ</p> <!-- Tổng giá trị giỏ hàng -->
+                    <!-- Form để thanh toán -->
+                    <form method="POST" action="Hoadon.php">
+                        <input type="hidden" name="cart" value=''>
+                        <button type="submit" class="checkout-btn">Mua</button> <!-- Nút thanh toán -->
+                    </form>
+                </div>
+            </div>
+
+        <?php } else { ?>
+            <p>Giỏ hàng của bạn trống.</p> <!-- Thông báo nếu giỏ hàng trống -->
+        <?php } ?>
     </div>
 
     <!-- Footer -->
