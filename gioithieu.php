@@ -45,7 +45,7 @@ session_start();
 
     <div class="outlet">
         <div class="header-gt">
-            <img id="merueh-logo" src="./assets/imgs/abouts/MERUEH.PNG" alt="MERUEH" class="logo">
+            <img id="merueh-logo" src="./assets/imgs/abouts/MERUEH.jpg" alt="MERUEH" class="logo">
         </div>
 
         <section class="introduction">

@@ -33,10 +33,13 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
             if (isset($_GET['search-category'])) {
                 // Lấy data tìm kiếm của người dùng trong đó: 
                 // trim để xóa các khoảng trắng, strlower để chuyển về chữ thường, real_escape_string loại bỏ các kí tự đặc biệt
-                $searchTerm = trim(strtolower($conn->real_escape_string($_GET['search-category'])));
+                $searchTerm = trim($conn->$_GET['search-category']);
 
                 // Lấy các mã loại có têm trùng với data người dùng nhập vào
-                $query = "SELECT MaLoai FROM loaisanpham WHERE TenLoai LIKE '%$searchTerm%'";
+                $query = "SELECT sanpham.MaLoai
+                    FROM sanpham
+                    INNER JOIN loaisanpham ON sanpham.Maloai = loaisanpham.Maloai
+                    WHERE loaisanpham.TenLoai LIKE '%$searchTerm%' OR sanpham.TenSP LIKE '%$searchTerm%'";
                 $searchResult = mysqli_query($conn, $query);
 
                 // kiểm tra kết quả tìm được
@@ -44,7 +47,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                     // Lấy kết quả tìm kiếm dưới dạng mảng
                     $searchData = mysqli_fetch_assoc($searchResult);
                     // Đưa đến trang category tại loại sản phẩm đó
-                    header('Location: danhmucsp.php#' . $searchData['MaLoai']);
+                    header('Location: danhmucsp.php#' . $searchData['sanpham.MaLoai']);
                     exit();
                 } else {
                     // Đưa đến trang không tìm thấy loại sản phẩm

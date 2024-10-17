@@ -21,9 +21,12 @@ if (isset($userID)) {
         $cartID = $cartRow['MaGH']; // Lấy mã giỏ hàng hiện tại
     } else {
         // Người dùng chưa có giỏ hàng, tạo giỏ hàng mới
+        $str = rand();
+        $MaGH = "GH" . md5($str);
         $insertCartQuery = "
-            INSERT INTO giohang (MaTV, Ngaytao, Tong, TinhTrang)
-            VALUES ('$userID', NOW(), 0, 'chua hoan tat')";  // Set default values: Tong = 0, TinhTrang = 'chua hoan tat'
+            INSERT INTO giohang (MaGH, MaTV, Ngaytao, Tong, TinhTrang)
+            VALUES ('$MaGH','$userID', NOW(), 0, '0')";  
+
 
         // Thực thi câu lệnh thêm giỏ hàng
         if (mysqli_query($conn, $insertCartQuery)) {
