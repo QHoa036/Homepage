@@ -1,10 +1,10 @@
 <?php
 
-// // Kiểm tra xem user đăng nhập chưa
-// if (isset($_SESSION['mySession'])) {
-//     header('location: homepage.php');
-//     exit();
-// }
+// Kiểm tra xem user đăng nhập chưa
+if (isset($_SESSION['mySession'])) {
+    header('location: homepage.php');
+    exit();
+}
 
 // Lấy loại sản phẩm
 $categoryResult = mysqli_query($conn, 'SELECT MaLoai, TenLoai FROM loaisanpham');
@@ -31,27 +31,30 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
             <!-- Thanh tìm kiếm -->
             <?php
             if (isset($_GET['search-category'])) {
-                // Lấy data tìm kiếm của người dùng trong đó: 
-                // trim để xóa các khoảng trắng, strlower để chuyển về chữ thường, real_escape_string loại bỏ các kí tự đặc biệt
-                $searchTerm = trim($conn->$_GET['search-category']);
 
-                // Lấy các mã loại có têm trùng với data người dùng nhập vào
-                $query = "SELECT sanpham.MaLoai
-                    FROM sanpham
-                    INNER JOIN loaisanpham ON sanpham.Maloai = loaisanpham.Maloai
-                    WHERE loaisanpham.TenLoai LIKE '%$searchTerm%' OR sanpham.TenSP LIKE '%$searchTerm%'";
-                $searchResult = mysqli_query($conn, $query);
+                // Sanitize and validate the input
+                $searchTerm = trim($_GET['search-category']);
+                $searchTerm = strtolower($searchTerm);
 
-                // kiểm tra kết quả tìm được
-                if (mysqli_num_rows($searchResult) > 0) {
-                    // Lấy kết quả tìm kiếm dưới dạng mảng
-                    $searchData = mysqli_fetch_assoc($searchResult);
-                    // Đưa đến trang category tại loại sản phẩm đó
-                    header('Location: danhmucsp.php#' . $searchData['sanpham.MaLoai']);
+                // Prepare the SQL statement to prevent SQL injection
+                $stmt = $conn->prepare("SELECT MaLoai FROM sanpham WHERE TenSP LIKE ?");
+                $likeTerm = '%' . $searchTerm . '%';
+                $stmt->bind_param('s', $likeTerm);
+
+                // Execute the statement
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                // Check the result
+                if ($result->num_rows > 0) {
+                    // Fetch the result as an associative array
+                    $searchData = $result->fetch_assoc();
+                    // Redirect to the category page with the product type
+                    header('Location: danhmucsp.php#' . $searchData['MaLoai']);
                     exit();
                 } else {
-                    // Đưa đến trang không tìm thấy loại sản phẩm
-                    header('Location: danhmucsp.php?error=notfound');
+                    // Redirect to a page indicating no results found
+                    echo "<script type='text/javascript'>alert('Không tìm thấy từ khóa bạn cần');</script>";
                     exit();
                 }
             }
@@ -192,9 +195,6 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
             </div>
         </div>
     </nav>
-
-
-
 </body>
 
 </html>
