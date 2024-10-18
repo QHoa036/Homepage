@@ -2,7 +2,7 @@
     <footer>
         <!-- Hình ảnh và thanh chia (Footer trên)-->
         <div class="container-fluid footer-top">
-            <div class="footer-top-divider"></div>
+            <div class="footer-top-divider-2"></div>
             <div class="footer-image"></div>
             <div class="footer-bottom-divider"></div>
         </div>

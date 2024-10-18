@@ -1,4 +1,4 @@
-/* Header Top */
+/** Header Top */
 .bg-header-top {
   background-color: #f15a29;
 }
@@ -19,14 +19,14 @@
   height: auto;
 }
 
-/* icon địa chỉ, sđt, facebook */
+/* Icon địa chỉ, sđt, facebook */
 .navbar-header-logo {
   width: 24px;
   height: auto;
   margin-right: 0.6rem;
 }
 
-/* tên STATIONERY */
+/* Tên STATIONERY */
 .navbar-brand-text {
   font-family: "Baloo";
   color: white;
@@ -36,7 +36,7 @@
     2px 2px 0 #005f69;
 }
 
-/* Searchbar */
+/** Searchbar */
 /* Background thanh tìm kiếm */
 .search-container {
   flex-grow: 1;
@@ -48,7 +48,7 @@
   justify-items: center;
 }
 
-/* data user nhập */
+/* Data user nhập */
 .search-input {
   width: 100%;
   border: 1px solid #ccc;
@@ -57,7 +57,7 @@
   font-size: 1rem;
 }
 
-/* icon của thanh search */
+/* Icon của thanh search */
 .search-icon {
   position: absolute;
   left: 18px;
@@ -66,6 +66,7 @@
   transform: translateY(-50%);
 }
 
+/* Nút tìm kiếm */
 .search-btn {
   height: 20px;
   width: 20px;
@@ -123,7 +124,8 @@
   background-color: #f1f1f1;
 }
 
-/* vị trí CÁc icon địa chỉ, sđt, fb */
+/** Toolbar  */
+/* Vị trí CÁc icon địa chỉ, sđt, fb */
 .toolbar-container {
   display: flex;
   align-items: center;
@@ -137,7 +139,7 @@
   flex-direction: row;
 }
 
-/* chứa các icon địa chỉ, sđt, fb */
+/* Chứa các icon địa chỉ, sđt, fb */
 .icon-container {
   gap: 0.8rem;
   display: flex;
@@ -145,7 +147,7 @@
   justify-content: center;
 }
 
-/* các icon địa chỉ, sđt,fb */
+/* Các icon địa chỉ, sđt,fb */
 .icon-container i {
   background-color: transparent;
   border-radius: 50%;
@@ -165,7 +167,7 @@
   transition: all 0.3s ease;
 }
 
-/* Ngôn ngữ */
+/** Chuyển đổi ngôn ngữ */
 .language-container {
   display: flex;
   align-items: center;
@@ -195,8 +197,7 @@
   font-weight: bold;
 }
 
-
-/* respnsive cho cỡ chữ title của web*/
+/** Responsive cho cỡ chữ title của web*/
 @media (max-width: 768px) {
   .navbar-brand-text {
     font-size: 26px;
@@ -213,7 +214,7 @@
   }
 }
 
-/* Header Bottom */
+/** Header Bottom */
 .bg-header-bottom {
   display: flex;
   align-items: center;
@@ -221,6 +222,10 @@
   background-color: #005f69;
   padding: 0;
   margin: 0;
+}
+
+.header-bottom-container {
+  display: flex;
 }
 
 .navbar-nav {
@@ -256,6 +261,10 @@
   color: #f15a29;
 }
 
+.nav-item.dropdown {
+  position: relative;
+}
+
 .dropdown-menu {
   margin: 0;
   background-color: white;
@@ -281,12 +290,4 @@
 .vertical-divider {
   border-right: 2px solid white;
   height: 100%;
-}
-
-.nav-item.dropdown {
-  position: relative;
-}
-
-.header-bottom-container {
-  display: flex;
 }

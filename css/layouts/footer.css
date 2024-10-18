@@ -1,4 +1,4 @@
-/* Footer Top */
+/** Footer Top */
 .footer-top {
     color: white;
     padding: 64px 0;
@@ -11,12 +11,12 @@
     background-size: 100% 100%;
 }
 
-/* Footer Bottom */
+/** Footer Bottom */
 .footer-bottom {
     max-height: auto;
     background-color: #005f6b;
 }
-/* danh sách Chính sách */
+/* Danh sách Chính sách */
 .policy-list {
     display: flex;
     flex-direction: column;
@@ -58,6 +58,14 @@
     margin-bottom: 84px;
     height: 4px;
 }
+.footer-top-divider-2 {
+    border-bottom: 2px solid #79747e;
+    margin: 0 auto 46px auto;
+    opacity: 0.5;
+    height: 2px;
+    width: 80%;
+}
+
 /* Đường ngăn cách dưới*/
 .footer-bottom-divider {
     border-bottom: 2px solid #79747e;
@@ -83,14 +91,14 @@
     margin: 16px;
     height: 2px;
 }
-/* vị trí của zalo */
+/* Vị trí của zalo */
 .footer-bottom-buttons-btn-zalo {
     position: fixed;
     bottom: 88px;
     right: 20px;
     display: flex;
 }
-/* vị trí của phine number */
+/* Vị trí của phone number */
 .footer-bottom-buttons-btn-phone {
     position: fixed;
     bottom: 20px;
@@ -98,7 +106,7 @@
     display: flex;
 }
 
-/* style của zalo và phone  */
+/* Style của zalo và phone  */
 .phone-btn {
     position: relative;
     display: flex;
@@ -126,7 +134,7 @@
     overflow: hidden;
 }
 
-/* buttong sẽ mở rộng khi hover*/
+/* Buttong sẽ mở rộng khi hover*/
 .phone-btn:hover {
     width: 190px;
 }
@@ -136,7 +144,7 @@
     background-color: cadetblue;
 }
 
-/* style của icon phone */
+/* Style của icon phone */
 .phone-icon {
     background-color: #f04e23;
     border-radius: 50%;
@@ -166,7 +174,7 @@
     transition: all 0.4s ease;
 }
 
-/* style của phone number */
+/* Style của phone number */
 .phone-number {
     margin-right: 60px;
     color: white;
@@ -175,7 +183,7 @@
     transition: opacity 0.4s ease;
 }
 
-/* hiển thị khi hover */
+/* Hiển thị khi hover */
 .phone-btn:hover .phone-number {
     opacity: 1;
 }

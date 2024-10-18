@@ -1,4 +1,3 @@
-
 const searchInput = document.getElementById('search-input');
 const dropdownMenu = document.getElementById('searchbar-dropdown-menu');
 

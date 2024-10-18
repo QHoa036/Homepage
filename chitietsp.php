@@ -2,25 +2,32 @@
 include "database/conn.php";
 session_start();
 
-//Nếu chưa đăng nhập -> Chuyển tới trang Login
+// Nếu chưa đăng nhập -> Chuyển tới trang Login
 if (!isset($_SESSION['mySession'])) {
     header('location:login.php');
     exit();
 }
 
+// 
 if (isset($_POST['addRatingBtn'])) {
+    // Kiểm tra xem nút 'addRatingBtn' có được nhấn hay không
 
     $str = rand();
     $MaDG = "DG" . md5($str);
+    // Tạo mã đánh giá (MaDG) ngẫu nhiên bằng cách sử dụng hàm rand() và mã hóa MD5
 
     $userID = $_SESSION['user']['MaTV'];
     $productID = $_POST['MaSP'];
     $DiemDG = $_POST['DiemDG'];
     $Binhluan = $_POST['Binhluan'];
+    // Lấy các giá trị từ session và form POST:
+    // - MaTV (Mã thành viên) từ session
+    // - MaSP (Mã sản phẩm), DiemDG (Điểm đánh giá), Binhluan (Bình luận) từ form POST
 
-    //Thêm dữ liệu đã nhập vào bảng taikhoan
-    $sql1 = "INSERT INTO danhgia (MaDG,MaTV,MaSP,DiemDG,Binhluan) VALUES('$MaDG','$userID','$productID','$DiemDG','$Binhluan'); ";
+    // Thêm dữ liệu đã nhập vào bảng danhgia
+    $sql1 = "INSERT INTO danhgia (MaDG,MaTV,MaSP,DiemDG,Binhluan) VALUES('$MaDG','$userID','$productID','$DiemDG','$Binhluan');";
     mysqLi_query($conn, $sql1);
+    // Thực thi câu lệnh SQL để thêm đánh giá vào bảng danhgia
 }
 ?>
 

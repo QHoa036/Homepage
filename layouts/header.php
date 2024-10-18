@@ -1,13 +1,12 @@
 <?php
-
 // Kiểm tra xem user đăng nhập chưa
 if (isset($_SESSION['mySession'])) {
     header('location: homepage.php');
     exit();
 }
-
 // Lấy loại sản phẩm
 $categoryResult = mysqli_query($conn, 'SELECT MaLoai, TenLoai FROM loaisanpham');
+
 // Lấy các hàng dưới dạng mảng kết hợp
 $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
 ?>
@@ -30,40 +29,48 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
 
             <!-- Thanh tìm kiếm -->
             <?php
+            function redirectWithAlert($message, $url)
+            {
+                echo "<script type='text/javascript'>
+                        alert('$message');
+                        window.location.href = '$url';
+                    </script>";
+                exit();
+            }
+
             if (isset($_GET['search-category'])) {
+                // Xóa dấu cách và chuyển sang chữ thường
+                $searchTerm = trim(strtolower($_GET['search-category']));
 
-                // Sanitize and validate the input
-                $searchTerm = trim($_GET['search-category']);
-                $searchTerm = strtolower($searchTerm);
-
-                // Prepare the SQL statement to prevent SQL injection
+                // Chuẩn bị câu lệnh SQL để ngăn chặn SQL injection
                 $stmt = $conn->prepare("SELECT MaLoai FROM sanpham WHERE TenSP LIKE ?");
                 $likeTerm = '%' . $searchTerm . '%';
                 $stmt->bind_param('s', $likeTerm);
 
-                // Execute the statement
+                // Thực thi câu lệnh
                 $stmt->execute();
                 $result = $stmt->get_result();
 
-                // Check the result
-                if ($result->num_rows > 0) {
-                    // Fetch the result as an associative array
-                    $searchData = $result->fetch_assoc();
-                    // Redirect to the category page with the product type
-                    header('Location: danhmucsp.php#' . $searchData['MaLoai']);
-                    exit();
-                } else {
-                    // Redirect to a page indicating no results found
-                    echo "<script type='text/javascript'>alert('Không tìm thấy từ khóa bạn cần');</script>";
-                    exit();
+                // Hiển thị thông báo và chuyển hướng về trang trước đó
+                if ($result->num_rows <= 0) {
+                    // Hiển thị thông báo và chuyển hướng về trang trước đó
+                    redirectWithAlert('Vui lòng nhập từ khóa tìm kiếm', $_SERVER['HTTP_REFERER']);
                 }
+
+                // Lấy kết quả dưới dạng mảng kết hợp
+                $searchData = $result->fetch_assoc();
+
+                // Chuyển hướng đến trang danh mục với loại sản phẩm
+                header('Location: danhmucsp.php#' . $searchData['MaLoai']);
+                exit();
             }
             ?>
-            <!-- form get  -->
+            <!-- Form get  -->
             <form action="danhmucsp.php" method="get" class="search-container py-3">
+                <!-- Icon -->
                 <span><i class="fas fa-chevron-left search-icon"></i></span>
                 <input type="text" class="form-control search-input" name="search-category" id="search-input" placeholder="Tìm kiếm">
-                <!-- dropdown trong thanh tìm kiếm -->
+                <!-- Dropdown trong thanh tìm kiếm -->
                 <div class="searchbar-dropdown">
                     <ul class="searchbar-dropdown-menu" id="searchbar-dropdown-menu">
                         <?php foreach ($categoryData as $data): ?>
@@ -73,6 +80,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                         <?php endforeach; ?>
                     </ul>
                 </div>
+                <!-- Nút tìm kiếm -->
                 <span><button type="submit" class="search-btn"><i class="fas fa-search"></i></button></span>
             </form>
 
@@ -87,6 +95,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                 </div>
             </div>
 
+            <!-- Nút chuyển đổi ngôn ngữ -->
             <div class="language-container">
                 <div class="navbar-toolbar py-1">
                     <div class="locale-switcher" id="languageSwitch" onclick="toggleLanguage()">
@@ -101,7 +110,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
     <!-- Các button chuyển trang -->
     <nav class="navbar navbar-expand-lg bg-header-bottom">
         <div class="container-fluid justify-content-end align-items-center">
-            <!-- button khi ở màn hình điện thoại -->
+            <!-- Button khi ở màn hình điện thoại -->
             <button class="navbar-toggler bg-light my-1" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true"
                 aria-label="Toggle navigation">
@@ -111,7 +120,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
             <!-- Các link của các trang -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
-                    <!-- trang giới thiệu -->
+                    <!-- Trang giới thiệu -->
                     <li class="nav-item">
                         <a class="nav-link" href="gioithieu.php">
                             <i class="bi bi-people-fill navbar-header-logo"></i>
@@ -119,9 +128,11 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                         </a>
                     </li>
 
+                    <!-- Thanh chia -->
                     <li>
                         <div class="vertical-divider"></div>
                     </li>
+
                     <!-- Danh mục sản phẩm -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -140,9 +151,11 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                         </ul>
                     </li>
 
+                    <!-- Thanh chia -->
                     <li>
                         <div class="vertical-divider"></div>
                     </li>
+
                     <!-- Khuyến mãi -->
                     <li class="nav-item">
                         <a class="nav-link" href="discounts.php">
@@ -151,20 +164,24 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                         </a>
                     </li>
 
+                    <!-- Thanh chia -->
                     <li>
                         <div class="vertical-divider"></div>
                     </li>
+
                     <!-- Hỏi đáp -->
                     <li class="nav-item">
-                        <a class="nav-link" href="questions.php">
+                        <a class="nav-link" href="hoidap.php">
                             <i class="bi bi-question-circle-fill navbar-header-logo"></i>
                             Hỏi đáp
                         </a>
                     </li>
 
+                    <!-- Thanh chia -->
                     <li>
                         <div class="vertical-divider"></div>
                     </li>
+
                     <!-- Đăng nhập, đăng ký và đăng xuất -->
                     <?php if (isset($_SESSION['user']) && (isset($_SESSION['mySession']))): ?>
                         <li class="nav-item dropdown">
@@ -174,17 +191,21 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                                 <i class="bi bi-person-circle navbar-header-logo"></i>
                                 <?= $_SESSION['user']['TenTV'] ?? 'Không có dữ liệu' ?>
                             </a>
+                            <!-- Nút đăng xuất -->
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href='logout.php' name="logout" class="logout-btn">Đăng xuất</a></li>
                             </ul>
                         </li>
                     <?php else: ?>
                         <li class="nav-item dropdown">
+                            <!-- Nút đăng nhập -->
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 <i class="bi bi-box-arrow-in-right navbar-header-logo"></i>
                                 Đăng nhập
                             </a>
+
+                            <!-- Dropdown đăng ký, đăng nhập -->
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="login.php">Đăng nhập</a></li>
                                 <li><a class="dropdown-item" href="signup.php">Đăng ký</a></li>
@@ -196,5 +217,3 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
         </div>
     </nav>
 </body>
-
-</html>

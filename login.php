@@ -8,29 +8,28 @@ if (isset($_SESSION['mySession'])) {
     exit();
 }
 
+// Đăng nhập tài khoản
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Fetch user from the taikhoan and thanhvien tables using a join
-    $sql = "
-            SELECT taikhoan.MaTK, taikhoan.TenDangNhap, taikhoan.MatKhau, thanhvien.MaTV, thanhvien.TenTV, thanhvien.Email, thanhvien.Gioitinh, thanhvien.DiaChi, thanhvien.SDT, thanhvien.Hang
+    // Lấy thông tin người dùng
+    $sql = "SELECT taikhoan.MaTK, taikhoan.TenDangNhap, taikhoan.MatKhau, thanhvien.MaTV, thanhvien.TenTV, thanhvien.Email, thanhvien.Gioitinh, thanhvien.DiaChi, thanhvien.SDT, thanhvien.Hang
             FROM taikhoan
             JOIN thanhvien ON taikhoan.MaTK = thanhvien.MaTK
-            WHERE taikhoan.TenDangNhap = '$username'
-        ";
+            WHERE taikhoan.TenDangNhap = '$username'";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_assoc($result);
 
-        // Verify the password
+        // Kiểm tra mật khẩu
         if (password_verify($password, $row['MatKhau']) || $password == $row['MatKhau']) {
-            // Store the MaTK and user details in the session
+            // Lưu trữ MaTK và thông tin người dùng vào session
             $_SESSION['MaTK'] = $row['MaTK'];
             $_SESSION['mySession'] = $username;
 
-            // Store user info in session
+            // Lưu thông tin người dùng vào session
             $_SESSION['user'] = [
                 'TenTV' => $row['TenTV'],
                 'Email' => $row['Email'],
@@ -42,6 +41,8 @@ if (isset($_POST['login'])) {
                 'TenDangNhap' => $row['TenDangNhap'],
                 'Hang' => $row['Hang'],
             ];
+
+            // Chuyển hướng đến trang chủ
             header('location: homepage.php');
             exit();
         } else {
@@ -82,10 +83,7 @@ if (isset($_POST['login'])) {
     <link rel="stylesheet" href="css/layouts/header.css" />
     <link rel="stylesheet" href="css/layouts/footer.css" />
 
-    <!-- JS -->
-    <script src="carousel/vendors/jquery.min.js"></script>
-    <script src="carousel/owlcarousel/owl.carousel.js"></script>
-
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="css/login.css">
 </head>
 
@@ -93,44 +91,42 @@ if (isset($_POST['login'])) {
     <!-- Header -->
     <?php include 'layouts/header.php'; ?>
 
-    <div class="outlet">
-        <div class="container login-container">
-            <div class="title">
-                <h1>ĐĂNG NHẬP TÀI KHOẢN</h1>
+    <div class="container login-container">
+        <div class="title">
+            <h1>ĐĂNG NHẬP TÀI KHOẢN</h1>
+        </div>
+
+        <!-- Form đăng nhập -->
+        <form action="login.php" method="post">
+            <!--Tên tài khoản -->
+            <label for="username">Tên tài khoản *</label>
+            <input type="username" name="username" id="username" placeholder="Username">
+
+
+            <!-- Mật khẩu -->
+            <label for="password">Mật khẩu *</label>
+            <input type="password" name="password" id="password" placeholder="Password">
+
+
+            <!-- Quên mật khẩu -->
+            <div class="extra-options">
+                <a href="quenMK.php">Quên mật khẩu?</a>
             </div>
 
-            <!-- Form đăng nhập -->
-            <form action="login.php" method="post">
-                <!--Tên tài khoản -->
-                <label for="username">Tên tài khoản *</label>
-                <input type="username" name="username" id="username" placeholder="Username">
-
-
-                <!-- Mật khẩu -->
-                <label for="password">Mật khẩu *</label>
-                <input type="password" name="password" id="password" placeholder="Password">
-
-
-                <!-- Quên mật khẩu -->
-                <div class="extra-options">
-                    <a href="quenMK.php">Quên mật khẩu?</a>
+            <!-- Hiển thị thông báo lỗi (nếu thông tin đăng nhập sai) -->
+            <?php if (!empty($error_message)): ?>
+                <div class="error-message" style="color: red; margin-top: 10px; font-weight: bold;">
+                    <?php echo $error_message; ?>
                 </div>
+            <?php endif; ?>
 
-                <!-- Hiển thị thông báo lỗi (nếu thông tin đăng nhập sai) -->
-                <?php if (!empty($error_message)): ?>
-                    <div class="error-message" style="color: red; margin-top: 10px; font-weight: bold;">
-                        <?php echo $error_message; ?>
-                    </div>
-                <?php endif; ?>
-
-                <div class="buttons">
-                    <!-- Nút để đăng nhập và chuyển sang trang đăng ký -->
-                    <button type="submit" name="login" class="login-btn">ĐĂNG NHẬP</button>
-                    <!-- Nút để chuyển đến trang đăng ký -->
-                    <button type="button" onclick="window.location.href='signup.php'" class="signup-btn">ĐĂNG KÝ</button>
-                </div>
-            </form>
-        </div>
+            <div class="buttons">
+                <!-- Nút để đăng nhập và chuyển sang trang đăng ký -->
+                <button type="submit" name="login" class="login-btn">ĐĂNG NHẬP</button>
+                <!-- Nút để chuyển đến trang đăng ký -->
+                <button type="button" onclick="window.location.href='signup.php'" class="signup-btn">ĐĂNG KÝ</button>
+            </div>
+        </form>
     </div>
 
     <!-- Footer -->

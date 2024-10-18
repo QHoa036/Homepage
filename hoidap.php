@@ -1,13 +1,5 @@
 <?php
 include "database/conn.php";
-
-session_start();
-//Nếu chưa đăng nhập -> Chuyển tới trang Login
-// if (!isset($_SESSION['mySession'])) {
-//     header('location:login.php');
-//     exit();
-// }
-
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +35,8 @@ session_start();
     <script src="carousel/vendors/jquery.min.js"></script>
     <script src="carousel/owlcarousel/owl.carousel.js"></script>
 
-    <link rel="stylesheet" href="css/question.css">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/hoidap.css">
 </head>
 
 <body>
@@ -244,7 +237,6 @@ session_start();
                     <p>Nếu bạn có câu hỏi hoặc bất kỳ thắc mắc nào về Chính sách bảo mật của UEH Stationery Website, xin
                         vui
                         lòng liên hệ qua hotline.</p>
-                    <hr class="divider">
                 </div>
             </div>
         </div>
