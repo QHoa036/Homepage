@@ -2,32 +2,25 @@
 include "database/conn.php";
 session_start();
 
-// Nếu chưa đăng nhập -> Chuyển tới trang Login
+//Nếu chưa đăng nhập -> Chuyển tới trang Login
 if (!isset($_SESSION['mySession'])) {
     header('location:login.php');
     exit();
 }
 
-// 
 if (isset($_POST['addRatingBtn'])) {
-    // Kiểm tra xem nút 'addRatingBtn' có được nhấn hay không
 
     $str = rand();
     $MaDG = "DG" . md5($str);
-    // Tạo mã đánh giá (MaDG) ngẫu nhiên bằng cách sử dụng hàm rand() và mã hóa MD5
 
     $userID = $_SESSION['user']['MaTV'];
     $productID = $_POST['MaSP'];
     $DiemDG = $_POST['DiemDG'];
     $Binhluan = $_POST['Binhluan'];
-    // Lấy các giá trị từ session và form POST:
-    // - MaTV (Mã thành viên) từ session
-    // - MaSP (Mã sản phẩm), DiemDG (Điểm đánh giá), Binhluan (Bình luận) từ form POST
 
-    // Thêm dữ liệu đã nhập vào bảng danhgia
-    $sql1 = "INSERT INTO danhgia (MaDG,MaTV,MaSP,DiemDG,Binhluan) VALUES('$MaDG','$userID','$productID','$DiemDG','$Binhluan');";
+    //Thêm dữ liệu đã nhập vào bảng taikhoan
+    $sql1 = "INSERT INTO danhgia (MaDG,MaTV,MaSP,DiemDG,Binhluan) VALUES('$MaDG','$userID','$productID','$DiemDG','$Binhluan'); ";
     mysqLi_query($conn, $sql1);
-    // Thực thi câu lệnh SQL để thêm đánh giá vào bảng danhgia
 }
 ?>
 
@@ -39,7 +32,7 @@ if (isset($_POST['addRatingBtn'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chi tiết sản phẩm</title>
 
-    <!-- get jQuery from the google apis or use your own -->
+    <!-- lấy jQuery từ google apis hoặc dữ liệu người dùng -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- Assets for star ratings -->
     <script src="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/js/star-rating.min.js"
@@ -94,7 +87,7 @@ if (isset($_POST['addRatingBtn'])) {
     // lấy mã loại của sản phẩm hiện tại
     $categoryID = $productRow['Maloai'];
 
-    // Query for related products from the same category, excluding the current product
+    // Truy vấn sản phẩm từ loại sản phẩm 
     $relatedProductsResult = mysqli_query($conn, "SELECT * FROM sanpham WHERE Maloai = '$categoryID' AND MaSP != '$MaSP'");
 
     // lấy các rating của sp
@@ -195,7 +188,7 @@ if (isset($_POST['addRatingBtn'])) {
                                 <button type="submit" class="btn btn-warning me-2" name="addtocartbtn" value="1">Thêm vào giỏ hàng</button>
                                 <button type="button" class="btn btn-danger">Mua</button>
 
-                                <!-- Hidden Fields to Pass Product Data -->
+                                <!-- Trường Ẩn để Truyền Dữ Liệu Sản Phẩm -->
                                 <input type="hidden" name="hinhanh" value="<?= $productRow['Hinhanh'] ?>">
                                 <input type="hidden" name="tensp" value="<?= $productRow['TenSP'] ?>">
                                 <input type="hidden" name="giaban" value="<?= $productRow['Giaban'] ?>">
@@ -282,7 +275,7 @@ if (isset($_POST['addRatingBtn'])) {
                     while ($relatedProductRow = mysqli_fetch_array($relatedProductsResult)) {
                         $relatedProductID = $relatedProductRow['MaSP'];
 
-                        // Get ratings and number of reviews for the related product
+                        // Lấy đánh giá và số lượng đánh giá cho sản phẩm liên quan
                         $countRatingResult = mysqli_query($conn, "SELECT COUNT(DiemDG) AS totalRatings FROM danhgia WHERE MaSP = '$relatedProductID'");
                         $countRatingRow = mysqli_fetch_assoc($countRatingResult);
                         $totalRatings = $countRatingRow['totalRatings'];
@@ -295,7 +288,7 @@ if (isset($_POST['addRatingBtn'])) {
                             <!--thông tin sp, mỗi cái div này là 1 sp-->
                             <form action="giohang.php" method="post">
                                 <div class="card position-relative">
-                                    <!-- Show discount badge if the product has a discount (GiaKM) -->
+                                    <!-- Hiển thị huy hiệu giảm giá nếu sản phẩm có giảm giá (GiaKM) -->
                                     <?php if ($relatedProductRow['GiaKM'] != NULL) { ?>
                                         <div class="discount-badge">SALE</div>
                                     <?php } ?>
@@ -325,7 +318,7 @@ if (isset($_POST['addRatingBtn'])) {
                                                 </strong></span>
                                         </p>
 
-                                        <!-- Buttons for Add to Cart and Add to Favorite -->
+                                        <!-- Buttons thêm giỏ hàng và danh sách yêu thích -->
                                         <div class="btn-group" role="group">
                                             <button type="submit" class="btn btn-success" name="addtocartbtn" value="1"
                                                 data-bs-toggle="tooltip" data-bs-title="Thêm vào giỏ hàng">
@@ -337,7 +330,7 @@ if (isset($_POST['addRatingBtn'])) {
                                                 </svg>
                                             </button>
                                             <button type="button" class="btn btn-danger" data-bs-toggle="tooltip"
-                                                data-bs-title="Thêm vào yêu thích"> <!--button thêm yêu thích nè-->
+                                                data-bs-title="Thêm vào yêu thích"> <!--button thêm yêu thích -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
                                                     <path fill-rule="evenodd"
@@ -349,7 +342,7 @@ if (isset($_POST['addRatingBtn'])) {
                                         <!-- Progress Bar -->
                                         <div class="progress my-2" role="progressbar" style="height: 30px">
                                             <div class="progress-bar fw-bold" style="width: 80%">
-                                                <span>Đã bán: 60</span> <!--progress nè-->
+                                                <span>Đã bán: 60</span> <!--progress-->
                                             </div>
                                         </div>
 
@@ -361,7 +354,7 @@ if (isset($_POST['addRatingBtn'])) {
                                             <input value="<?= $averageRating ?>" data-size="xs" class="rating"
                                                 data-readonly="true" data-show-clear="false" data-show-caption="false">
                                         </div>
-                                        <!-- Hidden Fields to Pass Product Data -->
+                                        <!-- Trường Ẩn để Truyền Dữ Liệu Sản Phẩm -->
                                         <input type="hidden" name="hinhanh" value="<?= $relatedProductRow['Hinhanh'] ?>">
                                         <input type="hidden" name="tensp" value="<?= $relatedProductRow['TenSP'] ?>">
                                         <input type="hidden" name="giaban" value="<?= $relatedProductRow['Giaban'] ?>">
@@ -397,7 +390,7 @@ if (isset($_POST['addRatingBtn'])) {
         const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
     </script>
     <script>
-        /* calling script */
+ 
         $(".xzoom, .xzoom-gallery").xzoom({
             tint: '#333',
             Xoffset: 15
