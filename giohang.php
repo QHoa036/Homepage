@@ -11,7 +11,7 @@ if (!isset($_SESSION['mySession'])) {
 // User hiện tại
 $userID = $_SESSION['user']['MaTV']; // Lấy mã thành viên của người dùng hiện tại
 
-// Kiểm tra nếu user đã đăng nhập và có ID
+//* Kiểm tra nếu user đã đăng nhập và có ID
 if (isset($userID)) {
     // Truy vấn giỏ hàng hiện tại của người dùng
     $cartResult = mysqli_query($conn, "SELECT * FROM giohang WHERE MaTV = '$userID' ORDER BY MaGH ASC");
@@ -39,10 +39,10 @@ if (isset($userID)) {
     echo "Vui lòng đăng nhập để tạo giỏ hàng.";
 }
 
-// Khởi tạo biến tổng giá trị giỏ hàng
+//* Khởi tạo biến tổng giá trị giỏ hàng
 $totalPrice = 0;
 
-// Thêm sản phẩm vào giỏ hàng
+//* Thêm sản phẩm vào giỏ hàng
 if (isset($_POST['addtocartbtn']) && $_POST['addtocartbtn']) {
     $MaSP = $_POST['MaSP']; // Lấy mã sản phẩm
     $soluong = $_POST['soluong']; // Lấy số lượng sản phẩm
@@ -78,7 +78,7 @@ if (isset($_POST['addtocartbtn']) && $_POST['addtocartbtn']) {
     }
 }
 
-// Xóa sản phẩm khỏi giỏ hàng
+//* Xóa sản phẩm khỏi giỏ hàng
 if (isset($_POST['remove']) && isset($_POST['MaSP'])) {
     $MaSPToRemove = $_POST['MaSP']; // Lấy mã sản phẩm cần xóa
 
@@ -97,23 +97,23 @@ if (isset($_POST['remove']) && isset($_POST['MaSP'])) {
     mysqli_query($conn, $updateTotalQuery); // Thực hiện cập nhật tổng giá trị
 }
 
-// Lấy các sản phẩm trong giỏ hàng để hiển thị và tính tổng giá trị
+//* Lấy các sản phẩm trong giỏ hàng để hiển thị và tính tổng giá trị
 $cartDetailsResult = mysqli_query($conn, "SELECT chitietgiohang.*, sanpham.TenSP, sanpham.Hinhanh, sanpham.Giaban, sanpham.GiaKM
                                         FROM chitietgiohang
                                         JOIN sanpham ON chitietgiohang.MaSP = sanpham.MaSP
                                         WHERE chitietgiohang.MaGH = '$cartID'
                                         ORDER BY chitietgiohang.MaCTGH ASC");
 
-// Tính tổng giá trị
+//* Tính tổng giá trị
 while ($cartDetailsRow = mysqli_fetch_assoc($cartDetailsResult)) {
     $totalPrice += $cartDetailsRow['Thanhtien']; // Cộng dồn tổng giá trị
 }
 
-// Cập nhật tổng giá trị trong bảng giohang sau khi đã tính toán
+//* Cập nhật tổng giá trị trong bảng giohang sau khi đã tính toán
 $updateCartTotalQuery = "UPDATE giohang SET Tong = '$totalPrice' WHERE MaGH = '$cartID'";
 mysqli_query($conn, $updateCartTotalQuery); // Thực hiện cập nhật tổng giá trị giỏ hàng
 
-// Cập nhật trạng thái TinhTrang dựa trên tổng giá trị
+//* Cập nhật trạng thái TinhTrang dựa trên tổng giá trị
 if ($totalPrice > 0) {
     // Nếu giỏ hàng có sản phẩm, đặt TinhTrang = 1
     $updateStatusQuery = "UPDATE giohang SET TinhTrang = 1 WHERE MaGH = '$cartID'";
@@ -123,7 +123,7 @@ if ($totalPrice > 0) {
 }
 mysqli_query($conn, $updateStatusQuery); // Thực hiện cập nhật trạng thái giỏ hàng
 
-// Cập nhật giỏ
+//* Cập nhật giỏ
 // Cập nhật số lượng sản phẩm trong giỏ hàng
 if (isset($_POST['updateCart']) && isset($_POST['MaSP']) && isset($_POST['soluong'])) {
     $MaSP = $_POST['MaSP']; // Lấy mã sản phẩm

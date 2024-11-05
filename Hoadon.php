@@ -101,18 +101,6 @@ while ($cartDetailsRow = mysqli_fetch_assoc($cartDetailsResult)) {
 $totalPayment = $total; // Tổng tiền thanh toán ban đầu
 ?>
 
-<?php
-// Lưu mã giỏ hàng vào session
-$_SESSION['cartID'] = $cartID;
-
-// Check if the form is submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Update TinhTrang giỏ hàng từ 1 thành 0 cho giỏ hàng cụ thể
-    $updateCartStatus = mysqli_query($conn, "UPDATE giohang SET TinhTrang = 0 WHERE MaGH = '$cartID' AND TinhTrang = 1");
-}
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -240,7 +228,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="card-footer">
                 <span class="total-text">Tổng số tiền phải thanh toán:</span>
                 <span id="totalPayment" class="total-amount"><?= number_format($totalPayment) ?> đ</span>
-                <form method="POST" class="payment-form" onsubmit="return showSuccessMessage(event);">
+                <?php
+                // Truy vấn giỏ hàng hiện tại của người dùng
+                $cartResult = mysqli_query($conn, "SELECT * FROM giohang WHERE MaTV = '$userID' AND TinhTrang = 1 LIMIT 1");
+                $cartRow = mysqli_fetch_assoc($cartResult);
+
+                if (!$cartRow) {
+                    echo "Giỏ hàng của bạn không có sản phẩm nào.";
+                    exit();
+                }
+
+                $cartID = $cartRow['MaGH']; // Lấy mã giỏ hàng
+
+                // Check if the form is submitted
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    // Ensure $cartID is set and valid
+                    if (isset($cartID) && !empty($cartID)) {
+                        // Update TinhTrang giỏ hàng từ 1 thành 0 cho giỏ hàng cụ thể
+                        $updateCartStatus = mysqli_query($conn, "UPDATE giohang SET TinhTrang = 0 WHERE MaGH = '$cartID' AND TinhTrang = 1");
+
+                        // Check if the query was successful
+                        if ($updateCartStatus) {
+                            echo "<script>showSuccessMessage(event);</script>";
+                        } else {
+                            // Output the error message
+                            echo "Error updating cart status: " . mysqli_error($conn);
+                        }
+                    } else {
+                        echo "Invalid cart ID.";
+                    }
+                }
+                ?>
+                <form method="POST" class="payment-form">
                     <button type="submit" class="btn btn-light">Thanh toán</button>
                 </form>
 
