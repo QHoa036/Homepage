@@ -36,7 +36,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
 
                 // Truy vấn sản phẩm
                 $stmt = $conn->prepare("SELECT MaSP FROM sanpham WHERE TenSP LIKE ? ORDER BY MaSP DESC");
-                $likeTerm = "%$searchTerm";
+                $likeTerm = "$searchTerm";
                 $stmt->bind_param("s", $likeTerm);
                 $stmt->execute();
                 $result = $stmt->get_result();
