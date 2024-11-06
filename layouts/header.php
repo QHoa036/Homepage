@@ -34,9 +34,9 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                 // Lấy data tìm kiếm của người dùng
                 $searchTerm = trim($conn->real_escape_string($_GET['search-category']));
 
-                // Chuẩn bị câu lệnh truy vấn sản phẩm
+                // Truy vấn sản phẩm
                 $stmt = $conn->prepare("SELECT MaSP FROM sanpham WHERE TenSP LIKE ? ORDER BY MaSP DESC");
-                $likeTerm = "%$searchTerm%";
+                $likeTerm = "%$searchTerm";
                 $stmt->bind_param("s", $likeTerm);
                 $stmt->execute();
                 $result = $stmt->get_result();
@@ -49,7 +49,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                     header('Location: chitietsp.php?MaSP=' . $searchData['MaSP']);
                     exit();
                 } else {
-                    // Chuẩn bị câu lệnh truy vấn loại sản phẩm
+                    // Truy vấn loại sản phẩm
                     $stmt = $conn->prepare("SELECT MaLoai FROM loaisanpham WHERE TenLoai LIKE ?");
                     $stmt->bind_param("s", $likeTerm);
                     $stmt->execute();
