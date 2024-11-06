@@ -3,12 +3,6 @@
 include "database/conn.php";
 session_start();
 
-//Nếu chưa đăng nhập -> Chuyển tới trang Login
-// if (!isset($_SESSION['mySession'])) {
-//     header('location:login.php');
-//     exit();
-// }
-
 // Kiểm tra xem người dùng đã nhấn nút đăng ký hay chưa
 if (isset($_POST['signup'])) {
     // Tạo mã ngẫu nhiên để tạo ID người dùng và ID tài khoản

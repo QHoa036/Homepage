@@ -1,7 +1,6 @@
 <?php
-session_start();
-// kết nối database
 include 'database/conn.php';
+session_start();
 ?>
 
 <!DOCTYPE html>

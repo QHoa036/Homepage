@@ -150,7 +150,7 @@ $categoryData = mysqli_fetch_all($categoryResult, MYSQLI_ASSOC);
                     </li>
                     <!-- Hỏi đáp -->
                     <li class="nav-item">
-                        <a class="nav-link" href="questions.php">
+                        <a class="nav-link" href="hoidap.php">
                             <i class="bi bi-question-circle-fill navbar-header-logo"></i>
                             Hỏi đáp
                         </a>

@@ -240,26 +240,26 @@ $totalPayment = $total; // Tổng tiền thanh toán ban đầu
 
                 $cartID = $cartRow['MaGH']; // Lấy mã giỏ hàng
 
-                // Check if the form is submitted
+                // Kiểm tra nếu biểu mẫu được gửi
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    // Ensure $cartID is set and valid
+                    // Đảm bảo $cartID được thiết lập và hợp lệ
                     if (isset($cartID) && !empty($cartID)) {
-                        // Update TinhTrang giỏ hàng từ 1 thành 0 cho giỏ hàng cụ thể
+                        // Cập nhật TinhTrang giỏ hàng từ 1 thành 0 cho giỏ hàng cụ thể
                         $updateCartStatus = mysqli_query($conn, "UPDATE giohang SET TinhTrang = 0 WHERE MaGH = '$cartID' AND TinhTrang = 1");
 
-                        // Check if the query was successful
+                        // Kiểm tra nếu truy vấn thành công
                         if ($updateCartStatus) {
-                            echo "<script>showSuccessMessage(event);</script>";
+                            $updateCarDetail  = mysqli_query($conn, "DELETE FROM chitietgiohang WHERE MaGH = '$cartID'");
                         } else {
-                            // Output the error message
-                            echo "Error updating cart status: " . mysqli_error($conn);
+                            // Xuất thông báo lỗi
+                            echo "Lỗi khi cập nhật trạng thái giỏ hàng: " . mysqli_error($conn);
                         }
                     } else {
-                        echo "Invalid cart ID.";
+                        echo "Mã giỏ hàng không hợp lệ.";
                     }
                 }
                 ?>
-                <form method="POST" class="payment-form">
+                <form method="POST" class="payment-form" onsubmit="return showSuccessMessage(event);">
                     <button type="submit" class="btn btn-light">Thanh toán</button>
                 </form>
 

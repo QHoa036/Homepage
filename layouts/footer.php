@@ -32,19 +32,19 @@
 
                     <ul class="policy-list">
                         <li>
-                            <a href="<?php echo 'questions.php#huongdan' ?>" class="footer-link text-link-lg-18">
+                            <a href="<?php echo 'hoidap.php#huongdan' ?>" class="footer-link text-link-lg-18">
                                 Hướng dẫn mua hàng
                             </a>
                             <div class="footer-divider-child" />
                         </li>
                         <li>
-                            <a href="<?php echo 'questions.php#doitra' ?>" class="footer-link text-link-lg-18">
+                            <a href="<?php echo 'hoidap.php#doitra' ?>" class="footer-link text-link-lg-18">
                                 Chính sách đổi trả
                             </a>
                             <div class="footer-divider-child" />
                         </li>
                         <li>
-                            <a href="<?php echo 'questions.php#baomat' ?>" class="footer-link text-link-lg-18">
+                            <a href="<?php echo 'hoidap.php#baomat' ?>" class="footer-link text-link-lg-18">
                                 Chính sách bảo mật
                             </a>
                         </li>
